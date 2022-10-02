@@ -1,0 +1,19 @@
+<p>users works!</p>
+<br>
+<table>
+  <tr>
+    <th></th>
+    <th>Username</th>
+    <th>Password</th>
+    <th>Email</th>
+    <th>Active</th>
+  </tr>
+  <tr *ngFor="let x of userList;index as i">
+    <td>{{i+1}}</td>
+    <td>{{x.username}}</td>
+    <td>{{x.password}}</td>
+    <td>{{x.email}}</td>
+    <td><input type="checkbox" [checked]="x.isActive" disabled></td>
+
+  </tr>
+</table>

@@ -13,4 +13,10 @@ https://github.com/ryttuo/angular-material-base
 https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/
 ```
 
+## Project Structure
+![Alt text](./Images/ProjectStructure.jpg?raw=true "Project Structure")
+
+## Important commands
+* ng g c features/assets  -> Creating new Component
+
 
