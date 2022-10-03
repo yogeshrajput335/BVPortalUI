@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiRoute:"https://localhost:7037/api/"
+  apiRoute:"https://localhost:7037/api/",
+  defaultLanguage:'en'
 };
 
 /*
