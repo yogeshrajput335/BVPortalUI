@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './features/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AssetsComponent } from './features/assets/assets.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
-  ],
+    UsersComponent,
+    AssetsComponent,
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
