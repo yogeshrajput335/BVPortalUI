@@ -19,32 +19,24 @@ import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { AuthenticationInterceptor } from './core/services/authentication.interceptor';
+import { RouterModule } from '@angular/router';
+import { IndexNavbarComponent } from './shared/index-navbar/index-navbar.component';
+import { IndexComponent } from './features/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
     AssetsComponent,
-    NavComponent,
-    DashboardComponent,
+    IndexComponent,
+    IndexNavbarComponent,
    ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule
   ],
-  providers: [],
+  providers: [AuthenticationInterceptor],
 
   bootstrap: [AppComponent]
 })

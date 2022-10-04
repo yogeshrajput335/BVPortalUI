@@ -12,8 +12,6 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 @NgModule({
   imports: [
     AngularMaterialModule,
-    BrowserAnimationsModule,
-    CommonModule,
     HttpClientModule,
     RouterModule
   ],
