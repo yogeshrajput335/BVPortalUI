@@ -1,3 +1,4 @@
+import { TableComponent } from './samples/table/table.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthenticationGuard } from './core/services/authentication-guard.guard';
@@ -16,6 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./shared/login.module').then(m => m.LoginModule),
     //canActivate: [AuthenticationGuard]
   },
+  { path: "table", component: TableComponent },
   { path: "", component: IndexComponent },
 ];
 

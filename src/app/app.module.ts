@@ -23,6 +23,10 @@ import { AuthenticationInterceptor } from './core/services/authentication.interc
 import { RouterModule } from '@angular/router';
 import { IndexNavbarComponent } from './shared/index-navbar/index-navbar.component';
 import { IndexComponent } from './features/index/index.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { TableComponent } from './samples/table/table.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +34,15 @@ import { IndexComponent } from './features/index/index.component';
     AssetsComponent,
     IndexComponent,
     IndexNavbarComponent,
+    TableComponent,
    ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [AuthenticationInterceptor],
 
