@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiRoute:"https://localhost:7037/api/",
-  defaultLanguage:'en'
+  defaultLanguage:'en',
+  companyName:'Blueverse Systems'
 };
 
 /*

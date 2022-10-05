@@ -21,17 +21,8 @@ export class UsersComponent implements AfterViewInit {
   displayedColumns = ['username', 'password', 'email', 'userType', 'isActive'];
 
   constructor(public httpService :HttpCommonService) {
-    //this.getUserDetails()
     this.dataSource = new UserDataSource(httpService);
    }
-
-  // ngOnInit(): void {
-  //   this.getUserDetails()
-  // }
-  // getUserDetails(){
-  //   this.httpService.get('User/GetUsers').subscribe((data:any)=> this.dataSource = data);
-  // }
-
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
