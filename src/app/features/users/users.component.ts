@@ -14,19 +14,30 @@ import { UserDataSource, UserItem } from './user-datasource';
 export class UsersComponent implements AfterViewInit {
 
   //userList = [{username:'',password:'',email:'',isActive:false}]
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
+  // @ViewChild(MatTable) table!: MatTable<UserItem>;
+  //dataSource: UserDataSource | undefined;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<UserItem>;
-  dataSource: UserDataSource;
+  userData:any
   displayedColumns = ['username', 'password', 'email', 'userType', 'isActive'];
 
   constructor(public httpService :HttpCommonService) {
-    this.dataSource = new UserDataSource(httpService);
+    this.httpService.get('User/GetUsers').subscribe((data:any)=>
+    //this.dataSource = new UserDataSource(data)
+    //this.data = data
+    //this.paginator.pageIndex
+    //this.paginator.pageSize
+    this.userData = data//.slice(this.paginator.pageIndex,this.paginator.pageIndex+this.paginator.pageSize)
+    );
+
    }
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    // if(this.userData){
+    //    this.dataSource.sort = this.sort;
+    //    this.dataSource.paginator = this.paginator;
+    //    this.table.dataSource = this.dataSource;
+    //  }
   }
 
 }

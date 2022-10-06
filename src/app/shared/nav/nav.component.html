@@ -7,7 +7,7 @@
     <mat-nav-list>
       <a mat-list-item routerLink='dashboard' routerLinkActive="active">Dashboard</a>
       <a mat-list-item routerLink='users' routerLinkActive="active">User</a>
-      <a mat-list-item (click)="Logout()">Logout</a>
+      <!-- <a mat-list-item (click)="Logout()">Logout</a> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,6 +22,17 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>{{companyName}}</span>
+      <span class="fill-remaining-space"></span>
+      <mat-menu #appMenu="matMenu">
+        <button mat-menu-item>Global Settings</button>
+        <button mat-menu-item (click)="Logout()">
+          Logout
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
     </mat-toolbar>
     <!-- Add Content Here  *ngIf="isHandset$ | async" for above button-->
     <!-- <app-dashboard></app-dashboard> -->
