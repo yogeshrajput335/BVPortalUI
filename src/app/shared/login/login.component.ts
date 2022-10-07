@@ -3,10 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from "src/app/core/services/authentication.service";
 import { HttpCommonService } from "src/app/core/services/httpCommon.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -14,6 +16,7 @@ export class LoginComponent implements OnInit {
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
+  companyName: any;
 
   get usernameControl(): FormControl {
     return this.loginForm.get('username') as FormControl;
@@ -25,7 +28,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
     private route: Router,
-    private httpService:HttpCommonService) {}
+    private httpService:HttpCommonService) {
+      this.companyName = environment.companyName;
+    }
 
   ngOnInit(): void {
     this.loginForm.controls['username'].setValue('');
