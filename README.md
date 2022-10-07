@@ -24,3 +24,5 @@ https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/
 * https://material.angular.io/guide/schematics
 *https://www.w3schools.com/howto/howto_css_login_form.asp
 
+## index page - landing page design copied from 
+* https://cruip.com/demos/switch/
