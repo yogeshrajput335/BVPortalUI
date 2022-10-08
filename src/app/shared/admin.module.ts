@@ -21,8 +21,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { TimesheetComponent } from '../features/timesheet/timesheet.component';
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent ,AdminComponent,NavComponent],
+  declarations: [DashboardComponent, UsersComponent ,AdminComponent,NavComponent
+  ,TimesheetComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

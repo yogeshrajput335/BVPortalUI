@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardComponent } from "../features/dashboard/dashboard.component";
+import { TimesheetComponent } from "../features/timesheet/timesheet.component";
 import { UsersComponent } from "../features/users/users.component";
 import { AdminComponent } from "./admin/admin.component";
 
@@ -18,6 +19,7 @@ const routes: Routes = [
       // { path: "add-timesheet", component: AddTimesheetComponent },
       // { path: "view-timesheet", component: ViewTimesheetComponent },
       { path: "users", component: UsersComponent },
+      { path: "timesheet", component: TimesheetComponent },
       // { path: "candidates", component: CandidatesComponent },
       // { path: "open-jobs", component: OpenJobsComponent },
       // { path: "refer", component: ReferComponent },
