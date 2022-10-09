@@ -1,5 +1,5 @@
 import { LeaveTypeDataService } from './../features/leave-type/services/leave-type-data.service';
-import { DataService } from '../features/users/services/user-data.service';
+import { UserDataService } from '../features/users/services/user-data.service';
 import { UsersComponent } from './../features/users/users.component';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -34,6 +34,7 @@ import { LeaveTypeComponent } from '../features/leave-type/leave-type.component'
 import { AddLeaveTypeDialogComponent } from '../features/leave-type/dialogs/add/add-leave-type.dialog.component';
 import { DeleteLeaveTypeDialogComponent } from '../features/leave-type/dialogs/delete/delete-leave-type.dialog.component';
 import { EditLeaveTypeDialogComponent } from '../features/leave-type/dialogs/edit/edit-leave-type.dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
   ,TimesheetComponent,
@@ -64,8 +65,9 @@ import { EditLeaveTypeDialogComponent } from '../features/leave-type/dialogs/edi
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
-  providers: [DataService,LeaveTypeDataService]
+  providers: [UserDataService,LeaveTypeDataService]
 })
 export class AdminModule { }

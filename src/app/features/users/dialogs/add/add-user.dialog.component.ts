@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/user-data.service';
+import {UserDataService} from '../../services/user-data.service';
 import {FormControl, Validators} from '@angular/forms';
 import {User} from '../../models/User';
 
@@ -11,9 +11,12 @@ import {User} from '../../models/User';
 })
 
 export class AddUserDialogComponent {
+  statuses:any
   constructor(public dialogRef: MatDialogRef<AddUserDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: User,
-              public dataService: DataService) { }
+              public dataService: UserDataService) {
+                this.statuses = this.dataService.getStatues()
+               }
 
   formControl = new FormControl('', [
     Validators.required

@@ -1,6 +1,6 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DataService} from './services/user-data.service';
+import {UserDataService} from './services/user-data.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
@@ -21,15 +21,15 @@ import { UserDataSource } from './user-datasource';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns = ['id', 'username', 'password', 'email', 'userType', 'status', 'actions'];
-  userDatabase?: DataService | null;
+  displayedColumns = ['username', 'password', 'email', 'userType', 'status', 'actions'];
+  userDatabase?: UserDataService | null;
   dataSource?: UserDataSource | null;
   index?: number;
   id?: number;
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: DataService) {}
+              public dataService: UserDataService) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -51,7 +51,7 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
+        // For add we're just pushing a new row inside UserDataService
         this.userDatabase!.dataChange.value.push(this.dataService.getDialogData());
         this.refreshTable();
       }
@@ -69,7 +69,7 @@ export class UsersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
+        // When using an edit things are little different, firstly we find record inside UserDataService by id
         const foundIndex = this.userDatabase!.dataChange.value.findIndex(x => x.id === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.userDatabase!.dataChange.value[foundIndex] = this.dataService.getDialogData();
@@ -89,7 +89,7 @@ export class UsersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         const foundIndex = this.userDatabase!.dataChange.value.findIndex(x => x.id === this.id);
-        // for delete we use splice in order to remove single object from DataService
+        // for delete we use splice in order to remove single object from UserDataService
         this.userDatabase!.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
       }
@@ -124,7 +124,7 @@ export class UsersComponent implements OnInit {
 
 
   public loadData() {
-    this.userDatabase = new DataService(this.httpClient);
+    this.userDatabase = new UserDataService(this.httpClient);
     this.dataSource = new UserDataSource(this.userDatabase, this.paginator!, this.sort!);
     fromEvent(this.filter!.nativeElement, 'keyup')
       // .debounceTime(150)

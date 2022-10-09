@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/user-data.service';
+import {UserDataService} from '../../services/user-data.service';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -9,9 +9,11 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['../../dialogs/edit/edit-user.dialog.css']
 })
 export class EditUserDialogComponent {
-
+  statuses:any
   constructor(public dialogRef: MatDialogRef<EditUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: UserDataService) {
+                this.statuses = this.dataService.getStatues()
+              }
 
   formControl = new FormControl('', [
     Validators.required

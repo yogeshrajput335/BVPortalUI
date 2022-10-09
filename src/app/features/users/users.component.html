@@ -15,7 +15,7 @@
 
 
     <mat-form-field floatPlaceholder="never" color="accent" style="margin-left: 50px;">
-      <input matInput #filter placeholder="Filter issues">
+      <input matInput #filter placeholder="Filter users">
     </mat-form-field>
     <button mat-icon-button (click)="refresh()" style="float: right;">
       <mat-icon>refresh</mat-icon>
@@ -28,10 +28,10 @@
           The actual rendered columns are set as a property on the row definition" -->
 
     <!-- ID Column -->
-    <ng-container matColumnDef="id">
+    <!-- <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
       <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
-    </ng-container>
+    </ng-container> -->
 
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
@@ -61,17 +61,17 @@
     <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="addNew()">
+        <button mat-icon-button color="accent" (click)="addNew()">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(i, row.id, row.username, row.password, row.email, row.userType, row.status)">
+        <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.username, row.password, row.email, row.userType, row.status)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.username)">
+        <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.username)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

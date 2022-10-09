@@ -4,7 +4,7 @@ import {User} from './models/User';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {DataService} from './services/user-data.service';
+import {UserDataService} from './services/user-data.service';
 
 export class UserDataSource extends DataSource<User> {
   _filterChange = new BehaviorSubject('');
@@ -20,7 +20,7 @@ export class UserDataSource extends DataSource<User> {
   filteredData: User[] = [];
   renderedData: User[] = [];
 
-  constructor(public _exampleDatabase: DataService,
+  constructor(public _exampleDatabase: UserDataService,
               public _paginator: MatPaginator,
               public _sort: MatSort) {
     super();
@@ -45,7 +45,7 @@ export class UserDataSource extends DataSource<User> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((issue: User) => {
-          const searchStr = (issue.id + issue.username + issue.password + issue.email).toLowerCase();
+          const searchStr = (issue.id + issue.username + issue.email+ issue.userType).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

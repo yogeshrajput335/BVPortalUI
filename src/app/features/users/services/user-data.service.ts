@@ -5,8 +5,8 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 
 @Injectable()
-export class DataService {
-  private readonly API_URL = 'https://api.github.com/repos/angular/angular/issues';
+export class UserDataService {
+  statuses = ['ACTIVE', 'INACTIVE']
 
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
@@ -35,14 +35,36 @@ export class DataService {
   // DEMO ONLY, you can find working methods below
   addUser (user: User): void {
     this.dialogData = user;
+    this.httpClient.post('User/InsertUser',user).subscribe((data:any) => {
+      //this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
   }
 
   updateUser (user: User): void {
     this.dialogData = user;
+    this.httpClient.put('User/UpdateUser',user).subscribe((data:any) => {
+      //this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
   }
 
   deleteUser (id: number): void {
     console.log(id);
+    this.httpClient.delete('User/DeleteUser/'+id).subscribe((data:any) => {
+      //this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+  }
+
+  getStatues(){
+    return this.statuses
   }
 }
 
