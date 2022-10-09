@@ -3,7 +3,24 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === true">
-    <mat-toolbar>Menu</mat-toolbar>
+    <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    <div class="matero-user-panel" fxLayout="column" fxLayoutAlign="center center" style="text-align: center">
+      <img class="matero-user-panel-avatar" src="../../../assets/blueverse_logo.png" alt="avatar" width="64" />
+      <h4 class="matero-user-panel-name">{{ user.username }} ({{user.userType}})</h4>
+      <h5 class="matero-user-panel-email">{{ user.email }}</h5>
+      <div class="matero-user-panel-icons">
+        <a routerLink="/profile/overview" mat-icon-button>
+          <mat-icon class="icon-18">account_circle</mat-icon>
+        </a>
+        <a routerLink="/profile/settings" mat-icon-button>
+          <mat-icon class="icon-18">settings</mat-icon>
+        </a>
+        <a (click)="Logout()" mat-icon-button>
+          <mat-icon class="icon-18">exit_to_app</mat-icon>
+        </a>
+      </div>
+    </div>
+    <hr/>
     <mat-nav-list>
       <a mat-list-item routerLink='dashboard' routerLinkActive="active">Dashboard</a>
       <a mat-list-item routerLink='users' routerLinkActive="active">User</a>
@@ -28,6 +45,7 @@
       <span class="fill-remaining-space"></span>
       <mat-menu #appMenu="matMenu">
         <button mat-menu-item>Global Settings</button>
+        <button mat-menu-item>Profile</button>
         <button mat-menu-item (click)="Logout()">
           Logout
         </button>

@@ -1,3 +1,4 @@
+@use './style/transitions';
 .sidenav-container {
   height: 100%;
 }
@@ -17,4 +18,41 @@
 }
 .fill-remaining-space {
   flex: 1 1 auto;
+}
+
+.matero-user-panel {
+  padding: 16px 0;
+}
+
+// Set default width and height can avoid flashing before avatar image loaded.
+.matero-user-panel-avatar {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 0px;
+  transition: transitions.swift-ease-out(transform);
+}
+
+.matero-user-panel-name,
+.matero-user-panel-email {
+  margin-top: 0;
+  margin-bottom: 0px;
+  font-weight: normal;
+  color: gray;
+}
+
+.matero-user-panel-name,
+.matero-user-panel-email,
+.matero-user-panel-icons {
+  opacity: 1;
+  transition: transitions.swift-ease-out(opacity);
+}
+
+.matero-user-panel-icons {
+  white-space: nowrap;
+
+  .mat-icon-button {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+  }
 }
