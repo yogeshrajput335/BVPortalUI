@@ -1,16 +1,16 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/data.service';
+import {DataService} from '../../services/user-data.service';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-baza.dialog',
-  templateUrl: '../../dialogs/edit/edit.dialog.html',
-  styleUrls: ['../../dialogs/edit/edit.dialog.css']
+  selector: 'app-edit-user.dialog',
+  templateUrl: '../../dialogs/edit/edit-user.dialog.html',
+  styleUrls: ['../../dialogs/edit/edit-user.dialog.css']
 })
-export class EditDialogComponent {
+export class EditUserDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<EditDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<EditUserDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: DataService) { }
 
   formControl = new FormControl('', [

@@ -1,15 +1,15 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DataService} from './services/data.service';
+import {DataService} from './services/user-data.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {User} from './models/User';
 import {DataSource} from '@angular/cdk/collections';
-import {AddDialogComponent} from './dialogs/add/add.dialog.component';
-import {EditDialogComponent} from './dialogs/edit/edit.dialog.component';
-import {DeleteDialogComponent} from './dialogs/delete/delete.dialog.component';
+import {AddUserDialogComponent} from './dialogs/add/add-user.dialog.component';
+import {EditUserDialogComponent} from './dialogs/edit/edit-user.dialog.component';
+import {DeleteUserDialogComponent} from './dialogs/delete/delete-user.dialog.component';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { UserDataSource } from './user-datasource';
@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
   }
 
   addNew() {
-    const dialogRef = this.dialog.open(AddDialogComponent, {
+    const dialogRef = this.dialog.open(AddUserDialogComponent, {
       data: {user: User }
     });
 
@@ -63,7 +63,7 @@ export class UsersComponent implements OnInit {
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
-    const dialogRef = this.dialog.open(EditDialogComponent, {
+    const dialogRef = this.dialog.open(EditUserDialogComponent, {
       data: {id: id, username: username, password: password, email: email, userType: userType, status: status}
     });
 
@@ -82,7 +82,7 @@ export class UsersComponent implements OnInit {
   deleteItem(i: number, id: number, username: string) {
     this.index = i;
     this.id = id;
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+    const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
       data: {id: id, username: username}
     });
 

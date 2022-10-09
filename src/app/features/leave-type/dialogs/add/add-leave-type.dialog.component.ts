@@ -1,19 +1,19 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {DataService} from '../../services/data.service';
 import {FormControl, Validators} from '@angular/forms';
-import {User} from '../../models/User';
+import { LeaveType } from '../../models/LeaveType';
+import { LeaveTypeDataService } from '../../services/leave-type-data.service';
 
 @Component({
-  selector: 'app-add.dialog',
-  templateUrl: '../../dialogs/add/add.dialog.html',
-  styleUrls: ['../../dialogs/add/add.dialog.css']
+  selector: 'app-add-leave-type.dialog',
+  templateUrl: '../../dialogs/add/add-leave-type.dialog.html',
+  styleUrls: ['../../dialogs/add/add-leave-type.dialog.css']
 })
 
-export class AddDialogComponent {
-  constructor(public dialogRef: MatDialogRef<AddDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              public dataService: DataService) { }
+export class AddLeaveTypeDialogComponent {
+  constructor(public dialogRef: MatDialogRef<AddLeaveTypeDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: LeaveType,
+              public dataService: LeaveTypeDataService) { }
 
   formControl = new FormControl('', [
     Validators.required
@@ -35,6 +35,6 @@ export class AddDialogComponent {
   }
 
   public confirmAdd(): void {
-    this.dataService.addUser(this.data);
+    this.dataService.addLeaveType(this.data);
   }
 }

@@ -1,4 +1,5 @@
-import { DataService } from './../features/users/services/data.service';
+import { LeaveTypeDataService } from './../features/leave-type/services/leave-type-data.service';
+import { DataService } from '../features/users/services/user-data.service';
 import { UsersComponent } from './../features/users/users.component';
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
@@ -24,17 +25,24 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { TimesheetComponent } from '../features/timesheet/timesheet.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { DeleteDialogComponent } from '../features/users/dialogs/delete/delete.dialog.component';
-import { AddDialogComponent } from '../features/users/dialogs/add/add.dialog.component';
-import { EditDialogComponent } from '../features/users/dialogs/edit/edit.dialog.component';
+import { DeleteUserDialogComponent } from '../features/users/dialogs/delete/delete-user.dialog.component';
+import { AddUserDialogComponent } from '../features/users/dialogs/add/add-user.dialog.component';
+import { EditUserDialogComponent } from '../features/users/dialogs/edit/edit-user.dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { LeaveTypeComponent } from '../features/leave-type/leave-type.component';
+import { AddLeaveTypeDialogComponent } from '../features/leave-type/dialogs/add/add-leave-type.dialog.component';
+import { DeleteLeaveTypeDialogComponent } from '../features/leave-type/dialogs/delete/delete-leave-type.dialog.component';
+import { EditLeaveTypeDialogComponent } from '../features/leave-type/dialogs/edit/edit-leave-type.dialog.component';
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent ,AdminComponent,NavComponent
+  declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
   ,TimesheetComponent,
-  AddDialogComponent,
-  DeleteDialogComponent,
-  EditDialogComponent],
+  AddUserDialogComponent,
+  AddLeaveTypeDialogComponent,
+  DeleteUserDialogComponent,
+  DeleteLeaveTypeDialogComponent,
+  EditUserDialogComponent,
+  EditLeaveTypeDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -58,6 +66,6 @@ import { MatInputModule } from '@angular/material/input';
     MatDialogModule,
     MatInputModule
   ],
-  providers: [DataService]
+  providers: [DataService,LeaveTypeDataService]
 })
 export class AdminModule { }

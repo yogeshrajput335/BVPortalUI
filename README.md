@@ -26,3 +26,6 @@ https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/
 
 ## index page - landing page design copied from 
 * https://cruip.com/demos/switch/
+
+## Create new component
+* ng g c features/leave-type
