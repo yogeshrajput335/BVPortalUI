@@ -1,95 +1,91 @@
-import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
-import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {User} from './models/User';
+import {DataSource} from '@angular/cdk/collections';
+import {BehaviorSubject, merge, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {DataService} from './services/data.service';
 
-// TODO: Replace this with your own data model type
-export interface UserItem {
-  id: number;
-  username: string;
-  password: string;
-  email: string;
-  userType: string;
-  isActive: boolean;
-}
+export class UserDataSource extends DataSource<User> {
+  _filterChange = new BehaviorSubject('');
 
+  get filter(): string {
+    return this._filterChange.value;
+  }
 
-/**
- * Data source for the Table view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class UserDataSource extends DataSource<UserItem> {
-  data: UserItem[] = [];// = EXAMPLE_DATA;
-  paginator: MatPaginator | undefined;
-  sort: MatSort | undefined;
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
 
-  constructor(data:any) {
+  filteredData: User[] = [];
+  renderedData: User[] = [];
+
+  constructor(public _exampleDatabase: DataService,
+              public _paginator: MatPaginator,
+              public _sort: MatSort) {
     super();
-    this.data = data
-    //this.httpService.get('User/GetUsers').subscribe((data:any)=> this.data = data);
+    // Reset to the first page when the user changes the filter.
+    this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
+    this._exampleDatabase.getAllUsers();
   }
 
-  /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
-   * @returns A stream of the items to be rendered.
-   */
-  connect(): Observable<UserItem[]> {
-    if (this.paginator && this.sort) {
-      // Combine everything that affects the rendered data into one update
-      // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
-        }));
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<User[]> {
+    // Listen for any changes in the base data, sorting, filtering, or pagination
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._sort.sortChange,
+      this._filterChange,
+      this._paginator.page
+    ];
+
+    this._exampleDatabase.getAllUsers();
+
+
+    return merge(...displayDataChanges).pipe(map( () => {
+        // Filter data
+        this.filteredData = this._exampleDatabase.data.slice().filter((issue: User) => {
+          const searchStr = (issue.id + issue.username + issue.password + issue.email).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        });
+
+        // Sort filtered data
+        const sortedData = this.sortData(this.filteredData.slice());
+
+        // Grab the page's slice of the filtered sorted data.
+        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+        return this.renderedData;
+      }
+    ));
   }
 
-  /**
-   *  Called when the table is being destroyed. Use this function, to clean up
-   * any open connections or free any held resources that were set up during connect.
-   */
-  disconnect(): void {}
+  disconnect() {}
 
-  /**
-   * Paginate the data (client-side). If you're using server-side pagination,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getPagedData(data: UserItem[]): UserItem[] {
-    if (this.paginator) {
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return data.splice(startIndex, this.paginator.pageSize);
-    } else {
-      return data;
-    }
-  }
 
-  /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
-   */
-  private getSortedData(data: UserItem[]): UserItem[] {
-    if (!this.sort || !this.sort.active || this.sort.direction === '') {
+  /** Returns a sorted copy of the database data. */
+  sortData(data: User[]): User[] {
+    if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
 
     return data.sort((a, b) => {
-      const isAsc = this.sort?.direction === 'asc';
-      switch (this.sort?.active) {
-        case 'username': return compare(a.username, b.username, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        default: return 0;
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._sort.active) {
+        case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
+        case 'username': [propertyA, propertyB] = [a.username, b.username]; break;
+        case 'password': [propertyA, propertyB] = [a.password, b.password]; break;
+        case 'email': [propertyA, propertyB] = [a.email, b.email]; break;
+        case 'userType': [propertyA, propertyB] = [a.userType, b.userType]; break;
+        case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
-}
-
-/** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean): number {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

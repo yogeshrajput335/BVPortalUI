@@ -1,8 +1,15 @@
 .full-width-table {
   width: 100%;
 }
+
 .mat-elevation-z8{
   margin: 10px;
   height: 500px;
   overflow: auto;
 }
+
+.fill-remaining-space {
+  //flex: 1 1 auto;
+  float: right;
+}
+
