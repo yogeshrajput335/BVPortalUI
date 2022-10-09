@@ -11,9 +11,7 @@
 
   <div class="form">
     <span style="font-size: 20px;margin-left:20px">Users List</span>
-  <span class="spacer"></span>
-
-
+    <span class="spacer"></span>
     <mat-form-field floatPlaceholder="never" color="accent" style="margin-left: 50px;">
       <input matInput #filter placeholder="Filter users">
     </mat-form-field>
@@ -55,14 +53,21 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.status}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip *ngIf="row.status!=='ACTIVE' && row.status!=='INACTIVE'">No Status</mat-chip>
+          <mat-chip *ngIf="row.status=='ACTIVE'" color="primary" selected>Active</mat-chip>
+          <mat-chip  *ngIf="row.status=='INACTIVE'"color="warn" selected>Inactive</mat-chip>
+        </mat-chip-list>
+      </mat-cell>
     </ng-container>
 
     <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="accent" (click)="addNew()">
+        <button mat-icon-button  (click)="addNew()" >
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          <!-- <span>Create New User</span> -->
         </button>
       </mat-header-cell>
 

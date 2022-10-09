@@ -35,6 +35,7 @@ import { AddLeaveTypeDialogComponent } from '../features/leave-type/dialogs/add/
 import { DeleteLeaveTypeDialogComponent } from '../features/leave-type/dialogs/delete/delete-leave-type.dialog.component';
 import { EditLeaveTypeDialogComponent } from '../features/leave-type/dialogs/edit/edit-leave-type.dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
   ,TimesheetComponent,
@@ -66,7 +67,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [UserDataService,LeaveTypeDataService]
 })

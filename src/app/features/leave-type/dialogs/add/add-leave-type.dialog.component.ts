@@ -11,9 +11,12 @@ import { LeaveTypeDataService } from '../../services/leave-type-data.service';
 })
 
 export class AddLeaveTypeDialogComponent {
+  statuses:any
   constructor(public dialogRef: MatDialogRef<AddLeaveTypeDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: LeaveType,
-              public dataService: LeaveTypeDataService) { }
+              public dataService: LeaveTypeDataService) {
+                this.statuses = this.dataService.getStatues()
+              }
 
   formControl = new FormControl('', [
     Validators.required
