@@ -32,11 +32,65 @@
     <mat-divider></mat-divider>
     <mat-nav-list>
       <a mat-list-item routerLink='dashboard' routerLinkActive="active">Dashboard</a>
-      <a mat-list-item routerLink='users' routerLinkActive="active">User</a>
-      <a mat-list-item routerLink='timesheet' routerLinkActive="active">Timesheet</a>
-      <a mat-list-item routerLink='leave-type' routerLinkActive="active">Leave Type</a>
-      <a mat-list-item routerLink='client' routerLinkActive="active">Client</a>
-      <a mat-list-item routerLink='project' routerLinkActive="active">Project</a>
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+              User Management
+          </mat-expansion-panel-header>
+          <mat-nav-list dense>
+            <a mat-list-item routerLink='users' routerLinkActive="active"><mat-icon>attach_money</mat-icon>User</a>
+            <a mat-list-item routerLink='employee' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Employee</a>
+            <a mat-list-item routerLink='jobs' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Jobs</a>
+            <a mat-list-item routerLink='reference' routerLinkActive="active"><mat-icon>notification_important</mat-icon>Reference</a>
+            <a mat-list-item routerLink='candidate' routerLinkActive="active"><mat-icon>notification_important</mat-icon>Candidate</a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+            Outsourcing
+          </mat-expansion-panel-header>
+          <mat-nav-list dense>
+            <a mat-list-item routerLink='client' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Client</a>
+            <a mat-list-item routerLink='project' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Project</a>
+            <a mat-list-item routerLink='project-assignment' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Project Assignment</a>
+          </mat-nav-list>
+      </mat-expansion-panel>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+            <mat-expansion-panel-header>
+                Timesheet
+            </mat-expansion-panel-header>
+            <mat-nav-list dense>
+              <a mat-list-item routerLink='holiday' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Holiday</a>
+              <a mat-list-item routerLink='leave-type' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Leave Type</a>
+              <a mat-list-item routerLink='leave' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Leave</a>
+              <a mat-list-item routerLink='timesheet' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Timesheet</a>
+              <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active"><mat-icon>notification_important</mat-icon>Timesheet Detail</a>
+              <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active"><mat-icon>notification_important</mat-icon>Timesheet Approval</a>
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel-header>
+              Inventory
+          </mat-expansion-panel-header>
+          <mat-nav-list dense>
+            <a mat-list-item routerLink='asset' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Asset</a>
+            <a mat-list-item routerLink='asset-type' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Asset Type</a>
+            <a mat-list-item routerLink='asset-allocation' routerLinkActive="active"><mat-icon>attach_money</mat-icon>Asset Allocation</a>
+          </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+      <!-- <a mat-list-item routerLink='users' routerLinkActive="active">User</a> -->
+      <!-- <a mat-list-item routerLink='timesheet' routerLinkActive="active">Timesheet</a> -->
+      <!-- <a mat-list-item routerLink='leave-type' routerLinkActive="active">Leave Type</a>
+      <a mat-list-item routerLink='client' routerLinkActive="active">Client</a> -->
+      <!-- <a mat-list-item routerLink='leave' routerLinkActive="active">Leave</a> -->
+      <!-- <a mat-list-item routerLink='jobs' routerLinkActive="active">Jobs</a> -->
+      <!-- <a mat-list-item routerLink='asset' routerLinkActive="active">Asset</a>
+      <a mat-list-item routerLink='asset-type' routerLinkActive="active">Asset Type</a>
+      <a mat-list-item routerLink='asset-allocation' routerLinkActive="active">Asset Allocation</a>
+      <a mat-list-item routerLink='project-assignment' routerLinkActive="active">Project Assignment</a> -->
+      <!-- <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active">Timesheet Detail</a>
+      <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active">Timesheet Approval</a> -->
 
       <!-- <a mat-list-item (click)="Logout()">Logout</a> -->
     </mat-nav-list>

@@ -41,12 +41,23 @@ import { DeleteClientDialogComponent } from '../features/client/dialogs/delete/d
 import { EditClientDialogComponent } from '../features/client/dialogs/edit/edit-client.dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ClientDataService } from '../features/client/services/client-data.service';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ProfileComponent } from '../features/profile/profile.component';
 import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
 import { OrganizationalStructureComponent } from '../features/organizational-structure/organizational-structure.component';
+import { LeaveComponent } from '../features/leave/leave.component';
+import { HolidayComponent } from '../features/holiday/holiday.component';
+import { ReferenceComponent } from '../features/reference/reference.component';
+import { JobsComponent } from '../features/jobs/jobs.component';
+import { AssetComponent } from '../features/asset/asset.component';
+import { AssetTypeComponent } from '../features/asset-type/asset-type.component';
+import { AssetAllocationComponent } from '../features/asset-allocation/asset-allocation.component';
+import { CandidateComponent } from '../features/candidate/candidate.component';
+import { ProjectAssignmentComponent } from '../features/project-assignment/project-assignment.component';
+import { TimesheetDetailComponent } from '../features/timesheet-detail/timesheet-detail.component';
+import { TimesheetApprovalComponent } from '../features/timesheet-approval/timesheet-approval.component';
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
   ,TimesheetComponent,ClientComponent,
@@ -62,6 +73,18 @@ import { OrganizationalStructureComponent } from '../features/organizational-str
   ProfileComponent,
   GlobalSettingsComponent,
   OrganizationalStructureComponent,
+  LeaveComponent,
+  HolidayComponent,
+  ReferenceComponent,
+  JobsComponent,
+  AssetComponent,
+  AssetTypeComponent,
+  AssetAllocationComponent,
+  CandidateComponent,
+  ProjectAssignmentComponent,
+  TimesheetDetailComponent,
+  TimesheetApprovalComponent,
+
 ],
   imports: [
     CommonModule,
@@ -87,7 +110,9 @@ import { OrganizationalStructureComponent } from '../features/organizational-str
     MatInputModule,
     MatSelectModule,
     MatChipsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService]
 })

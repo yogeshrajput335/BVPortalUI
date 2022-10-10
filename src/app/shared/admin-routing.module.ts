@@ -1,3 +1,10 @@
+import { TimesheetApprovalComponent } from './../features/timesheet-approval/timesheet-approval.component';
+import { TimesheetDetailComponent } from './../features/timesheet-detail/timesheet-detail.component';
+import { ProjectAssignmentComponent } from './../features/project-assignment/project-assignment.component';
+import { AssetAllocationComponent } from './../features/asset-allocation/asset-allocation.component';
+import { AssetTypeComponent } from './../features/asset-type/asset-type.component';
+import { JobsComponent } from './../features/jobs/jobs.component';
+import { LeaveComponent } from './../features/leave/leave.component';
 import { OrganizationalStructureComponent } from './../features/organizational-structure/organizational-structure.component';
 import { GlobalSettingsComponent } from './../features/global-settings/global-settings.component';
 import { ProfileComponent } from './../features/profile/profile.component';
@@ -10,6 +17,7 @@ import { UsersComponent } from "../features/users/users.component";
 import { AdminComponent } from "./admin/admin.component";
 import { ClientComponent } from './../features/client/client.component';
 import { ProjectComponent } from '../features/project/project.component';
+import { AssetComponent } from '../features/asset/asset.component';
 const routes: Routes = [
   {
     path: "",
@@ -24,6 +32,14 @@ const routes: Routes = [
       { path: "profile", component: ProfileComponent },
       { path: "settings", component: GlobalSettingsComponent },
       { path: "org-structure", component: OrganizationalStructureComponent },
+      { path: "leave", component: LeaveComponent },
+      { path: "jobs", component: JobsComponent },
+      { path: "asset", component: AssetComponent },
+      { path: "asset-type", component: AssetTypeComponent },
+      { path: "asset-allocation", component: AssetAllocationComponent },
+      { path: "project-assignment", component: ProjectAssignmentComponent },
+      { path: "timesheet-detail", component: TimesheetDetailComponent },
+      { path: "timesheet-approval", component: TimesheetApprovalComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

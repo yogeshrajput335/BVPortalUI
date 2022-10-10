@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './features/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AssetsComponent } from './features/assets/assets.component';
 import { CoreModule } from './shared/core.module';
 import { NavComponent } from './shared/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -30,11 +29,21 @@ import { TableComponent } from './samples/table/table.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LeaveComponent } from './features/leave/leave.component';
+import { HolidayComponent } from './features/holiday/holiday.component';
+import { ReferenceComponent } from './features/reference/reference.component';
+import { JobsComponent } from './features/jobs/jobs.component';
+import { AssetComponent } from './features/asset/asset.component';
+import { AssetTypeComponent } from './features/asset-type/asset-type.component';
+import { AssetAllocationComponent } from './features/asset-allocation/asset-allocation.component';
+import { CandidateComponent } from './features/candidate/candidate.component';
+import { ProjectAssignmentComponent } from './features/project-assignment/project-assignment.component';
+import { TimesheetDetailComponent } from './features/timesheet-detail/timesheet-detail.component';
+import { TimesheetApprovalComponent } from './features/timesheet-approval/timesheet-approval.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AssetsComponent,
     IndexComponent,
     IndexNavbarComponent,
     TableComponent,
