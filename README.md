@@ -11,6 +11,7 @@ https://auth0.com/blog/creating-beautiful-apps-with-angular-material/
 https://github.com/auth0-blog/angular-material
 https://github.com/ryttuo/angular-material-base
 https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/
+https://github.com/umutesen/angular-material-template
 ```
 
 ## Project Structure
