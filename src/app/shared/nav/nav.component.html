@@ -4,16 +4,25 @@
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === true">
     <!-- <mat-toolbar>Menu</mat-toolbar> -->
+    <mat-divider></mat-divider>
     <div class="matero-user-panel" fxLayout="column" fxLayoutAlign="center center" style="text-align: center">
       <img class="matero-user-panel-avatar" src="../../../assets/blueverse_logo.png" alt="avatar" width="64" />
-      <h4 class="matero-user-panel-name">{{ user.username }} ({{user.userType}})</h4>
+      <h4 class="matero-user-panel-name">{{ user.username }}</h4>
       <h5 class="matero-user-panel-email">{{ user.email }}</h5>
+      <div>
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip color="accent" selected>{{user.userType}}</mat-chip>
+        </mat-chip-list>
+      </div>
       <div class="matero-user-panel-icons">
-        <a routerLink="/profile/overview" mat-icon-button>
+        <a routerLink='profile' routerLinkActive="active" mat-icon-button>
           <mat-icon class="icon-18">account_circle</mat-icon>
         </a>
-        <a routerLink="/profile/settings" mat-icon-button>
+        <a routerLink='settings' routerLinkActive="active" mat-icon-button>
           <mat-icon class="icon-18">settings</mat-icon>
+        </a>
+        <a routerLink='org-structure' routerLinkActive="active" mat-icon-button>
+          <mat-icon class="icon-18">language</mat-icon>
         </a>
         <a (click)="Logout()" mat-icon-button>
           <mat-icon class="icon-18">exit_to_app</mat-icon>
@@ -52,8 +61,8 @@
         <mat-icon>share</mat-icon>
       </button>
       <mat-menu #appMenu="matMenu">
-        <button mat-menu-item>Global Settings</button>
-        <button mat-menu-item>Profile</button>
+        <button mat-menu-item routerLink='settings' routerLinkActive="active">Global Settings</button>
+        <button mat-menu-item routerLink='profile' routerLinkActive="active">Profile</button>
         <button mat-menu-item (click)="Logout()">
           Logout
         </button>

@@ -1,3 +1,6 @@
+import { OrganizationalStructureComponent } from './../features/organizational-structure/organizational-structure.component';
+import { GlobalSettingsComponent } from './../features/global-settings/global-settings.component';
+import { ProfileComponent } from './../features/profile/profile.component';
 import { LeaveTypeComponent } from './../features/leave-type/leave-type.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
@@ -18,6 +21,9 @@ const routes: Routes = [
       { path: "leave-type", component: LeaveTypeComponent },
       { path: "client", component: ClientComponent },
       { path: "project", component: ProjectComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: "settings", component: GlobalSettingsComponent },
+      { path: "org-structure", component: OrganizationalStructureComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

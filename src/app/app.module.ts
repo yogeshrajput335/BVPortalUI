@@ -30,6 +30,7 @@ import { TableComponent } from './samples/table/table.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     IndexComponent,
     IndexNavbarComponent,
     TableComponent,
+
    ],
   imports: [
     AppRoutingModule,

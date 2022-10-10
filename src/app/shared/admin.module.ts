@@ -44,6 +44,9 @@ import { ClientDataService } from '../features/client/services/client-data.servi
 
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ProfileComponent } from '../features/profile/profile.component';
+import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
+import { OrganizationalStructureComponent } from '../features/organizational-structure/organizational-structure.component';
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
   ,TimesheetComponent,ClientComponent,
@@ -56,6 +59,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
   EditUserDialogComponent,
   EditLeaveTypeDialogComponent,
   EditClientDialogComponent,
+  ProfileComponent,
+  GlobalSettingsComponent,
+  OrganizationalStructureComponent,
 ],
   imports: [
     CommonModule,
