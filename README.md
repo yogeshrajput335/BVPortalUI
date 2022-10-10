@@ -28,4 +28,4 @@ https://robferguson.org/blog/2018/11/05/getting-started-with-angular-material/
 * https://cruip.com/demos/switch/
 
 ## Create new component
-* ng g c features/leave-type
+* ng g c features/project

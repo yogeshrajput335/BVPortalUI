@@ -28,10 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './samples/table/table.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { LeaveTypeComponent } from './features/leave-type/leave-type.component';
-import { ClientComponent } from './features/client/client.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +37,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     IndexComponent,
     IndexNavbarComponent,
     TableComponent,
-   
-
    ],
   imports: [
     AppRoutingModule,
@@ -51,6 +47,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSortModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    MatNativeDateModule ,
   ],
   providers: [AuthenticationInterceptor],
 

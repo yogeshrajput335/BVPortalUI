@@ -1,15 +1,33 @@
 .full-width-table {
-    width: 100%;
-  }
-  
-  .mat-elevation-z8{
-    margin: 10px;
-    height: 500px;
-    overflow: auto;
-  }
-  
-  .fill-remaining-space {
-    float: right;
-  }
-  
-  
+  width: 100%;
+}
+
+.mat-elevation-z8{
+  margin: 10px;
+  height: 500px;
+  overflow: auto;
+}
+
+.fill-remaining-space {
+  float: right;
+}
+.mat-chip {
+  font-size: 11px;
+  font-weight: 500;
+}
+.mat-standard-chip {
+min-height: 20px;
+}
+
+.mat-icon-button {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+}
+.mat-header-row{
+  background-color: #673ab7;
+}
+.mat-header-cell {
+  color: white;
+  font-size: 14px;
+}

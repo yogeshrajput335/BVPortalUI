@@ -11,11 +11,11 @@ import {Client} from '../../models/Client';
 })
 
 export class AddClientDialogComponent {
-  // statuses:any
+  statuses:any
   constructor(public dialogRef: MatDialogRef<AddClientDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Client,
               public dataService: ClientDataService) {
-                // this.statuses = this.dataService.getStatues()
+                this.statuses = this.dataService.getStatues()
                }
 
   formControl = new FormControl('', [

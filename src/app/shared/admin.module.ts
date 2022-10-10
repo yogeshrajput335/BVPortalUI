@@ -1,3 +1,4 @@
+import { ProjectComponent } from './../features/project/project.component';
 import { LeaveTypeDataService } from './../features/leave-type/services/leave-type-data.service';
 import { UserDataService } from '../features/users/services/user-data.service';
 import { UsersComponent } from './../features/users/users.component';
@@ -42,8 +43,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ClientDataService } from '../features/client/services/client-data.service';
 
 import {MatChipsModule} from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
+  declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
   ,TimesheetComponent,ClientComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
@@ -53,7 +55,8 @@ import {MatChipsModule} from '@angular/material/chips';
   DeleteClientDialogComponent,
   EditUserDialogComponent,
   EditLeaveTypeDialogComponent,
-  EditClientDialogComponent,],
+  EditClientDialogComponent,
+],
   imports: [
     CommonModule,
     FormsModule,
@@ -77,7 +80,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDatepickerModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService]
 })

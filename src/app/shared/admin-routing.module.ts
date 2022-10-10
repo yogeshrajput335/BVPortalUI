@@ -6,6 +6,7 @@ import { TimesheetComponent } from "../features/timesheet/timesheet.component";
 import { UsersComponent } from "../features/users/users.component";
 import { AdminComponent } from "./admin/admin.component";
 import { ClientComponent } from './../features/client/client.component';
+import { ProjectComponent } from '../features/project/project.component';
 const routes: Routes = [
   {
     path: "",
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: "timesheet", component: TimesheetComponent },
       { path: "leave-type", component: LeaveTypeComponent },
       { path: "client", component: ClientComponent },
+      { path: "project", component: ProjectComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 mat-dialog-title>Issue id: {{data.id}}</h3>
+  <!-- <h3 mat-dialog-title>Issue id: {{data.id}}</h3> -->
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
@@ -44,13 +44,16 @@
         <input matInput placeholder="Address" [(ngModel)]="data.address" name="address">
       </mat-form-field>
     </div>
+
     <div class="form">
-      <mat-label>Status</mat-label>
-      <mat-select [(ngModel)]="data.status" name="status"  color="accent" >
-        <mat-option *ngFor="let s of statuses" [value]="s">
-          {{s}}
-        </mat-option>
-      </mat-select>
+      <mat-form-field color="accent">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="data.status" name="status"  color="accent" >
+          <mat-option *ngFor="let s of statuses" [value]="s">
+            {{s}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
