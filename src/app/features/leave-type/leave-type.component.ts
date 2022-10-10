@@ -20,7 +20,7 @@ import { LeaveTypeDataSource } from './leave-type-datasource';
   styleUrls: ['./leave-type.component.scss']
 })
 export class LeaveTypeComponent implements OnInit {
-  displayedColumns = ['id', 'type', 'description', 'status', 'actions'];
+  displayedColumns = ['type', 'description', 'status', 'actions'];
   leaveTypeDatabase?: LeaveTypeDataService | null;
   dataSource?: LeaveTypeDataSource | null;
   index?: number;

@@ -3,12 +3,12 @@
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
-    <div class="form">
+    <!-- <div class="form">
       <mat-form-field color="accent">
         <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
-    </div>
+    </div> -->
 
     <!--Textarea for demo purposes-->
     <div class="form">
@@ -29,7 +29,12 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Status" [(ngModel)]="data.status" name="status">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="data.status" name="status"  color="accent" >
+          <mat-option *ngFor="let s of statuses" [value]="s">
+            {{s}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

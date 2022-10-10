@@ -41,6 +41,7 @@ import { EditClientDialogComponent } from '../features/client/dialogs/edit/edit-
 import { MatSelectModule } from '@angular/material/select';
 import { ClientDataService } from '../features/client/services/client-data.service';
 
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
   ,TimesheetComponent,ClientComponent,
@@ -75,7 +76,8 @@ import { ClientDataService } from '../features/client/services/client-data.servi
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService]
 })
