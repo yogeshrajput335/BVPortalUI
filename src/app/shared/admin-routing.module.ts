@@ -5,7 +5,7 @@ import { DashboardComponent } from "../features/dashboard/dashboard.component";
 import { TimesheetComponent } from "../features/timesheet/timesheet.component";
 import { UsersComponent } from "../features/users/users.component";
 import { AdminComponent } from "./admin/admin.component";
-
+import { ClientComponent } from './../features/client/client.component';
 const routes: Routes = [
   {
     path: "",
@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: "users", component: UsersComponent },
       { path: "timesheet", component: TimesheetComponent },
       { path: "leave-type", component: LeaveTypeComponent },
+      { path: "client", component: ClientComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
