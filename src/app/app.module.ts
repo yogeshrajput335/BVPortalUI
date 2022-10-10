@@ -29,6 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './samples/table/table.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LeaveTypeComponent } from './features/leave-type/leave-type.component';
+import { ClientComponent } from './features/client/client.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { LeaveTypeComponent } from './features/leave-type/leave-type.component';
     IndexComponent,
     IndexNavbarComponent,
     TableComponent,
+   
 
    ],
   imports: [
@@ -46,7 +49,8 @@ import { LeaveTypeComponent } from './features/leave-type/leave-type.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
   ],
   providers: [AuthenticationInterceptor],
 

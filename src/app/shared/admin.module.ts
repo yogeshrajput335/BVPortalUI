@@ -34,16 +34,25 @@ import { LeaveTypeComponent } from '../features/leave-type/leave-type.component'
 import { AddLeaveTypeDialogComponent } from '../features/leave-type/dialogs/add/add-leave-type.dialog.component';
 import { DeleteLeaveTypeDialogComponent } from '../features/leave-type/dialogs/delete/delete-leave-type.dialog.component';
 import { EditLeaveTypeDialogComponent } from '../features/leave-type/dialogs/edit/edit-leave-type.dialog.component';
+import { ClientComponent } from '../features/client/client.component';
+import { AddClientDialogComponent } from '../features/client/dialogs/add/add-client.dialog.component';
+import { DeleteClientDialogComponent } from '../features/client/dialogs/delete/delete-client.dialog.component';
+import { EditClientDialogComponent } from '../features/client/dialogs/edit/edit-client.dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ClientDataService } from '../features/client/services/client-data.service';
+
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
-  ,TimesheetComponent,
+  ,TimesheetComponent,ClientComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
+  AddClientDialogComponent,
   DeleteUserDialogComponent,
   DeleteLeaveTypeDialogComponent,
+  DeleteClientDialogComponent,
   EditUserDialogComponent,
-  EditLeaveTypeDialogComponent],
+  EditLeaveTypeDialogComponent,
+  EditClientDialogComponent,],
   imports: [
     CommonModule,
     FormsModule,
@@ -68,6 +77,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatSelectModule
   ],
-  providers: [UserDataService,LeaveTypeDataService]
+  providers: [UserDataService,LeaveTypeDataService,ClientDataService]
 })
 export class AdminModule { }
