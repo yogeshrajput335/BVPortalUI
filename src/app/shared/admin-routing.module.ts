@@ -1,3 +1,6 @@
+import { HolidayComponent } from './../features/holiday/holiday.component';
+import { CandidateComponent } from './../features/candidate/candidate.component';
+import { ReferenceComponent } from './../features/reference/reference.component';
 import { TimesheetApprovalComponent } from './../features/timesheet-approval/timesheet-approval.component';
 import { TimesheetDetailComponent } from './../features/timesheet-detail/timesheet-detail.component';
 import { ProjectAssignmentComponent } from './../features/project-assignment/project-assignment.component';
@@ -34,12 +37,16 @@ const routes: Routes = [
       { path: "org-structure", component: OrganizationalStructureComponent },
       { path: "leave", component: LeaveComponent },
       { path: "jobs", component: JobsComponent },
+      { path: "reference", component: ReferenceComponent },
+      { path: "candidate", component: CandidateComponent },
+      { path: "jobs", component: JobsComponent },
       { path: "asset", component: AssetComponent },
       { path: "asset-type", component: AssetTypeComponent },
       { path: "asset-allocation", component: AssetAllocationComponent },
       { path: "project-assignment", component: ProjectAssignmentComponent },
       { path: "timesheet-detail", component: TimesheetDetailComponent },
       { path: "timesheet-approval", component: TimesheetApprovalComponent },
+      { path: "holiday", component: HolidayComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
