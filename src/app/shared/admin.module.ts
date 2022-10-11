@@ -58,6 +58,8 @@ import { CandidateComponent } from '../features/candidate/candidate.component';
 import { ProjectAssignmentComponent } from '../features/project-assignment/project-assignment.component';
 import { TimesheetDetailComponent } from '../features/timesheet-detail/timesheet-detail.component';
 import { TimesheetApprovalComponent } from '../features/timesheet-approval/timesheet-approval.component';
+import {MatTabsModule} from '@angular/material/tabs';
+
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
   ,TimesheetComponent,ClientComponent,
@@ -112,7 +114,8 @@ import { TimesheetApprovalComponent } from '../features/timesheet-approval/times
     MatChipsModule,
     MatDatepickerModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService]
 })

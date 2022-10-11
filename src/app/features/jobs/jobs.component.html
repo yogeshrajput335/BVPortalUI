@@ -1,1 +1,35 @@
-<p>jobs works!</p>
+<div class="joblist">
+
+ <mat-accordion >
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sr. Fullstack Developer
+      </mat-panel-title>
+      <mat-panel-description>
+        Dot Net + Angular (Bangalore)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>In spite of all the automation that we see around us, the not-so-lowly employee still calls the shots. It’s still a while before machines will take over from humans. Which means there’s plenty of work for HR professionals. You could look at jobs in recruitment, compensation structuring, training and a host of other human resource management roles.</p>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Apply</button>
+      <button mat-raised-button color="accent" style="margin-left: 10px;">Refer</button>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel *ngFor="let s of [0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4]">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Sr. Cloud Developer
+      </mat-panel-title>
+      <mat-panel-description>
+        Azure (Bangalore)
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>In spite of all the automation that we see around us, the not-so-lowly employee still calls the shots. It’s still a while before machines will take over from humans. Which means there’s plenty of work for HR professionals. You could look at jobs in recruitment, compensation structuring, training and a host of other human resource management roles.</p>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Apply</button>
+      <button mat-raised-button color="accent" style="margin-left: 10px;">Refer</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
