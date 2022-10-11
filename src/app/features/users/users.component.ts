@@ -21,7 +21,7 @@ import { UserDataSource } from './user-datasource';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  displayedColumns = ['username', 'password', 'email', 'userType', 'status', 'actions'];
+  displayedColumns = ['userType', 'username', 'password', 'email', 'status', 'actions'];
   userDatabase?: UserDataService | null;
   dataSource?: UserDataSource | null;
   index?: number;

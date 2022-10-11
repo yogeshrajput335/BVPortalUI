@@ -35,7 +35,12 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="User Type" [(ngModel)]="data.userType" name="userType">
+        <mat-label>User Type</mat-label>
+        <mat-select [(ngModel)]="data.userType" name="userType"  color="accent" >
+          <mat-option *ngFor="let s of userTypes" [value]="s">
+            {{s}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 

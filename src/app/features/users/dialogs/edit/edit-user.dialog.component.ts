@@ -10,9 +10,11 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class EditUserDialogComponent {
   statuses:any
+  userTypes:any
   constructor(public dialogRef: MatDialogRef<EditUserDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: UserDataService) {
                 this.statuses = this.dataService.getStatues()
+                this.userTypes = this.dataService.getUserTypes()
               }
 
   formControl = new FormControl('', [

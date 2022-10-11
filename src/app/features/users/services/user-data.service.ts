@@ -7,6 +7,7 @@ import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 @Injectable()
 export class UserDataService {
   statuses = ['ACTIVE', 'INACTIVE']
+  userTypes = ['ADMIN', 'EMPLOYEE']
 
   dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   // Temporarily stores data from dialogs
@@ -65,6 +66,9 @@ export class UserDataService {
 
   getStatues(){
     return this.statuses
+  }
+  getUserTypes(){
+    return this.userTypes
   }
 }
 

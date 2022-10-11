@@ -12,10 +12,12 @@ import {User} from '../../models/User';
 
 export class AddUserDialogComponent {
   statuses:any
+  userTypes:any
   constructor(public dialogRef: MatDialogRef<AddUserDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: User,
               public dataService: UserDataService) {
                 this.statuses = this.dataService.getStatues()
+                this.userTypes = this.dataService.getUserTypes()
                }
 
   formControl = new FormControl('', [

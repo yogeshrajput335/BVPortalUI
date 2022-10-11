@@ -31,6 +31,17 @@
       <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
     </ng-container> -->
 
+    <ng-container matColumnDef="userType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>User Type</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip *ngIf="row.userType!=='ADMIN' && row.userType!=='EMPLOYEE'">---</mat-chip>
+          <mat-chip *ngIf="row.userType=='EMPLOYEE'" color="primary" selected>Employee</mat-chip>
+          <mat-chip  *ngIf="row.userType=='ADMIN'"color="warn" selected>Admin</mat-chip>
+        </mat-chip-list>
+      </mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.username}}</mat-cell>
@@ -44,11 +55,6 @@
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="userType">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>User Type</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.userType}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
