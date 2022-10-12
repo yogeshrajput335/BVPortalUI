@@ -59,6 +59,10 @@ import { ProjectAssignmentComponent } from '../features/project-assignment/proje
 import { TimesheetDetailComponent } from '../features/timesheet-detail/timesheet-detail.component';
 import { TimesheetApprovalComponent } from '../features/timesheet-approval/timesheet-approval.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { AddAssetDialogComponent } from '../features/asset/dialogs/add/add-asset.dialog.component';
+import { DeleteAssetDialogComponent } from '../features/asset/dialogs/delete/delete-asset.dialog.component';
+import { EditAssetDialogComponent } from '../features/asset/dialogs/edit/edit-asset.dialog.component';
+import { AssetDataService } from '../features/asset/services/asset-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -86,7 +90,9 @@ import {MatTabsModule} from '@angular/material/tabs';
   ProjectAssignmentComponent,
   TimesheetDetailComponent,
   TimesheetApprovalComponent,
-
+  AddAssetDialogComponent,
+  DeleteAssetDialogComponent,
+  EditAssetDialogComponent
 ],
   imports: [
     CommonModule,
@@ -117,6 +123,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatExpansionModule,
     MatTabsModule
   ],
-  providers: [UserDataService,LeaveTypeDataService,ClientDataService]
+  providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService]
 })
 export class AdminModule { }

@@ -3,7 +3,6 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === true">
-    <!-- <mat-toolbar>Menu</mat-toolbar> -->
     <mat-divider></mat-divider>
     <div class="matero-user-panel" fxLayout="column" fxLayoutAlign="center center" style="text-align: center">
       <img class="matero-user-panel-avatar" src="../../../assets/blueverse_logo.png" alt="avatar" width="64" />
@@ -81,20 +80,6 @@
             </mat-nav-list>
         </mat-expansion-panel>
       </mat-accordion>
-        <!-- <a mat-list-item routerLink='users' routerLinkActive="active">User</a> -->
-        <!-- <a mat-list-item routerLink='timesheet' routerLinkActive="active">Timesheet</a> -->
-        <!-- <a mat-list-item routerLink='leave-type' routerLinkActive="active">Leave Type</a>
-        <a mat-list-item routerLink='client' routerLinkActive="active">Client</a> -->
-        <!-- <a mat-list-item routerLink='leave' routerLinkActive="active">Leave</a> -->
-        <!-- <a mat-list-item routerLink='jobs' routerLinkActive="active">Jobs</a> -->
-        <!-- <a mat-list-item routerLink='asset' routerLinkActive="active">Asset</a>
-        <a mat-list-item routerLink='asset-type' routerLinkActive="active">Asset Type</a>
-        <a mat-list-item routerLink='asset-allocation' routerLinkActive="active">Asset Allocation</a>
-        <a mat-list-item routerLink='project-assignment' routerLinkActive="active">Project Assignment</a> -->
-        <!-- <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active">Timesheet Detail</a>
-        <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active">Timesheet Approval</a> -->
-
-        <!-- <a mat-list-item (click)="Logout()">Logout</a> -->
       </mat-nav-list>
     </div>
   </mat-sidenav>
@@ -129,8 +114,6 @@
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-toolbar>
-    <!-- Add Content Here  *ngIf="isHandset$ | async" for above button-->
-    <!-- <app-dashboard></app-dashboard> -->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
