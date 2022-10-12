@@ -63,6 +63,10 @@ import { AddAssetDialogComponent } from '../features/asset/dialogs/add/add-asset
 import { DeleteAssetDialogComponent } from '../features/asset/dialogs/delete/delete-asset.dialog.component';
 import { EditAssetDialogComponent } from '../features/asset/dialogs/edit/edit-asset.dialog.component';
 import { AssetDataService } from '../features/asset/services/asset-data.service';
+import { AddAssetTypeDialogComponent } from '../features/asset-type/dialogs/add/add-asset-type.dialog.component';
+import { DeleteAssetTypeDialogComponent } from '../features/asset-type/dialogs/delete/delete-asset-type.dialog.component';
+import { EditAssetTypeDialogComponent } from '../features/asset-type/dialogs/edit/edit-asset-type.dialog.component';
+import { AssetTypeDataService } from '../features/asset-type/services/asset-type-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -92,7 +96,10 @@ import { AssetDataService } from '../features/asset/services/asset-data.service'
   TimesheetApprovalComponent,
   AddAssetDialogComponent,
   DeleteAssetDialogComponent,
-  EditAssetDialogComponent
+  EditAssetDialogComponent,
+  AddAssetTypeDialogComponent,
+  DeleteAssetTypeDialogComponent,
+  EditAssetTypeDialogComponent
 ],
   imports: [
     CommonModule,
@@ -123,6 +130,6 @@ import { AssetDataService } from '../features/asset/services/asset-data.service'
     MatExpansionModule,
     MatTabsModule
   ],
-  providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService]
+  providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService]
 })
 export class AdminModule { }
