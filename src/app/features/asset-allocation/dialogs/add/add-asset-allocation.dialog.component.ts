@@ -42,7 +42,6 @@ export class AddAssetAllocationDialogComponent {
   }
 
   public confirmAdd(): void {
-    debugger
     this.dataService.addAssetAllocation(this.data);
   }
 }

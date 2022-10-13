@@ -43,7 +43,6 @@ export class AssetAllocationDataService {
   /** CRUD METHODS */
   getAllAssetAllocation(): void {
     this.httpClient.get('AssetAllocation/GetAssetAllocation').subscribe((data:any) => {
-      debugger
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
