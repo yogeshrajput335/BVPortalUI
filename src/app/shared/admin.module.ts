@@ -1,3 +1,4 @@
+import { AssetAllocationDataService } from './../features/asset-allocation/services/asset-allocation-data.service';
 import { ProjectComponent } from './../features/project/project.component';
 import { LeaveTypeDataService } from './../features/leave-type/services/leave-type-data.service';
 import { UserDataService } from '../features/users/services/user-data.service';
@@ -72,6 +73,9 @@ import { AddEmployeeDialogComponent } from '../features/employee/dialogs/add/add
 import { DeleteEmployeeDialogComponent } from '../features/employee/dialogs/delete/delete-employee.dialog.component';
 import { EditEmployeeDialogComponent } from '../features/employee/dialogs/edit/edit-employee.dialog.component';
 import { EmployeeDataService } from '../features/employee/services/employee-data.service';
+import { AddAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/add/add-asset-allocation.dialog.component';
+import { DeleteAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/delete/delete-asset-allocation.dialog.component';
+import { EditAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/edit/edit-asset-allocation.dialog.component';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -108,7 +112,10 @@ import { EmployeeDataService } from '../features/employee/services/employee-data
   EmployeeComponent,
   AddEmployeeDialogComponent,
   DeleteEmployeeDialogComponent,
-  EditEmployeeDialogComponent
+  EditEmployeeDialogComponent,
+  AddAssetAllocationDialogComponent,
+  DeleteAssetAllocationDialogComponent,
+  EditAssetAllocationDialogComponent
 ],
   imports: [
     CommonModule,
@@ -140,6 +147,6 @@ import { EmployeeDataService } from '../features/employee/services/employee-data
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService]
+    EmployeeDataService, AssetAllocationDataService]
 })
 export class AdminModule { }
