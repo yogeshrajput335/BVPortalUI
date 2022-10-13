@@ -1,22 +1,20 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {UserDataService} from '../../services/user-data.service';
+import {EmployeeDataService} from '../../services/employee-data.service';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-user.dialog',
-  templateUrl: '../../dialogs/edit/edit-user.dialog.html',
-  styleUrls: ['../../dialogs/edit/edit-user.dialog.css']
+  selector: 'app-edit-employee.dialog',
+  templateUrl: '../../dialogs/edit/edit-employee.dialog.html',
+  styleUrls: ['../../dialogs/edit/edit-employee.dialog.css']
 })
-export class EditUserDialogComponent {
+export class EditEmployeeDialogComponent {
   statuses:any
-  userTypes:any
-  employees:any
-  constructor(public dialogRef: MatDialogRef<EditUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: UserDataService) {
+  empTypes:any
+  constructor(public dialogRef: MatDialogRef<EditEmployeeDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EmployeeDataService) {
                 this.statuses = this.dataService.getStatues()
-                this.userTypes = this.dataService.getUserTypes()
-                this.employees = this.dataService.getEmployees()
+                this.empTypes = this.dataService.getEmployeeTypes()
               }
 
   formControl = new FormControl('', [
@@ -39,6 +37,6 @@ export class EditUserDialogComponent {
   }
 
   stopEdit(): void {
-    this.dataService.updateUser(this.data);
+    this.dataService.updateEmployee(this.data);
   }
 }

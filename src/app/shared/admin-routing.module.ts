@@ -21,6 +21,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { ClientComponent } from './../features/client/client.component';
 import { ProjectComponent } from '../features/project/project.component';
 import { AssetComponent } from '../features/asset/asset.component';
+import { EmployeeComponent } from '../features/employee/employee.component';
 const routes: Routes = [
   {
     path: "",
@@ -47,6 +48,7 @@ const routes: Routes = [
       { path: "timesheet-detail", component: TimesheetDetailComponent },
       { path: "timesheet-approval", component: TimesheetApprovalComponent },
       { path: "holiday", component: HolidayComponent },
+      { path: "employee", component: EmployeeComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

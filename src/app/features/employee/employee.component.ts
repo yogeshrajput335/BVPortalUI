@@ -1,35 +1,35 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {UserDataService} from './services/user-data.service';
+import {EmployeeDataService} from './services/employee-data.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {User} from './models/User';
+import {Employee} from './models/Employee';
 import {DataSource} from '@angular/cdk/collections';
-import {AddUserDialogComponent} from './dialogs/add/add-user.dialog.component';
-import {EditUserDialogComponent} from './dialogs/edit/edit-user.dialog.component';
-import {DeleteUserDialogComponent} from './dialogs/delete/delete-user.dialog.component';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import { UserDataSource } from './user-datasource';
+import { EmployeeDataSource } from './employee-datasource';
+import { AddEmployeeDialogComponent } from './dialogs/add/add-employee.dialog.component';
+import { EditEmployeeDialogComponent } from './dialogs/edit/edit-employee.dialog.component';
+import { DeleteEmployeeDialogComponent } from './dialogs/delete/delete-employee.dialog.component';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.scss']
 })
-export class UsersComponent implements OnInit {
-  displayedColumns = ['employee' ,'userType', 'username', 'password', 'email', 'status', 'actions'];
-  userDatabase?: UserDataService | null;
-  dataSource?: UserDataSource | null;
+export class EmployeeComponent implements OnInit {
+  displayedColumns = ['firstName', 'lastName', 'email', 'phoneNumber', 'employeeType', 'status', 'actions'];
+  userDatabase?: EmployeeDataService | null;
+  dataSource?: EmployeeDataSource | null;
   index?: number;
   id?: number;
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: UserDataService) {}
+              public dataService: EmployeeDataService) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -44,8 +44,8 @@ export class UsersComponent implements OnInit {
   }
 
   addNew() {
-    const dialogRef = this.dialog.open(AddUserDialogComponent, {
-      data: {user: User }
+    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+      data: {user: Employee }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -58,13 +58,13 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, username: string, password: string, email: string, userType: string, status: string) {
+  startEdit(i: number, id: number, firstName: string, lastName: string, email: string, phoneNumber: string, employeeType: string, status: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
-    const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      data: {id: id, username: username, password: password, email: email, userType: userType, status: status}
+    const dialogRef = this.dialog.open(EditEmployeeDialogComponent, {
+      data: {id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber,employeeType: employeeType, status: status}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,11 +79,11 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, username: string) {
+  deleteItem(i: number, id: number, firstName: string, lastName: string) {
     this.index = i;
     this.id = id;
-    const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
-      data: {id: id, username: username}
+    const dialogRef = this.dialog.open(DeleteEmployeeDialogComponent, {
+      data: {id: id, firstName: firstName, lastName: lastName}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -124,8 +124,8 @@ export class UsersComponent implements OnInit {
 
 
   public loadData() {
-    this.userDatabase = new UserDataService(this.httpClient);
-    this.dataSource = new UserDataSource(this.userDatabase, this.paginator!, this.sort!);
+    this.userDatabase = new EmployeeDataService(this.httpClient);
+    this.dataSource = new EmployeeDataSource(this.userDatabase, this.paginator!, this.sort!);
     fromEvent(this.filter!.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()

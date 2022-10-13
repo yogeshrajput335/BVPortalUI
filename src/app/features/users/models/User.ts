@@ -5,4 +5,6 @@ export class User {
   userType!: string;
   email!: string;
   status!: string;
+  employeeId!:number;
+  employee!:string;
 }

@@ -1,25 +1,23 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
-import {UserDataService} from '../../services/user-data.service';
+import {EmployeeDataService} from '../../services/employee-data.service';
 import {FormControl, Validators} from '@angular/forms';
-import {User} from '../../models/User';
+import {Employee} from '../../models/Employee';
 
 @Component({
-  selector: 'app-add-user.dialog',
-  templateUrl: '../../dialogs/add/add-user.dialog.html',
-  styleUrls: ['../../dialogs/add/add-user.dialog.css']
+  selector: 'app-add-employee.dialog',
+  templateUrl: '../../dialogs/add/add-employee.dialog.html',
+  styleUrls: ['../../dialogs/add/add-employee.dialog.css']
 })
 
-export class AddUserDialogComponent {
+export class AddEmployeeDialogComponent {
   statuses:any
-  userTypes:any
-  employees:any
-  constructor(public dialogRef: MatDialogRef<AddUserDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: User,
-              public dataService: UserDataService) {
+  empTypes:any
+  constructor(public dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: Employee,
+              public dataService: EmployeeDataService) {
                 this.statuses = this.dataService.getStatues()
-                this.userTypes = this.dataService.getUserTypes()
-                this.employees = this.dataService.getEmployees()
+                this.empTypes = this.dataService.getEmployeeTypes()
                }
 
   formControl = new FormControl('', [
@@ -42,6 +40,6 @@ export class AddUserDialogComponent {
   }
 
   public confirmAdd(): void {
-    this.dataService.addUser(this.data);
+    this.dataService.addEmployee(this.data);
   }
 }

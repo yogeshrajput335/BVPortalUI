@@ -10,6 +10,17 @@
       </mat-form-field>
     </div> -->
 
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Employee</mat-label>
+        <mat-select [(ngModel)]="data.employeeId" name="employeeId"  color="accent" >
+          <mat-option *ngFor="let s of employees" [value]="s.id">
+            {{s.firstName+' '+s.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <!--Textarea for demo purposes-->
     <div class="form">
       <mat-form-field color="accent">

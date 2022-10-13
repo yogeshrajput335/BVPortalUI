@@ -1,29 +1,21 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {User} from '../models/User';
+import {Employee} from '../models/Employee';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 
 @Injectable()
-export class UserDataService {
+export class EmployeeDataService {
   statuses = ['ACTIVE', 'INACTIVE']
-  userTypes = ['ADMIN', 'EMPLOYEE']
-  employees:any[] =[]
+  employeeTypes = ['PERMANENT', 'CONTRACTOR']
 
-  dataChange: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  dataChange: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpCommonService) {
-    this.httpClient.get('Employee/GetEmployee').subscribe((data:any) => {
-      this.employees = data;
-    },
-    (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
-    });
-  }
+  constructor (private httpClient: HttpCommonService) {}
 
-  get data(): User[] {
+  get data(): Employee[] {
     return this.dataChange.value;
   }
 
@@ -32,8 +24,8 @@ export class UserDataService {
   }
 
   /** CRUD METHODS */
-  getAllUsers(): void {
-    this.httpClient.get('User/GetUsers').subscribe((data:any) => {
+  getAllEmployee(): void {
+    this.httpClient.get('Employee/GetEmployee').subscribe((data:any) => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
@@ -42,11 +34,9 @@ export class UserDataService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addUser (user: User): void {
-    let emp = this.getEmployees().filter(x=>x.id===user.employeeId)[0]
-    user.employee = emp.firstName +" "+emp.lastName;
+  addEmployee(user: Employee): void {
     this.dialogData = user;
-    this.httpClient.post('User/InsertUser',user).subscribe((data:any) => {
+    this.httpClient.post('Employee/InsertEmployee',user).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -54,11 +44,9 @@ export class UserDataService {
     });
   }
 
-  updateUser (user: User): void {
-    let emp = this.getEmployees().filter(x=>x.id===user.employeeId)[0]
-    user.employee = emp.firstName +" "+emp.lastName;
+  updateEmployee(user: Employee): void {
     this.dialogData = user;
-    this.httpClient.put('User/UpdateUser',user).subscribe((data:any) => {
+    this.httpClient.put('Employee/UpdateEmployee',user).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -66,9 +54,9 @@ export class UserDataService {
     });
   }
 
-  deleteUser (id: number): void {
+  deleteEmployee(id: number): void {
     console.log(id);
-    this.httpClient.delete('User/DeleteUser/'+id).subscribe((data:any) => {
+    this.httpClient.delete('Employee/DeleteEmployee/'+id).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -79,11 +67,8 @@ export class UserDataService {
   getStatues(){
     return this.statuses
   }
-  getUserTypes(){
-    return this.userTypes
-  }
-  getEmployees(){
-    return this.employees
+  getEmployeeTypes(){
+    return this.employeeTypes
   }
 }
 

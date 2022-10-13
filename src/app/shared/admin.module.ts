@@ -67,6 +67,11 @@ import { AddAssetTypeDialogComponent } from '../features/asset-type/dialogs/add/
 import { DeleteAssetTypeDialogComponent } from '../features/asset-type/dialogs/delete/delete-asset-type.dialog.component';
 import { EditAssetTypeDialogComponent } from '../features/asset-type/dialogs/edit/edit-asset-type.dialog.component';
 import { AssetTypeDataService } from '../features/asset-type/services/asset-type-data.service';
+import { EmployeeComponent } from '../features/employee/employee.component';
+import { AddEmployeeDialogComponent } from '../features/employee/dialogs/add/add-employee.dialog.component';
+import { DeleteEmployeeDialogComponent } from '../features/employee/dialogs/delete/delete-employee.dialog.component';
+import { EditEmployeeDialogComponent } from '../features/employee/dialogs/edit/edit-employee.dialog.component';
+import { EmployeeDataService } from '../features/employee/services/employee-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -99,7 +104,11 @@ import { AssetTypeDataService } from '../features/asset-type/services/asset-type
   EditAssetDialogComponent,
   AddAssetTypeDialogComponent,
   DeleteAssetTypeDialogComponent,
-  EditAssetTypeDialogComponent
+  EditAssetTypeDialogComponent,
+  EmployeeComponent,
+  AddEmployeeDialogComponent,
+  DeleteEmployeeDialogComponent,
+  EditEmployeeDialogComponent
 ],
   imports: [
     CommonModule,
@@ -130,6 +139,7 @@ import { AssetTypeDataService } from '../features/asset-type/services/asset-type
     MatExpansionModule,
     MatTabsModule
   ],
-  providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService]
+  providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
+    EmployeeDataService]
 })
 export class AdminModule { }

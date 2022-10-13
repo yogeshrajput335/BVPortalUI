@@ -55,6 +55,7 @@ export class AssetDataService {
   }
 
   updateAsset (user: Asset): void {
+    user.type = this.getAssetTypes().filter(x=>x.id===user.typeId)[0].name;
     this.dialogData = user;
     this.httpClient.put('Asset/UpdateAsset',user).subscribe((data:any) => {
       //this.dataChange.next(data);

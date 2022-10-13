@@ -40,6 +40,7 @@ import { CandidateComponent } from './features/candidate/candidate.component';
 import { ProjectAssignmentComponent } from './features/project-assignment/project-assignment.component';
 import { TimesheetDetailComponent } from './features/timesheet-detail/timesheet-detail.component';
 import { TimesheetApprovalComponent } from './features/timesheet-approval/timesheet-approval.component';
+import { EmployeeComponent } from './features/employee/employee.component';
 
 @NgModule({
   declarations: [
