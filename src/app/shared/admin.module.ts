@@ -48,7 +48,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ProfileComponent } from '../features/profile/profile.component';
 import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
 import { OrganizationalStructureComponent } from '../features/organizational-structure/organizational-structure.component';
-import { LeaveComponent } from '../features/leave/leave.component';
+//import { LeaveComponent } from '../features/leave/leave.component';
 import { HolidayComponent } from '../features/holiday/holiday.component';
 import { ReferenceComponent } from '../features/reference/reference.component';
 import { JobsComponent } from '../features/jobs/jobs.component';
@@ -76,6 +76,11 @@ import { EmployeeDataService } from '../features/employee/services/employee-data
 import { AddAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/add/add-asset-allocation.dialog.component';
 import { DeleteAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/delete/delete-asset-allocation.dialog.component';
 import { EditAssetAllocationDialogComponent } from '../features/asset-allocation/dialogs/edit/edit-asset-allocation.dialog.component';
+import { LeaveComponent } from '../features/leave/leave.component';
+import { AddLeaveDialogComponent } from '../features/leave/dialogs/add/add-leave.dialog.component';
+import { DeleteLeaveDialogComponent } from '../features/leave/dialogs/delete/delete-leave.dialog.component';
+import { EditLeaveDialogComponent } from '../features/leave/dialogs/edit/edit-leave.dialog.component';
+import { LeaveDataService } from '../features/leave/services/leave-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -115,7 +120,10 @@ import { EditAssetAllocationDialogComponent } from '../features/asset-allocation
   EditEmployeeDialogComponent,
   AddAssetAllocationDialogComponent,
   DeleteAssetAllocationDialogComponent,
-  EditAssetAllocationDialogComponent
+  EditAssetAllocationDialogComponent,
+  AddLeaveDialogComponent,
+  DeleteLeaveDialogComponent,
+  EditLeaveDialogComponent
 ],
   imports: [
     CommonModule,
@@ -147,6 +155,6 @@ import { EditAssetAllocationDialogComponent } from '../features/asset-allocation
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService]
 })
 export class AdminModule { }
