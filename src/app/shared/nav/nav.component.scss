@@ -62,7 +62,7 @@
 }
 
 .mat-divider {
-  border-top-color: #673ab7;
+  border-top-color: #505050;
   box-shadow: 0px 7px 9px rgb(0 0 0 / 20%);
   border-top-width: 7px
 }
@@ -83,3 +83,7 @@
 // .mat-sidenav-fixed {
 //   position: absolute !important;
 // }
+.mat-toolbar.mat-primary {
+  background: #505050;
+  color: #fff;
+}

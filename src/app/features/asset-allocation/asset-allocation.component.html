@@ -43,7 +43,6 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <mat-chip-list aria-label="Fish selection">
-          {{row.status}}
           <mat-chip *ngIf="row.status!=='ALLOCATED' && row.status!=='RETURNED'">No Status</mat-chip>
           <mat-chip *ngIf="row.status=='ALLOCATED'" color="primary" selected>Allocated</mat-chip>
           <mat-chip  *ngIf="row.status=='RETURNED'"color="warn" selected>Returned</mat-chip>
