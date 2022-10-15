@@ -4,9 +4,15 @@
 
 .mat-elevation-z8{
   margin: 10px;
-  height: 500px;
+  height: 394px;
   overflow: auto;
 }
+::ng-deep.mat-table {
+  height: 280px !important;
+ }
+::ng-deep.mat-table {
+  height: 280px !important;
+ }
 
 .fill-remaining-space {
   float: right;
@@ -31,3 +37,6 @@ min-height: 20px;
   color: #505050;
   font-size: 14px;
 }
+::ng-deep.mat-table {
+  height: 280px !important;
+ }

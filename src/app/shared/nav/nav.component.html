@@ -32,18 +32,19 @@
     <div style="overflow-y: auto !important;
     height: 397px !important;">
       <mat-nav-list>
-        <a mat-list-item routerLink='dashboard' routerLinkActive="active">Dashboard</a>
+        <a mat-list-item routerLink='dashboard' routerLinkActive="active">
+          <span class="pl10">Dashboard</span></a>
         <mat-accordion class="example-headers-align">
           <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
             <mat-expansion-panel-header>
                 User Management
             </mat-expansion-panel-header>
             <mat-nav-list dense>
-              <a mat-list-item routerLink='users' routerLinkActive="active"><mat-icon>lock_person</mat-icon>User</a>
-              <a mat-list-item routerLink='employee' routerLinkActive="active"><mat-icon>supervised_user_circle</mat-icon>Employee</a>
-              <a mat-list-item routerLink='jobs' routerLinkActive="active"><mat-icon>work_history</mat-icon>Jobs</a>
-              <a mat-list-item routerLink='reference' routerLinkActive="active"><mat-icon>spatial_tracking</mat-icon>Reference</a>
-              <a mat-list-item routerLink='candidate' routerLinkActive="active"><mat-icon>spatial_audio</mat-icon>Candidate</a>
+              <a mat-list-item routerLink='users' routerLinkActive="active"><mat-icon>lock_person</mat-icon><span class="pl10">User</span></a>
+              <a mat-list-item routerLink='employee' routerLinkActive="active"><mat-icon>supervised_user_circle</mat-icon><span class="pl10">Employee</span></a>
+              <a mat-list-item routerLink='jobs' routerLinkActive="active"><mat-icon>work_history</mat-icon><span class="pl10">Jobs</span></a>
+              <a mat-list-item routerLink='reference' routerLinkActive="active"><mat-icon>spatial_tracking</mat-icon><span class="pl10">Reference</span></a>
+              <a mat-list-item routerLink='candidate' routerLinkActive="active"><mat-icon>spatial_audio</mat-icon><span class="pl10">Candidate</span></a>
             </mat-nav-list>
           </mat-expansion-panel>
           <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
@@ -51,9 +52,9 @@
               Outsourcing
             </mat-expansion-panel-header>
             <mat-nav-list dense>
-              <a mat-list-item routerLink='client' routerLinkActive="active"><mat-icon>person_search</mat-icon>Client</a>
-              <a mat-list-item routerLink='project' routerLinkActive="active"><mat-icon>shopping_bag</mat-icon>Project</a>
-              <a mat-list-item routerLink='project-assignment' routerLinkActive="active"><mat-icon>fact_check</mat-icon>Project Assignment</a>
+              <a mat-list-item routerLink='client' routerLinkActive="active"><mat-icon>person_search</mat-icon><span class="pl10">Client</span></a>
+              <a mat-list-item routerLink='project' routerLinkActive="active"><mat-icon>shopping_bag</mat-icon><span class="pl10">Project</span></a>
+              <a mat-list-item routerLink='project-assignment' routerLinkActive="active"><mat-icon>fact_check</mat-icon><span class="pl10">Project Assignment</span></a>
             </mat-nav-list>
         </mat-expansion-panel>
           <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
@@ -61,12 +62,12 @@
                   Timesheet
               </mat-expansion-panel-header>
               <mat-nav-list dense>
-                <a mat-list-item routerLink='holiday' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon>Holiday</a>
-                <a mat-list-item routerLink='leave-type' routerLinkActive="active"><mat-icon>title</mat-icon>Leave Type</a>
-                <a mat-list-item routerLink='leave' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon>Leave</a>
-                <a mat-list-item routerLink='timesheet' routerLinkActive="active"><mat-icon>calendar_month</mat-icon>Timesheet</a>
-                <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active"><mat-icon>edit_calendar</mat-icon>Timesheet Detail</a>
-                <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active"><mat-icon>notification_important</mat-icon>Timesheet Approval</a>
+                <a mat-list-item routerLink='holiday' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon><span class="pl10">Holiday</span></a>
+                <a mat-list-item routerLink='leave-type' routerLinkActive="active"><mat-icon>title</mat-icon><span class="pl10">Leave Type</span></a>
+                <a mat-list-item routerLink='leave' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon><span class="pl10">Leave</span></a>
+                <a mat-list-item routerLink='timesheet' routerLinkActive="active"><mat-icon>calendar_month</mat-icon><span class="pl10">Timesheet</span></a>
+                <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active"><mat-icon>edit_calendar</mat-icon><span class="pl10">Timesheet Detail</span></a>
+                <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active"><mat-icon>notification_important</mat-icon><span class="pl10">Timesheet Approval</span></a>
               </mat-nav-list>
           </mat-expansion-panel>
           <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
@@ -74,9 +75,9 @@
                 Inventory
             </mat-expansion-panel-header>
             <mat-nav-list dense>
-              <a mat-list-item routerLink='asset-type' routerLinkActive="active"><mat-icon>bookmark</mat-icon>Asset Type</a>
-              <a mat-list-item routerLink='asset' routerLinkActive="active"><mat-icon>card_giftcard</mat-icon>Asset</a>
-              <a mat-list-item routerLink='asset-allocation' routerLinkActive="active"><mat-icon>assignment_return</mat-icon>Asset Allocation</a>
+              <a mat-list-item routerLink='asset-type' routerLinkActive="active"><mat-icon>bookmark</mat-icon><span class="pl10">Asset Type</span></a>
+              <a mat-list-item routerLink='asset' routerLinkActive="active"><mat-icon>card_giftcard</mat-icon><span class="pl10">Asset</span></a>
+              <a mat-list-item routerLink='asset-allocation' routerLinkActive="active"><mat-icon>assignment_return</mat-icon><span class="pl10">Asset Allocation</span></a>
             </mat-nav-list>
         </mat-expansion-panel>
       </mat-accordion>
