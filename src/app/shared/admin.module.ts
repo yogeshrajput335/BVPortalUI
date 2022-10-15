@@ -81,6 +81,10 @@ import { AddLeaveDialogComponent } from '../features/leave/dialogs/add/add-leave
 import { DeleteLeaveDialogComponent } from '../features/leave/dialogs/delete/delete-leave.dialog.component';
 import { EditLeaveDialogComponent } from '../features/leave/dialogs/edit/edit-leave.dialog.component';
 import { LeaveDataService } from '../features/leave/services/leave-data.service';
+import { AddHolidayDialogComponent } from '../features/holiday/dialogs/add/add-holiday.dialog.component';
+import { DeleteHolidayDialogComponent } from '../features/holiday/dialogs/delete/delete-holiday.dialog.component';
+import { EditHolidayDialogComponent } from '../features/holiday/dialogs/edit/edit-holiday.dialog.component';
+import { HolidayDataService } from '../features/holiday/services/holiday-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -123,7 +127,10 @@ import { LeaveDataService } from '../features/leave/services/leave-data.service'
   EditAssetAllocationDialogComponent,
   AddLeaveDialogComponent,
   DeleteLeaveDialogComponent,
-  EditLeaveDialogComponent
+  EditLeaveDialogComponent,
+  AddHolidayDialogComponent,
+  DeleteHolidayDialogComponent,
+  EditHolidayDialogComponent
 ],
   imports: [
     CommonModule,
@@ -155,6 +162,6 @@ import { LeaveDataService } from '../features/leave/services/leave-data.service'
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService]
 })
 export class AdminModule { }
