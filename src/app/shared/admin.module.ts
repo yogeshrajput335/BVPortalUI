@@ -85,10 +85,14 @@ import { AddHolidayDialogComponent } from '../features/holiday/dialogs/add/add-h
 import { DeleteHolidayDialogComponent } from '../features/holiday/dialogs/delete/delete-holiday.dialog.component';
 import { EditHolidayDialogComponent } from '../features/holiday/dialogs/edit/edit-holiday.dialog.component';
 import { HolidayDataService } from '../features/holiday/services/holiday-data.service';
+import { AddCandidateDialogComponent } from '../features/candidate/dialogs/add/add-candidate.dialog.component';
+import { DeleteCandidateDialogComponent } from '../features/candidate/dialogs/delete/delete-candidate.dialog.component';
+import { EditCandidateDialogComponent } from '../features/candidate/dialogs/edit/edit-candidate.dialog.component';
+import { CandidateDataService } from '../features/candidate/services/candidate-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,
+  ,TimesheetComponent,ClientComponent,CandidateComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -130,7 +134,10 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
   EditLeaveDialogComponent,
   AddHolidayDialogComponent,
   DeleteHolidayDialogComponent,
-  EditHolidayDialogComponent
+  EditHolidayDialogComponent,
+  AddCandidateDialogComponent,
+  DeleteCandidateDialogComponent,
+  EditCandidateDialogComponent
 ],
   imports: [
     CommonModule,
@@ -162,6 +169,6 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, CandidateDataService, HolidayDataService]
 })
 export class AdminModule { }
