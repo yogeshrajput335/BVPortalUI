@@ -24,7 +24,7 @@ export class CandidateDataService {
 
   /** CRUD METHODS */
   getAllCandidate(): void {
-    this.httpClient.get('Candidate/GetCandidate').subscribe((data:any) => {
+    this.httpClient.get('Candidate/GetCandidates').subscribe((data:any) => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
