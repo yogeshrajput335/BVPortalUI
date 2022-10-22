@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NavComponent } from "./nav/nav.component";
 import { DashboardComponent } from '../features/dashboard/dashboard.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { CoreModule } from './core.module';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -24,7 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { TimesheetComponent } from '../features/timesheet/timesheet.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DeleteUserDialogComponent } from '../features/users/dialogs/delete/delete-user.dialog.component';
@@ -42,8 +41,8 @@ import { DeleteClientDialogComponent } from '../features/client/dialogs/delete/d
 import { EditClientDialogComponent } from '../features/client/dialogs/edit/edit-client.dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ClientDataService } from '../features/client/services/client-data.service';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ProfileComponent } from '../features/profile/profile.component';
 import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
@@ -59,7 +58,7 @@ import { CandidateComponent } from '../features/candidate/candidate.component';
 import { ProjectAssignmentComponent } from '../features/project-assignment/project-assignment.component';
 import { TimesheetDetailComponent } from '../features/timesheet-detail/timesheet-detail.component';
 import { TimesheetApprovalComponent } from '../features/timesheet-approval/timesheet-approval.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AddAssetDialogComponent } from '../features/asset/dialogs/add/add-asset.dialog.component';
 import { DeleteAssetDialogComponent } from '../features/asset/dialogs/delete/delete-asset.dialog.component';
 import { EditAssetDialogComponent } from '../features/asset/dialogs/edit/edit-asset.dialog.component';
@@ -85,6 +84,7 @@ import { AddHolidayDialogComponent } from '../features/holiday/dialogs/add/add-h
 import { DeleteHolidayDialogComponent } from '../features/holiday/dialogs/delete/delete-holiday.dialog.component';
 import { EditHolidayDialogComponent } from '../features/holiday/dialogs/edit/edit-holiday.dialog.component';
 import { HolidayDataService } from '../features/holiday/services/holiday-data.service';
+import { InvoicesComponent } from '../features/invoices/invoices.component';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
@@ -130,7 +130,8 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
   EditLeaveDialogComponent,
   AddHolidayDialogComponent,
   DeleteHolidayDialogComponent,
-  EditHolidayDialogComponent
+  EditHolidayDialogComponent,
+  InvoicesComponent,
 ],
   imports: [
     CommonModule,
