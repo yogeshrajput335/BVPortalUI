@@ -1,15 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-// import * as jsPDF from 'jspdf';
-// import 'jspdf-autotable';
-// //import * as jspdf from 'jspdf';
-// import jsPDF from 'jspdf';
-// import * as pdfMake from 'pdfmake/build/pdfmake';
-// import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
-// import * as htmlToPdfmake from 'html-to-pdfmake';
-// import * as jsPDF from 'jspdf';
-// import * as html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 
@@ -37,7 +27,10 @@ export class InvoicesComponent implements OnInit {
      let PDF = new jsPDF('p', 'mm', 'a4');
      let position = 0;
      PDF.addImage(FILEURI, 'PNG', 5, 5, fileWidth, fileHeight)
-     PDF.save('angular-demo.pdf');
+     PDF.save('invoice.pdf');
    });
+  }
+  email(){
+
   }
 }
