@@ -85,10 +85,14 @@ import { AddHolidayDialogComponent } from '../features/holiday/dialogs/add/add-h
 import { DeleteHolidayDialogComponent } from '../features/holiday/dialogs/delete/delete-holiday.dialog.component';
 import { EditHolidayDialogComponent } from '../features/holiday/dialogs/edit/edit-holiday.dialog.component';
 import { HolidayDataService } from '../features/holiday/services/holiday-data.service';
+import { AddReferenceDialogComponent } from '../features/reference/dialogs/add/add-reference.dialog.component';
+import { DeleteReferenceDialogComponent } from '../features/reference/dialogs/delete/delete-reference.dialog.component';
+import { EditReferenceDialogComponent } from '../features/reference/dialogs/edit/edit-reference.dialog.component';
+import { ReferenceDataService } from '../features/reference/services/reference-data.service';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,
+  ,TimesheetComponent,ClientComponent,ReferenceComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -103,7 +107,6 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
   OrganizationalStructureComponent,
   LeaveComponent,
   HolidayComponent,
-  ReferenceComponent,
   JobsComponent,
   AssetComponent,
   AssetTypeComponent,
@@ -130,7 +133,11 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
   EditLeaveDialogComponent,
   AddHolidayDialogComponent,
   DeleteHolidayDialogComponent,
-  EditHolidayDialogComponent
+  EditHolidayDialogComponent,
+  AddReferenceDialogComponent,
+  DeleteReferenceDialogComponent,
+  EditReferenceDialogComponent,
+
 ],
   imports: [
     CommonModule,
@@ -162,6 +169,6 @@ import { HolidayDataService } from '../features/holiday/services/holiday-data.se
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService]
 })
 export class AdminModule { }
