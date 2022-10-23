@@ -84,6 +84,10 @@ import { AddHolidayDialogComponent } from '../features/holiday/dialogs/add/add-h
 import { DeleteHolidayDialogComponent } from '../features/holiday/dialogs/delete/delete-holiday.dialog.component';
 import { EditHolidayDialogComponent } from '../features/holiday/dialogs/edit/edit-holiday.dialog.component';
 import { HolidayDataService } from '../features/holiday/services/holiday-data.service';
+import { AddReferenceDialogComponent } from '../features/reference/dialogs/add/add-reference.dialog.component';
+import { DeleteReferenceDialogComponent } from '../features/reference/dialogs/delete/delete-reference.dialog.component';
+import { EditReferenceDialogComponent } from '../features/reference/dialogs/edit/edit-reference.dialog.component';
+import { ReferenceDataService } from '../features/reference/services/reference-data.service';
 import { AddCandidateDialogComponent } from '../features/candidate/dialogs/add/add-candidate.dialog.component';
 import { DeleteCandidateDialogComponent } from '../features/candidate/dialogs/delete/delete-candidate.dialog.component';
 import { EditCandidateDialogComponent } from '../features/candidate/dialogs/edit/edit-candidate.dialog.component';
@@ -92,7 +96,7 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,CandidateComponent,
+  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -107,7 +111,6 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
   OrganizationalStructureComponent,
   LeaveComponent,
   HolidayComponent,
-  ReferenceComponent,
   JobsComponent,
   AssetComponent,
   AssetTypeComponent,
@@ -135,6 +138,10 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
   AddHolidayDialogComponent,
   DeleteHolidayDialogComponent,
   EditHolidayDialogComponent,
+  AddReferenceDialogComponent,
+  DeleteReferenceDialogComponent,
+  EditReferenceDialogComponent,
+
   AddCandidateDialogComponent,
   DeleteCandidateDialogComponent,
   EditCandidateDialogComponent,
@@ -170,6 +177,6 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, CandidateDataService, HolidayDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService]
 })
 export class AdminModule { }
