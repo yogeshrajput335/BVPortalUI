@@ -88,11 +88,15 @@ import { AddReferenceDialogComponent } from '../features/reference/dialogs/add/a
 import { DeleteReferenceDialogComponent } from '../features/reference/dialogs/delete/delete-reference.dialog.component';
 import { EditReferenceDialogComponent } from '../features/reference/dialogs/edit/edit-reference.dialog.component';
 import { ReferenceDataService } from '../features/reference/services/reference-data.service';
+import { AddCandidateDialogComponent } from '../features/candidate/dialogs/add/add-candidate.dialog.component';
+import { DeleteCandidateDialogComponent } from '../features/candidate/dialogs/delete/delete-candidate.dialog.component';
+import { EditCandidateDialogComponent } from '../features/candidate/dialogs/edit/edit-candidate.dialog.component';
+import { CandidateDataService } from '../features/candidate/services/candidate-data.service';
 import { InvoicesComponent } from '../features/invoices/invoices.component';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,ReferenceComponent,
+  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -138,6 +142,9 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
   DeleteReferenceDialogComponent,
   EditReferenceDialogComponent,
 
+  AddCandidateDialogComponent,
+  DeleteCandidateDialogComponent,
+  EditCandidateDialogComponent,
   InvoicesComponent,
 ],
   imports: [
@@ -170,6 +177,6 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService]
 })
 export class AdminModule { }
