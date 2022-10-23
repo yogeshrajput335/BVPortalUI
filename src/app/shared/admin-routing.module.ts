@@ -1,3 +1,4 @@
+import { InvoicesComponent } from './../features/invoices/invoices.component';
 import { HolidayComponent } from './../features/holiday/holiday.component';
 import { CandidateComponent } from './../features/candidate/candidate.component';
 import { ReferenceComponent } from './../features/reference/reference.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: "timesheet-approval", component: TimesheetApprovalComponent },
       { path: "holiday", component: HolidayComponent },
       { path: "employee", component: EmployeeComponent },
+      { path: "invoice", component: InvoicesComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },

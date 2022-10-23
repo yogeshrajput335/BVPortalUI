@@ -1,5 +1,6 @@
 <div class="joblist">
 
+<<<<<<< HEAD
 
 
   <mat-accordion >
@@ -39,3 +40,24 @@
  </mat-accordion>
  
  </div>
+=======
+ <mat-accordion >
+  <mat-expansion-panel *ngFor="let job of jobs">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{job.jobName}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{job.profile}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{job.description}}</p>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary">Apply</button>
+      <button mat-raised-button color="accent" style="margin-left: 10px;">Refer</button>
+    </div>
+  </mat-expansion-panel>
+
+</mat-accordion>
+</div>
+>>>>>>> a5e749fa44920f1f171dd4f3840322efa1bccff6
