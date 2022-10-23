@@ -45,7 +45,7 @@ export class ReferenceDataSource extends DataSource<Reference> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((issue: Reference) => {
-          const searchStr = (issue.id + issue.firstName + issue.lastName + issue.phoneNumber + issue.email).toLowerCase();
+          const searchStr = (issue.id + issue.firstName + issue.lastName + issue.phoneNo + issue.email).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -77,7 +77,7 @@ export class ReferenceDataSource extends DataSource<Reference> {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         case 'firstName': [propertyA, propertyB] = [a.firstName, b.firstName]; break;
         case 'lastName': [propertyA, propertyB] = [a.lastName, b.lastName]; break;
-        case 'phoneNumber': [propertyA, propertyB] = [a.phoneNumber, b.phoneNumber]; break;
+        case 'phoneNo': [propertyA, propertyB] = [a.phoneNo, b.phoneNo]; break;
         case 'email': [propertyA, propertyB] = [a.email, b.email]; break;
         case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
