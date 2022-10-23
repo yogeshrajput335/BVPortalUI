@@ -74,11 +74,11 @@ export class CandidateComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, candidatename: string) {
+  deleteItem(i: number, id: number, firstname: string,lastname:string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteCandidateDialogComponent, {
-      data: {id: id, candidatename: candidatename}
+      data: {id: id, firstName: firstname, lastName:lastname}
     });
 
     dialogRef.afterClosed().subscribe(result => {

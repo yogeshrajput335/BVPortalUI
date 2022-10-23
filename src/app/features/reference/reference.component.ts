@@ -72,11 +72,11 @@ export class ReferenceComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, firstname: string) {
+  deleteItem(i: number, id: number, firstname: string, lastname: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteReferenceDialogComponent, {
-      data: {id: id, firstname: firstname}
+      data: {id: id, firstName: firstname, lastName: lastname}
     });
 
     dialogRef.afterClosed().subscribe(result => {
