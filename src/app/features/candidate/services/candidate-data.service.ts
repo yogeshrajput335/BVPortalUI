@@ -6,7 +6,7 @@ import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 
 @Injectable()
 export class CandidateDataService {
-  statuses = ['ACTIVE', 'INACTIVE']
+  statuses = ['ACTIVE', 'INACTIVE','REFERRED']
 
   dataChange: BehaviorSubject<Candidate[]> = new BehaviorSubject<Candidate[]>([]);
   // Temporarily stores data from dialogs

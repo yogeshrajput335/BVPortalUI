@@ -6,8 +6,8 @@ import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 
 @Injectable()
 export class ReferenceDataService {
-  statuses = ['ACTIVE', 'INACTIVE']
- 
+  statuses = ['ACTIVE', 'INACTIVE','Moved to candidate']
+
 
   dataChange: BehaviorSubject<Reference[]> = new BehaviorSubject<Reference[]>([]);
   // Temporarily stores data from dialogs
@@ -62,6 +62,10 @@ export class ReferenceDataService {
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });
+  }
+
+  moveToCandidate(id: number, employeeId :number) {
+    return this.httpClient.delete('ReferList/MoveToCandidate/'+id+'/'+employeeId);
   }
 
   getStatues(){

@@ -48,28 +48,33 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <mat-chip-list aria-label="Fish selection">
-          <mat-chip *ngIf="row.status!=='ACTIVE' && row.status!=='INACTIVE'">No Status</mat-chip>
+          <mat-chip *ngIf="row.status!=='ACTIVE' && row.status!=='INACTIVE' && row.status !=='Moved to candidate'">No Status</mat-chip>
           <mat-chip *ngIf="row.status=='ACTIVE'" color="primary" selected>Active</mat-chip>
           <mat-chip  *ngIf="row.status=='INACTIVE'"color="warn" selected>Inactive</mat-chip>
+          <mat-chip  *ngIf="row.status=='Moved to candidate'"color="accent" selected>Moved to candidate</mat-chip>
         </mat-chip-list>
       </mat-cell>
     </ng-container>
 
     <!-- actions -->
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="accent" (click)="addNew()">
+    <ng-container matColumnDef="actions" >
+      <mat-header-cell *matHeaderCellDef >
+        <button mat-icon-button color="accent" (click)="addNew()" >
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
       </mat-header-cell>
 
-      <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.firstName, row.lastName, row.phoneNo,row.email, row.status)">
+      <mat-cell *matCellDef="let row; let i=index;" >
+        <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="primary" (click)="startEdit(i, row.id, row.firstName, row.lastName, row.phoneNo,row.email, row.status)" >
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.firstName, row.lastName)">
+        <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.firstName, row.lastName)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+
+        <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="accent" (click)="moveToCandidate(i, row.id)">
+          <mat-icon aria-label="Move to candidate">account_box</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

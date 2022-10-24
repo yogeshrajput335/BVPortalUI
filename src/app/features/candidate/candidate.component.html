@@ -50,11 +50,17 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
         <mat-cell *matCellDef="let row">
           <mat-chip-list aria-label="Fish selection">
-            <mat-chip *ngIf="row.status!=='ACTIVE' && row.status!=='INACTIVE'">No Status</mat-chip>
+            <mat-chip *ngIf="row.status!=='ACTIVE' && row.status!=='INACTIVE' && row.status!=='REFERRED'">No Status</mat-chip>
             <mat-chip *ngIf="row.status=='ACTIVE'" color="primary" selected>Active</mat-chip>
             <mat-chip  *ngIf="row.status=='INACTIVE'"color="warn" selected>Inactive</mat-chip>
+            <mat-chip  *ngIf="row.status=='REFERRED'"color="warn" selected>Referred</mat-chip>
           </mat-chip-list>
         </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="referByName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Refer By</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.referByName}}</mat-cell>
       </ng-container>
 
       <!-- actions -->

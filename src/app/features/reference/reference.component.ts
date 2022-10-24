@@ -2,7 +2,7 @@ import { Reference } from './models/Reference';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ReferenceDataService} from './services/reference-data.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -13,6 +13,7 @@ import {DeleteReferenceDialogComponent} from './dialogs/delete/delete-reference.
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { ReferenceDataSource } from './reference-datasource';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-reference',
@@ -28,7 +29,8 @@ export class ReferenceComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: ReferenceDataService) {}
+              public dataService: ReferenceDataService,
+              private authService: AuthenticationService,) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -86,6 +88,15 @@ export class ReferenceComponent implements OnInit {
         this.refreshTable();
       }
     });
+  }
+
+  moveToCandidate(i: number, id: number){
+    this.dataService.moveToCandidate(id,(this.authService.getUser() as any).employeeId).subscribe((data:any) => {
+      this.loadData();
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });;
   }
 
 
