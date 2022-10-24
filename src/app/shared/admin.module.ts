@@ -93,9 +93,13 @@ import { DeleteCandidateDialogComponent } from '../features/candidate/dialogs/de
 import { EditCandidateDialogComponent } from '../features/candidate/dialogs/edit/edit-candidate.dialog.component';
 import { CandidateDataService } from '../features/candidate/services/candidate-data.service';
 import { InvoicesComponent } from '../features/invoices/invoices.component';
+import { ProjectDataService } from '../features/project/services/project-data.service';
+import { AddProjectDialogComponent } from '../features/project/dialogs/add/add-project.dialog.component';
+import { DeleteProjectDialogComponent } from '../features/project/dialogs/delete/delete-project.dialog.component';
+import { EditProjectDialogComponent } from '../features/project/dialogs/edit/edit-project.dialog.component';
 
 @NgModule({
-  declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,ProjectComponent,NavComponent
+  declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
   ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
@@ -113,6 +117,7 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
   HolidayComponent,
   JobsComponent,
   AssetComponent,
+  ProjectComponent,
   AssetTypeComponent,
   AssetAllocationComponent,
   CandidateComponent,
@@ -145,6 +150,9 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
   AddCandidateDialogComponent,
   DeleteCandidateDialogComponent,
   EditCandidateDialogComponent,
+  AddProjectDialogComponent,
+  DeleteProjectDialogComponent,
+  EditProjectDialogComponent,
   InvoicesComponent,
 ],
   imports: [
@@ -177,6 +185,6 @@ import { InvoicesComponent } from '../features/invoices/invoices.component';
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService]
 })
 export class AdminModule { }
