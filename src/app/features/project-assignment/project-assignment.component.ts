@@ -2,7 +2,7 @@ import { ProjectAssignment} from './models/ProjectAssignment';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProjectAssignmentDataService} from './services/project-assignment-data.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -15,7 +15,39 @@ import {map} from 'rxjs/operators';
 import { ProjectAssignmentDataSource } from './project-assignment-datasource';
 import { AddProjectAssignmentDialogComponent } from './dialogs/add/add-project-assignmnet.dialog.component';
 import { EditProjectAssignmentDialogComponent } from './dialogs/edit/edit-project-assignment.dialog.component';
+import {FlatTreeControl} from '@angular/cdk/tree';
+import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 
+interface ProjectEmpTree {
+  name: string;
+  children?: ProjectEmpTree[];
+}
+const TREE_DATA: ProjectEmpTree[] = [
+  {
+    name: 'Fruit',
+    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
+  },
+  {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
+      },
+      {
+        name: 'Orange',
+        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
+      },
+    ],
+  },
+];
+
+/** Flat node with expandable and level information */
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
 @Component({
   selector: 'app-project-assignment',
   templateUrl: './project-assignment.component.html',
@@ -31,7 +63,14 @@ export class ProjectAssignmentComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: ProjectAssignmentDataService) { }
+    public dataService: ProjectAssignmentDataService) {
+      this.dataService.getAllProjectAssignmentTreeData().subscribe((data:any) => {
+        this.treeDataSource.data =  data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });;
+    }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -106,6 +145,32 @@ export class ProjectAssignmentComponent implements OnInit {
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
   }
+
+  // TREE CODE STARTS
+  private _transformer = (node: ProjectEmpTree, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  };
+
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattener = new MatTreeFlattener(
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
+    node => node.children,
+  );
+
+  treeDataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  // TREE CODE ENDS
 }
 
 

@@ -47,6 +47,10 @@ export class ProjectAssignmentDataService {
       console.log (error.name + ' ' + error.message);
       });
   }
+  //Get Tree Data
+  getAllProjectAssignmentTreeData() {
+    return this.httpClient.get('ProjectAssignment/GetProjectEmpTree');
+  }
 
   // DEMO ONLY, you can find working methods below
   addProjectAssignment (ProjectAssignment: ProjectAssignment): void {

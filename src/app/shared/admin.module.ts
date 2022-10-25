@@ -44,6 +44,7 @@ import { ClientDataService } from '../features/client/services/client-data.servi
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTreeModule } from '@angular/material/tree';
 import { ProfileComponent } from '../features/profile/profile.component';
 import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
 import { OrganizationalStructureComponent } from '../features/organizational-structure/organizational-structure.component';
@@ -190,7 +191,8 @@ import { AddProjectAssignmentDialogComponent } from '../features/project-assignm
     MatDatepickerModule,
     MatIconModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTreeModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,
