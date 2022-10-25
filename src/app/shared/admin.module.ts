@@ -98,9 +98,15 @@ import { AddProjectDialogComponent } from '../features/project/dialogs/add/add-p
 import { DeleteProjectDialogComponent } from '../features/project/dialogs/delete/delete-project.dialog.component';
 import { EditProjectDialogComponent } from '../features/project/dialogs/edit/edit-project.dialog.component';
 
+import { DeleteProjectAssignmentDialogComponent } from '../features/project-assignment/dialogs/delete/delete-project-assignment.dialog.component';
+import { EditProjectAssignmentDialogComponent } from '../features/project-assignment/dialogs/edit/edit-project-assignment.dialog.component';
+import { ProjectAssignmentDataService } from '../features/project-assignment/services/project-assignment-data.service';
+import { ProjectAssignmentDataSource } from '../features/project-assignment/project-assignment-datasource';
+import { AddProjectAssignmentDialogComponent } from '../features/project-assignment/dialogs/add/add-project-assignmnet.dialog.component';
+
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,
+  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,ProjectAssignmentComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -146,13 +152,15 @@ import { EditProjectDialogComponent } from '../features/project/dialogs/edit/edi
   AddReferenceDialogComponent,
   DeleteReferenceDialogComponent,
   EditReferenceDialogComponent,
-
   AddCandidateDialogComponent,
   DeleteCandidateDialogComponent,
   EditCandidateDialogComponent,
   AddProjectDialogComponent,
   DeleteProjectDialogComponent,
   EditProjectDialogComponent,
+  AddProjectAssignmentDialogComponent,
+  DeleteProjectAssignmentDialogComponent,
+  EditProjectAssignmentDialogComponent,
   InvoicesComponent,
 ],
   imports: [
@@ -185,6 +193,7 @@ import { EditProjectDialogComponent } from '../features/project/dialogs/edit/edi
     MatTabsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
-    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService]
+    EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,
+  ProjectAssignmentDataService]
 })
 export class AdminModule { }
