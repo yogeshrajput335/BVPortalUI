@@ -8,12 +8,13 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {DataSource} from '@angular/cdk/collections';
 
-import {EditProjectAssignmentDialogComponent} from './dialogs/edit/edit-project-assignment.dialog.component';
+
 import {DeleteProjectAssignmentDialogComponent} from './dialogs/delete/delete-project-assignment.dialog.component';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { ProjectAssignmentDataSource } from './project-assignment-datasource';
 import { AddProjectAssignmentDialogComponent } from './dialogs/add/add-project-assignmnet.dialog.component';
+import { EditProjectAssignmentDialogComponent } from './dialogs/edit/edit-project-assignment.dialog.component';
 
 @Component({
   selector: 'app-project-assignment',
