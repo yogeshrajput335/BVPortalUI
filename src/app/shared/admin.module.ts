@@ -31,6 +31,7 @@ import { AddUserDialogComponent } from '../features/users/dialogs/add/add-user.d
 import { EditUserDialogComponent } from '../features/users/dialogs/edit/edit-user.dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LeaveTypeComponent } from '../features/leave-type/leave-type.component';
 import { AddLeaveTypeDialogComponent } from '../features/leave-type/dialogs/add/add-leave-type.dialog.component';
 import { DeleteLeaveTypeDialogComponent } from '../features/leave-type/dialogs/delete/delete-leave-type.dialog.component';
@@ -192,7 +193,8 @@ import { AddProjectAssignmentDialogComponent } from '../features/project-assignm
     MatIconModule,
     MatExpansionModule,
     MatTabsModule,
-    MatTreeModule
+    MatTreeModule,
+    MatCheckboxModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,

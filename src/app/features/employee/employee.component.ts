@@ -1,7 +1,7 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {EmployeeDataService} from './services/employee-data.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -26,10 +26,14 @@ export class EmployeeComponent implements OnInit {
   dataSource?: EmployeeDataSource | null;
   index?: number;
   id?: number;
+  employees=[{id:0,firstName:'',lastName:''}]
+  basicInfo: any = {id:0,employeeId:'',fatherName:'',mothername:'',dateOfBirth:'',isMarried:false,isBothAddressSame:false};
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: EmployeeDataService) {}
+              public dataService: EmployeeDataService) {
+
+              }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -37,6 +41,16 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    this.dataService.getEmployeeList().subscribe((data:any) => {
+      this.employees = data;
+
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });;
+                //console.log(this.employees)
+
+
   }
 
   refresh() {
@@ -135,5 +149,21 @@ export class EmployeeComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  onChangeEmployee(event:any) {
+    console.log(event.value);
+    this.dataService.getEmployeeBasicInfoByEmpId(event.value).subscribe((data:any) => {
+      this.basicInfo = data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+  submit() {
+  // empty stuff
+  }
+  confirmAddBasicInfo(){
+    this.dataService.addEmployeeBasicInfo(this.basicInfo);
   }
 }

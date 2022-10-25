@@ -8,12 +8,16 @@ import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 export class EmployeeDataService {
   statuses = ['ACTIVE', 'INACTIVE']
   employeeTypes = ['PERMANENT', 'CONTRACTOR']
+  //employees=[{id:0,firstName:'',lastName:''}];
 
   dataChange: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpCommonService) {}
+  constructor (private httpClient: HttpCommonService) {
+
+
+  }
 
   get data(): Employee[] {
     return this.dataChange.value;
@@ -64,11 +68,45 @@ export class EmployeeDataService {
     });
   }
 
+  getEmployeeBasicInfoByEmpId(id:number) {
+    return this.httpClient.get('EmployeeBasicInfo/GetEmployeeBasicInfoByEmpId/'+id)
+  }
+  //addEmployeeBasicInfo
+  addEmployeeBasicInfo(user: any): void {
+    if(user.id==0){
+      this.httpClient.post('EmployeeBasicInfo/InsertEmployeeBasicInfo',user).subscribe((data:any) => {
+        //this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+    } else {
+      this.httpClient.put('EmployeeBasicInfo/UpdateEmployeeBasicInfo',user).subscribe((data:any) => {
+        //this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+    }
+  }
+
   getStatues(){
     return this.statuses
   }
   getEmployeeTypes(){
     return this.employeeTypes
+  }
+  getEmployeeList(){
+    // console.log(this.employees)
+    // return  this.employees;
+    return this.httpClient.get('Employee/GetEmployee')//.subscribe((data:any) => {
+      // this.employees = data;
+
+      // },
+      // (error: HttpErrorResponse) => {
+      // console.log (error.name + ' ' + error.message);
+      // });
+
   }
 }
 
