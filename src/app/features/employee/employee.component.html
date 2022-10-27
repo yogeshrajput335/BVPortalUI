@@ -200,8 +200,18 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
-        <mat-label>Work Email Id</mat-label>
-        <input matInput [(ngModel)]="contact.workEmailId" name="workEmailId">
+        <mat-label>Work Email </mat-label>
+        <input matInput [(ngModel)]="contact.workEmail" name="workEmail">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Emergency Contact Name </mat-label>
+        <input matInput [(ngModel)]="contact.emergencyContactName" name="emergencyContactName">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Emergency Contact Number</mat-label>
+        <input matInput [(ngModel)]="contact.emergencyContactNumber" name="emergencyContactNumber">
       </mat-form-field>
 
 
