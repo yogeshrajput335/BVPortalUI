@@ -176,6 +176,46 @@
     </div>
   </form>
   </mat-tab>
+  <mat-tab label="Employee Contact">
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+    <div class="mat-elevation-z8-form">
+      <mat-form-field appearance="fill">
+        <mat-label>Employee</mat-label>
+        <mat-select  name="employee"  color="accent" [(ngModel)]="basicInfo.employeeId" (selectionChange)="onChangeEmployee_Contact($event)">
+          <mat-option *ngFor="let s of employees" [value]="s.id">
+            {{s.firstName+" "+s.lastName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Personal Email Id</mat-label>
+        <input matInput [(ngModel)]="contact.personalEmailId" name="personalEmailId">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput [(ngModel)]="contact.phoneNumber" name="phoneNumber">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Work Email Id</mat-label>
+        <input matInput [(ngModel)]="contact.workEmailId" name="workEmailId">
+      </mat-form-field>
+
+
+
+      
+      
+     
+
+       
+
+      <button mat-raised-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAddContact()">Save</button>
+    </div>
+  </form>
+  </mat-tab>
 </mat-tab-group>
 
 

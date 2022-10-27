@@ -28,7 +28,7 @@ export class EmployeeComponent implements OnInit {
   id?: number;
   employees=[{id:0,firstName:'',lastName:''}]
   basicInfo: any = {id:0,employeeId:'',fatherName:'',mothername:'',bloodGroup:'',personalEmailId:'',dateOfBirth:'',isMarried:false,maritalStatus:'',spouseName:'',permanentAddress:'',isBothAddressSame:false,currentAddress:'',gender:''};
-
+  contact: any = {id:0,employeeId:'',personalEmailId:'',phoneNumber:'',workEmailId:''};
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
               public dataService: EmployeeDataService) {
@@ -160,10 +160,23 @@ export class EmployeeComponent implements OnInit {
       console.log (error.name + ' ' + error.message);
       });
   }
+  onChangeEmployee_Contact(event:any) {
+    console.log(event.value);
+    this.dataService.getEmployeeContactByEmpId(event.value).subscribe((data:any) => {
+      this.contact = data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
   submit() {
   // empty stuff
   }
   confirmAddBasicInfo(){
     this.dataService.addEmployeeBasicInfo(this.basicInfo);
   }
+  confirmAddContact(){
+    this.dataService.addEmployeeContact(this.contact);
+  }
+
 }

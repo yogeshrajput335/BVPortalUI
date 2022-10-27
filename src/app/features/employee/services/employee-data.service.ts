@@ -71,6 +71,9 @@ export class EmployeeDataService {
   getEmployeeBasicInfoByEmpId(id:number) {
     return this.httpClient.get('EmployeeBasicInfo/GetEmployeeBasicInfoByEmpId/'+id)
   }
+  getEmployeeContactByEmpId(id:number) {
+    return this.httpClient.get('EmployeeContact/GetEmployeeContactByEmpId/'+id)
+  }
   //addEmployeeBasicInfo
   addEmployeeBasicInfo(user: any): void {
     if(user.id==0){
@@ -82,6 +85,24 @@ export class EmployeeDataService {
       });
     } else {
       this.httpClient.put('EmployeeBasicInfo/UpdateEmployeeBasicInfo',user).subscribe((data:any) => {
+        //this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+    }
+  }
+
+  addEmployeeContact(user: any): void {
+    if(user.id==0){
+      this.httpClient.post('EmployeeContact/InsertEmployeeContact',user).subscribe((data:any) => {
+        //this.dataChange.next(data);
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+    } else {
+      this.httpClient.put('EmployeeContact/UpdateEmployeeContact',user).subscribe((data:any) => {
         //this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
