@@ -22,25 +22,6 @@ interface ProjectEmpTree {
   name: string;
   children?: ProjectEmpTree[];
 }
-const TREE_DATA: ProjectEmpTree[] = [
-  {
-    name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
-      },
-      {
-        name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
-      },
-    ],
-  },
-];
 
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
@@ -59,6 +40,7 @@ export class ProjectAssignmentComponent implements OnInit {
   dataSource?: ProjectAssignmentDataSource | null;
   index?: number;
   id?: number;
+  summaryData: any = {'activeClientCount':0,"inactiveClientCount":0,"totalClientCount":0,"projectEmpCount":[]};
 
 
   constructor(public httpClient: HttpCommonService,
@@ -69,7 +51,13 @@ export class ProjectAssignmentComponent implements OnInit {
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
-      });;
+      });
+      this.dataService.getProjectAssignmentSummaryTreeData().subscribe((data:any) => {
+        this.summaryData =  data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
     }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;

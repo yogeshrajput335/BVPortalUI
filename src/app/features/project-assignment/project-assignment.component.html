@@ -4,22 +4,27 @@
         <div style="width:40%" class="container mat-elevation-z8-tree">
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Clients</mat-card-title>
+              <mat-card-title>Number of Clients </mat-card-title>
+              <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
                 <li>
-                  Active Clients - 1
+                  Active Clients - {{summaryData.activeClientCount}}
                 </li>
                 <li>
-                  Inactive Clients - 1
+                  Inactive Clients - {{summaryData.inactiveClientCount}}
+                </li>
+                <li>
+                  Total Clients - {{summaryData.totalClientCount}}
                 </li>
               </ul>
             </mat-card-content>
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Projects</mat-card-title>
+              <mat-card-title>Number of Projects [NOT DONE]</mat-card-title>
+              <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
@@ -34,7 +39,8 @@
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Employees</mat-card-title>
+              <mat-card-title>Number of Employees [NOT DONE]</mat-card-title>
+              <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
@@ -52,10 +58,36 @@
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Employees</mat-card-title>
+              <mat-card-title>Employee Count</mat-card-title>
+              <mat-card-subtitle>Project Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
+                <li *ngFor="let e of summaryData.projectEmpCount">
+                  {{e.projectName}} - {{e.employeeCount}}
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+          <mat-card>
+            <mat-card-title-group>
+              <mat-card-title>Employee Count [NOT DONE]</mat-card-title>
+              <mat-card-subtitle>Client Wise</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content>
+              <ul>
+                <li>
+                  Test - 1
+                </li>
+                <li>
+                  Test - 1
+                </li>
+                <li>
+                  Test - 1
+                </li>
+                <li>
+                  Test - 1
+                </li>
                 <li>
                   Test - 1
                 </li>
@@ -64,8 +96,8 @@
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Employee Count Project Wise</mat-card-title>
-              <mat-card-subtitle>Small</mat-card-subtitle>
+              <mat-card-title>Project Count [NOT DONE]</mat-card-title>
+              <mat-card-subtitle>Client Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
