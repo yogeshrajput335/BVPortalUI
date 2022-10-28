@@ -28,7 +28,7 @@ export class EmployeeComponent implements OnInit {
   id?: number;
   employees=[{id:0,firstName:'',lastName:''}]
   basicInfo: any = {id:0,employeeId:'',fatherName:'',mothername:'',bloodGroup:'',personalEmailId:'',dateOfBirth:'',isMarried:false,maritalStatus:'',spouseName:'',permanentAddress:'',isBothAddressSame:false,currentAddress:'',gender:''};
-  contact: any = {id:0,employeeId:'',personalEmailId:'',phoneNumber:'',workEmailId:''};
+  contact: any = {id:0,employeeId:'',personalEmailId:'',phoneNumber:'',workEmail:'',emergencyContactName:'',emergencyContactNumber:''};
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
               public dataService: EmployeeDataService) {
