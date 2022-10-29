@@ -2,23 +2,26 @@
   <mat-tab label="Project Wise Employee Tree View">
     <div style="width:100%;display: flex;" >
         <div style="width:40%" class="container mat-elevation-z8-tree">
-          <mat-card>
+          <mat-card class="mat-elevation-z5">
             <mat-card-title-group>
               <mat-card-title>Number of Clients </mat-card-title>
               <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
-              <ul>
-                <li>
-                  Active Clients - {{summaryData.activeClientCount}}
-                </li>
-                <li>
-                  Inactive Clients - {{summaryData.inactiveClientCount}}
-                </li>
-                <li>
-                  Total Clients - {{summaryData.totalClientCount}}
-                </li>
-              </ul>
+              <div class="flex-row">
+                <div class="temp">
+                  <span class="big-text">{{summaryData.activeClientCount}}</span>
+                  <span class="small-text">Active Clients</span>
+                </div>
+                <div class="temp">
+                  <span class="big-text">{{summaryData.inactiveClientCount}}</span>
+                  <span class="small-text">Inactive Clients </span>
+                </div>
+                <div class="temp">
+                  <span class="big-text">{{summaryData.totalClientCount}}</span>
+                  <span class="small-text">Total Clients </span>
+                </div>
+              </div>
             </mat-card-content>
           </mat-card>
           <mat-card>
