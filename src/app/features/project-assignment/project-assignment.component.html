@@ -26,35 +26,36 @@
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Projects [NOT DONE]</mat-card-title>
+              <mat-card-title>Number of Projects </mat-card-title>
               <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
                 <li>
-                  Active Projects - 1
+                  New Projects - {{projectData.newProjectsCount}}
                 </li>
                 <li>
-                  Inactive Projects - 1
+                  Approved Projects - {{projectData.approvedProjectsCount}}
                 </li>
+                <li>
+                  Rejected Projects - {{projectData.rejectedProjectsCount}}
+                </li>
+                
               </ul>
             </mat-card-content>
           </mat-card>
           <mat-card>
             <mat-card-title-group>
-              <mat-card-title>Number of Employees [NOT DONE]</mat-card-title>
+              <mat-card-title>Number of Employees</mat-card-title>
               <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
               <ul>
                 <li>
-                  Permanent - 1
+                  Active Employees - {{employeeData.activeEmployeeCount}}
                 </li>
                 <li>
-                  Contract - 1
-                </li>
-                <li>
-                  In Active - 1
+                  In Active Employees - {{employeeData.inactiveEmployeeCount}}
                 </li>
               </ul>
             </mat-card-content>

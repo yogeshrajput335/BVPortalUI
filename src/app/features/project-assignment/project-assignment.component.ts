@@ -41,8 +41,8 @@ export class ProjectAssignmentComponent implements OnInit {
   index?: number;
   id?: number;
   summaryData: any = {'activeClientCount':0,"inactiveClientCount":0,"totalClientCount":0,"projectEmpCount":[]};
-
-
+  projectData: any ={'newProjectsCount':0,'approvedProjectsCount':0,'rejectedProjectsCount':0}
+  employeeData: any ={"activeEmployeeCount":0,"inactiveEmployeeCount":0}
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
     public dataService: ProjectAssignmentDataService) {
@@ -52,8 +52,20 @@ export class ProjectAssignmentComponent implements OnInit {
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
       });
-      this.dataService.getProjectAssignmentSummaryTreeData().subscribe((data:any) => {
+      this.dataService.getProjectAssignmentTreeSummaryData().subscribe((data:any) => {
         this.summaryData =  data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+      this.dataService.getProjectCountData().subscribe((data:any) => {
+        this.projectData =  data;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+      this.dataService.getEmployeeCountData().subscribe((data:any) => {
+        this.employeeData =  data;
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);

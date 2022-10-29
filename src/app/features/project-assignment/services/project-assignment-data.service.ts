@@ -51,9 +51,16 @@ export class ProjectAssignmentDataService {
   getAllProjectAssignmentTreeData() {
     return this.httpClient.get('ProjectAssignment/GetProjectEmpTree');
   }
-  getProjectAssignmentSummaryTreeData() {
+  getProjectAssignmentTreeSummaryData() {
     return this.httpClient.get('ProjectAssignment/GetProjectEmpTreeSummary');
   }
+  getProjectCountData() {
+    return this.httpClient.get('ProjectAssignment/GetProjectCount');
+  }
+  getEmployeeCountData() {
+    return this.httpClient.get('ProjectAssignment/GetEmployeeCount');
+  }
+
 
   // DEMO ONLY, you can find working methods below
   addProjectAssignment (ProjectAssignment: ProjectAssignment): void {
