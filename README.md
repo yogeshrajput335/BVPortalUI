@@ -30,3 +30,6 @@ https://github.com/umutesen/angular-material-template
 
 ## Create new component
 * ng g c features/project
+
+## MAT CARD DESIGN
+* https://zoaibkhan.com/blog/weather-card-design-with-angular-material-and-css/
