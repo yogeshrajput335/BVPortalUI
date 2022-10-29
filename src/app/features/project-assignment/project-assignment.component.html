@@ -30,7 +30,7 @@
               <mat-card-subtitle>Status Wise</mat-card-subtitle>
             </mat-card-title-group>
             <mat-card-content>
-              <ul>
+              <!-- <ul>
                 <li>
                   New Projects - {{projectData.newProjectsCount}}
                 </li>
@@ -41,7 +41,21 @@
                   Rejected Projects - {{projectData.rejectedProjectsCount}}
                 </li>
                 
-              </ul>
+              </ul> -->
+              <div class="flex-row">
+                <div class="temp">
+                  <span class="big-text">{{projectData.newProjectsCount}}</span>
+                  <span class="small-text">New Projects</span>
+                </div>
+                <div class="temp">
+                  <span class="big-text">{{projectData.approvedProjectsCount}}</span>
+                  <span class="small-text">Approved Projects</span>
+                </div>
+                <div class="temp">
+                  <span class="big-text">{{projectData.rejectedProjectsCount}}</span>
+                  <span class="small-text">Rejected Projects</span>
+                </div>
+              </div>
             </mat-card-content>
           </mat-card>
           <mat-card>
