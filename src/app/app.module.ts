@@ -16,13 +16,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     IndexNavbarComponent,
     TableComponent,
-   ],
+    ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
