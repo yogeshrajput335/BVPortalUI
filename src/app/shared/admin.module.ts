@@ -105,6 +105,8 @@ import { EditProjectAssignmentDialogComponent } from '../features/project-assign
 import { ProjectAssignmentDataService } from '../features/project-assignment/services/project-assignment-data.service';
 import { ProjectAssignmentDataSource } from '../features/project-assignment/project-assignment-datasource';
 import { AddProjectAssignmentDialogComponent } from '../features/project-assignment/dialogs/add/add-project-assignmnet.dialog.component';
+import { JobsDialogComponent } from '../features/jobs/jobs-dialog/jobs-dialog.component';
+
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
@@ -123,8 +125,8 @@ import { AddProjectAssignmentDialogComponent } from '../features/project-assignm
   OrganizationalStructureComponent,
   LeaveComponent,
   HolidayComponent,
-  JobsComponent,
-  AssetComponent,
+  
+AssetComponent,
   ProjectComponent,
   AssetTypeComponent,
   AssetAllocationComponent,
@@ -164,6 +166,8 @@ import { AddProjectAssignmentDialogComponent } from '../features/project-assignm
   DeleteProjectAssignmentDialogComponent,
   EditProjectAssignmentDialogComponent,
   InvoicesComponent,
+  JobsDialogComponent,
+  JobsComponent,
 ],
   imports: [
     CommonModule,

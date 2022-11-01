@@ -1,21 +1,38 @@
 <div class="joblist">
+<button mat-raised-button (click)="addJobs()">Add Job</button><br>
+<mat-accordion >
 
- <mat-accordion >
   <mat-expansion-panel *ngFor="let job of jobs">
+
     <mat-expansion-panel-header>
+
       <mat-panel-title>
+
         {{job.jobName}}
+
       </mat-panel-title>
+
       <mat-panel-description>
+
         {{job.profile}}
+
       </mat-panel-description>
+
     </mat-expansion-panel-header>
+
     <p>{{job.description}}</p>
+
     <div class="example-button-row">
+
       <button mat-raised-button color="primary">Apply</button>
+
       <button mat-raised-button color="accent" style="margin-left: 10px;">Refer</button>
+
     </div>
+
   </mat-expansion-panel>
 
+
+
 </mat-accordion>
-</div>
+ </div>
