@@ -106,6 +106,8 @@ import { ProjectAssignmentDataService } from '../features/project-assignment/ser
 import { ProjectAssignmentDataSource } from '../features/project-assignment/project-assignment-datasource';
 import { AddProjectAssignmentDialogComponent } from '../features/project-assignment/dialogs/add/add-project-assignmnet.dialog.component';
 import { JobsDialogComponent } from '../features/jobs/jobs-dialog/jobs-dialog.component';
+import { JobsDataService } from '../features/jobs/jobs-data.service';
+
 
 
 @NgModule({
@@ -166,8 +168,8 @@ AssetComponent,
   DeleteProjectAssignmentDialogComponent,
   EditProjectAssignmentDialogComponent,
   InvoicesComponent,
-  JobsDialogComponent,
   JobsComponent,
+  JobsDialogComponent,
 ],
   imports: [
     CommonModule,
@@ -202,6 +204,6 @@ AssetComponent,
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,
-  ProjectAssignmentDataService]
+  ProjectAssignmentDataService, JobsDataService]
 })
 export class AdminModule { }
