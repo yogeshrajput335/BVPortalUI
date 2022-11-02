@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { JobsDialogComponent } from '../jobs/jobs-dialog/jobs-dialog.component';
+import { JobsDataService } from './jobs-data.service';
+
 
 @Component({
 
@@ -15,11 +17,16 @@ import { JobsDialogComponent } from '../jobs/jobs-dialog/jobs-dialog.component';
 })
 
 export class JobsComponent implements OnInit {
+    jobsDatabase?: JobsDataService | null;
+    jobs:any[] = [];
  
+    constructor(public httpClient: HttpCommonService ,
+              public dialog: MatDialog,
+              public dataService: JobsDataService ) { }
 
-  jobs:any[] = [];
-  constructor(public httpClient: HttpCommonService ,
-              public dialog: MatDialog, ) { }
+              ngOnInit() {
+                this.getAllJobs();
+              }
   
               addJobs(): void {
                 const dialogRef = this.dialog.open(JobsDialogComponent, {
@@ -27,13 +34,13 @@ export class JobsComponent implements OnInit {
                 });
             
                 dialogRef.afterClosed().subscribe(result => {
-                  console.log('The dialog was closed');
+                  this.getAllJobs();
+                   // this.jobsDatabase!.dataChange.value.push(this.dataService.getDialogData());
+                //   console.log('The dialog was closed');
                   });
               }
 
-  ngOnInit(): void {
-    this.getAllJobs();
-  }
+ 
 
   getAllJobs(): void {
     this.httpClient.get('Openjobs/GetOpenjobs').subscribe((data:any) => {
@@ -44,5 +51,12 @@ export class JobsComponent implements OnInit {
       });
 
   }
-
+  onDelete(id:any){
+    this.httpClient.put('Openjobs/UpdateStatusInactiveOpenjobs/'+id,null).subscribe((data:any) => {
+      this.getAllJobs();
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
 }
