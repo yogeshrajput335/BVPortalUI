@@ -19,7 +19,8 @@ import { JobsDataService } from './jobs-data.service';
 export class JobsComponent implements OnInit {
     jobsDatabase?: JobsDataService | null;
     jobs:any[] = [];
- 
+    isDeletedJobsShow = false;
+
     constructor(public httpClient: HttpCommonService ,
               public dialog: MatDialog,
               public dataService: JobsDataService ) { }
@@ -27,12 +28,12 @@ export class JobsComponent implements OnInit {
               ngOnInit() {
                 this.getAllJobs();
               }
-  
+
               addJobs(): void {
                 const dialogRef = this.dialog.open(JobsDialogComponent, {
-                  
+
                 });
-            
+
                 dialogRef.afterClosed().subscribe(result => {
                   this.getAllJobs();
                    // this.jobsDatabase!.dataChange.value.push(this.dataService.getDialogData());
@@ -40,11 +41,12 @@ export class JobsComponent implements OnInit {
                   });
               }
 
- 
+
 
   getAllJobs(): void {
     this.httpClient.get('Openjobs/GetOpenjobs').subscribe((data:any) => {
       this.jobs = data;
+      this.isDeletedJobsShow = false;
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
@@ -54,6 +56,23 @@ export class JobsComponent implements OnInit {
   onDelete(id:any){
     this.httpClient.put('Openjobs/UpdateStatusInactiveOpenjobs/'+id,null).subscribe((data:any) => {
       this.getAllJobs();
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+  onSetActiveJob(id:any){
+    this.httpClient.put('Openjobs/UpdateStatusActiveOpenjobs/'+id,null).subscribe((data:any) => {
+      this.showDeletedJobs();
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+  showDeletedJobs(){
+    this.httpClient.get('Openjobs/GetDeletedjobs').subscribe((data:any) => {
+      this.jobs = data;
+      this.isDeletedJobsShow = true;
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
