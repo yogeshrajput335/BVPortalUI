@@ -1,0 +1,43 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Issue id: {{data.id}}</h3> -->
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <!--Textarea for demo purposes-->
+    <ng-container matColumnDef="invoiceId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.invoiceId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.employeeId}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="projectId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Project Id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.projectId}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="perHourCost">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Per Hour Cost</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.perHourCost}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalHours">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total Hours</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.totalHours}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalCost">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.totalCost}}</mat-cell>
+    </ng-container>
+
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+      <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,83 @@
+<div class="mat-elevation-z8">
+
+    <div class="form">
+      <span style="font-size: 20px;margin-left:20px">Inovice Details</span>
+      <span class="spacer"></span>
+      <mat-form-field floatPlaceholder="never" color="accent" style="margin-left: 50px;">
+        <input matInput #filter placeholder="Filter invoice details">
+      </mat-form-field>
+      <button mat-icon-button (click)="refresh()" style="float: right;">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  
+    <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
+      ng update @angular/cli @angular/core
+  
+      <ng-container matColumnDef="invoiceId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Id</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.invoiceId}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="employeeId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Employee Id</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.employeeId}}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="projectId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Id</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.projectId}}</mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="perHourCost">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Per Hour Cost</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.perHourCost}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalHours">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Total Hours</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.totalHours}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalCost">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Total Cost</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.totalCost}}</mat-cell>
+      </ng-container>
+
+      <!-- actions -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button  (click)="addNew()" >
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+            <!-- <span>Create New User</span> -->
+          </button>
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.invoiceId, row.employeeId, row.projectId, row.perHourCost, row.totalHours, row.totalCost)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.invoiceId)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+  
+    <div class="no-results" [style.display]="dataSource?.renderedData?.length == 0 ? '' : 'none'">
+      No results
+    </div>
+  
+    <mat-paginator #paginator
+                   [length]="dataSource?.filteredData != null ? dataSource?.filteredData!.length :0"
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+  

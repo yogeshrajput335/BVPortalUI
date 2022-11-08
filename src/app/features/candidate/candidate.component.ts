@@ -20,7 +20,7 @@ import { CandidateDataSource } from './candidate-datasource';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  displayedColumns = ['firstName', 'lastName', 'phoneNo','email', 'status', 'referByName', 'actions'];
+  displayedColumns = ['firstName', 'lastName', 'jobName', 'phoneNo','email', 'status', 'referByName', 'actions'];
   CandidateDatabase?: CandidateDataService | null;
   dataSource?: CandidateDataSource | null;
   index?: number;

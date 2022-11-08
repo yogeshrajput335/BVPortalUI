@@ -109,10 +109,16 @@ import { JobsDialogComponent } from '../features/jobs/jobs-dialog/jobs-dialog.co
 import { JobsDataService } from '../features/jobs/jobs-data.service';
 
 
+import { InvoiceDetailsDataService } from '../features/invoice_details/services/invoice-details-data.service';
+import { AddInvoiceDetailsDialogComponent } from '../features/invoice_details/dialogs/add/add-invoice-details.dialog.component';
+import { DeleteInvoiceDetailsDialogComponent } from '../features/invoice_details/dialogs/delete/delete-invoice_details.dialog.component';
+import { EditInvoiceDetailsDialogComponent } from '../features/invoice_details/dialogs/edit/edit-invoice-details.dialog.component';
+import { InvoiceDetailsComponent } from '../features/invoice_details/invoice-details.component';
+
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
-  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,ProjectAssignmentComponent,
+  ,TimesheetComponent,ClientComponent,ReferenceComponent,CandidateComponent,ProjectAssignmentComponent,InvoiceDetailsComponent,
   AddUserDialogComponent,
   AddLeaveTypeDialogComponent,
   AddClientDialogComponent,
@@ -170,6 +176,9 @@ AssetComponent,
   InvoicesComponent,
   JobsComponent,
   JobsDialogComponent,
+  AddInvoiceDetailsDialogComponent,
+  DeleteInvoiceDetailsDialogComponent,
+  EditInvoiceDetailsDialogComponent,
 ],
   imports: [
     CommonModule,
@@ -204,6 +213,6 @@ AssetComponent,
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,
-  ProjectAssignmentDataService, JobsDataService]
+  ProjectAssignmentDataService, JobsDataService, InvoiceDetailsDataService]
 })
 export class AdminModule { }
