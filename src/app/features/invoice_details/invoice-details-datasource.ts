@@ -45,7 +45,7 @@ export class InvoiceDetailsDataSource extends DataSource<InvoiceDetails> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((issue: InvoiceDetails) => {
-          const searchStr = (issue.id + issue.invoiceId + issue.employeeId + issue.projectId + issue.perHourCost + issue.totalHours + issue.totalCost);
+          const searchStr = (issue.id + issue.invoiceNo + issue.clientName);
         //   return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -75,12 +75,16 @@ export class InvoiceDetailsDataSource extends DataSource<InvoiceDetails> {
 
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'invoiceId': [propertyA, propertyB] = [a.invoiceId, b.invoiceId]; break;
-        case 'employeeId': [propertyA, propertyB] = [a.employeeId, b.employeeId]; break;
-        case 'projectId': [propertyA, propertyB] = [a.projectId, b.projectId]; break;
-        case 'perHourCost': [propertyA, propertyB] = [a.perHourCost, b.perHourCost]; break;
-        case 'totalHours': [propertyA, propertyB] = [a.totalHours, b.totalHours]; break;
-        case 'totalCost': [propertyA, propertyB] = [a.totalCost, b.totalCost]; break;
+        case 'invoiceNo': [propertyA, propertyB] = [a.invoiceNo, b.invoiceNo]; break;
+        // case 'createdDate': [propertyA, propertyB] = [a.createdDate, b.createdDate]; break;
+        // case 'dueDate': [propertyA, propertyB] = [a.dueDate, b.dueDate]; break;
+        case 'clientId': [propertyA, propertyB] = [a.clientId, b.clientId]; break;
+        case 'clientName': [propertyA, propertyB] = [a.clientName, b.clientName]; break;
+        case 'fromLine1': [propertyA, propertyB] = [a.fromLine1, b.fromLine1]; break;
+        case 'fromLine2': [propertyA, propertyB] = [a.fromLine2, b.fromLine2]; break;
+        case 'fromLine3': [propertyA, propertyB] = [a.fromLine3, b.fromLine3]; break;
+        case 'term': [propertyA, propertyB] = [a.term, b.term]; break;
+        case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

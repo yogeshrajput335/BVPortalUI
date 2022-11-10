@@ -23,7 +23,7 @@ import { DeleteInvoiceDetailsDialogComponent } from './dialogs/delete/delete-inv
   styleUrls: ['./invoice-details.component.scss']
 })
 export class InvoiceDetailsComponent implements OnInit {
-  displayedColumns = ['invoiceId', 'employeeId', 'projectId', 'perHourCost', 'totalHours','totalCost', 'actions'];
+  displayedColumns = ['invoiceNo', 'createdDate', 'dueDate', 'clientId', 'clientName','fromLine1', 'fromLine2' ,'fromLine3', 'term', 'status', 'actions'];
   userDatabase?: InvoiceDetailsDataService | null;
   dataSource?: InvoiceDetailsDataSource | null;
   index?: number;
@@ -60,13 +60,13 @@ export class InvoiceDetailsComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, invoiceId: number, employeeId: number, projectId: number, perHourcost: number, totalHours:number, totalCost:NumberFormatStyle) {
+  startEdit(i: number, id: number, invoiceNo: number, createdDate:Date, dueDate:Date,  clientId: number, clientName: string, fromLine1: string, fromLine2: string, fromLine3: string, term:string, status:string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditInvoiceDetailsDialogComponent, {
-      data: {id: id, invoiceId: invoiceId, employeeId: employeeId, projectId: projectId, perHourcost:perHourcost,totalHours:totalHours, totalCost:totalCost}
+      data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -81,11 +81,11 @@ export class InvoiceDetailsComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, invoiceId: number) {
+  deleteItem(i: number, id: number, invoiceNo: number) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteInvoiceDetailsDialogComponent, {
-      data: {id: id, invoiceId: invoiceId}
+      data: {id: id, invoiceNo: invoiceNo}
     });
 
     dialogRef.afterClosed().subscribe(result => {

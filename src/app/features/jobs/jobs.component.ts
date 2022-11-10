@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { JobsDialogComponent } from '../jobs/jobs-dialog/jobs-dialog.component';
 import { JobsDataService } from './jobs-data.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CandidateComponent } from '../candidate/candidate.component';
 
 
 @Component({
@@ -20,6 +21,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 export class JobsComponent implements OnInit {
     jobsDatabase?: JobsDataService | null;
     jobs:any[] = [];
+    statuses = ['ACTIVE', 'INACTIVE','REFERRED']
     isDeletedJobsShow = false;
 
     constructor(public httpClient: HttpCommonService ,
@@ -87,6 +89,14 @@ export class JobsComponent implements OnInit {
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
+    });
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CandidateComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 }
