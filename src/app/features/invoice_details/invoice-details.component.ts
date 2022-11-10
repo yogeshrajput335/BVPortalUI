@@ -1,5 +1,5 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
 import {MatPaginator} from '@angular/material/paginator';
@@ -23,7 +23,7 @@ import { DeleteInvoiceDetailsDialogComponent } from './dialogs/delete/delete-inv
   styleUrls: ['./invoice-details.component.scss']
 })
 export class InvoiceDetailsComponent implements OnInit {
-  displayedColumns = ['invoiceNo', 'createdDate', 'dueDate', 'clientId', 'clientName','fromLine1', 'fromLine2' ,'fromLine3', 'term', 'status', 'actions'];
+  displayedColumns = ['invoiceNo', 'createdDate', 'dueDate', 'clientName','fromLine1', 'fromLine2' ,'fromLine3', 'term', 'status', 'actions'];
   userDatabase?: InvoiceDetailsDataService | null;
   dataSource?: InvoiceDetailsDataSource | null;
   index?: number;
@@ -31,7 +31,8 @@ export class InvoiceDetailsComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: InvoiceDetailsDataService) {}
+              public dataService: InvoiceDetailsDataService,
+              private ref: ChangeDetectorRef) {}
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
@@ -108,12 +109,15 @@ export class InvoiceDetailsComponent implements OnInit {
 
 
   public loadData() {
+    debugger
     this.userDatabase = new InvoiceDetailsDataService(this.httpClient);
     this.dataSource = new InvoiceDetailsDataSource(this.userDatabase, this.paginator!, this.sort!);
+    this.ref.detectChanges();
     fromEvent(this.filter!.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
+        debugger
         if (!this.dataSource) {
           return;
         }
