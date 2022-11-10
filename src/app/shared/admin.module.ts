@@ -108,6 +108,8 @@ import { AddProjectAssignmentDialogComponent } from '../features/project-assignm
 import { JobsDialogComponent } from '../features/jobs/jobs-dialog/jobs-dialog.component';
 import { JobsDataService } from '../features/jobs/jobs-data.service';
 
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+
 
 import { InvoiceDetailsDataService } from '../features/invoice_details/services/invoice-details-data.service';
 import { AddInvoiceDetailsDialogComponent } from '../features/invoice_details/dialogs/add/add-invoice-details.dialog.component';
@@ -133,7 +135,6 @@ import { InvoiceDetailsComponent } from '../features/invoice_details/invoice-det
   OrganizationalStructureComponent,
   LeaveComponent,
   HolidayComponent,
-  
 AssetComponent,
   ProjectComponent,
   AssetTypeComponent,
@@ -209,7 +210,8 @@ AssetComponent,
     MatExpansionModule,
     MatTabsModule,
     MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    Ng2GoogleChartsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,

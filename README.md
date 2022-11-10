@@ -33,3 +33,6 @@ https://github.com/umutesen/angular-material-template
 
 ## MAT CARD DESIGN
 * https://zoaibkhan.com/blog/weather-card-design-with-angular-material-and-css/
+
+## GOOGLE NG2 CHART
+* https://www.tutorialspoint.com/angular_googlecharts/angular_googlecharts_table_chart.htm#

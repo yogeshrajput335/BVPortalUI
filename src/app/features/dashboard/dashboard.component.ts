@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,6 +29,36 @@ export class DashboardComponent {
       ];
     })
   );
+
+  public pieChart: GoogleChartInterface = {
+    chartType: GoogleChartType.PieChart,
+    dataTable: [
+      ['Task', 'Hours per Day'],
+      ['Work',     11],
+      ['Eat',      2],
+      ['Commute',  2],
+      ['Watch TV', 2],
+      ['Sleep',    7]
+    ],
+    //firstRowIsData: true,
+    options: {'title': 'Tasks'},
+  };
+
+  public tableChart: GoogleChartInterface = {
+    chartType: 'Table',
+    dataTable: [
+      ['Name',   'Manager', 'Tooltip'],
+      [{v: 'Gajendra', f: 'Gajendra<div style="color:red; font-style:italic">Manager</div>'}, '', 'The President'],
+      [{v: 'Rohit', f: 'Rohit<div style="color:red; font-style:italic">Team Lead</div>'}, 'Gajendra', 'VP'],
+      [{v:'Suchit', f: 'Suchit<div style="color:red; font-style:italic">Sr. Engineer</div>'}, 'Rohit', 'SE'],
+      [{v:'Ajay', f: 'Suchit<div style="color:red; font-style:italic">Sr. Engineer</div>'}, 'Rohit', 'SE'],
+      [{v:'Ishan', f: 'Ishan<div style="color:red; font-style:italic">Engineer</div>'}, 'Ajay', 'JE']
+    ],
+    options: {
+      allowHtml: true,
+      allowCollapse: true
+    }
+  };
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
