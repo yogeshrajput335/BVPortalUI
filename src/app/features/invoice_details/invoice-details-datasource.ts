@@ -76,8 +76,6 @@ export class InvoiceDetailsDataSource extends DataSource<InvoiceDetails> {
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         case 'invoiceNo': [propertyA, propertyB] = [a.invoiceNo, b.invoiceNo]; break;
-        // case 'createdDate': [propertyA, propertyB] = [a.createdDate, b.createdDate]; break;
-        // case 'dueDate': [propertyA, propertyB] = [a.dueDate, b.dueDate]; break;
         case 'clientId': [propertyA, propertyB] = [a.clientId, b.clientId]; break;
         case 'clientName': [propertyA, propertyB] = [a.clientName, b.clientName]; break;
         case 'fromLine1': [propertyA, propertyB] = [a.fromLine1, b.fromLine1]; break;

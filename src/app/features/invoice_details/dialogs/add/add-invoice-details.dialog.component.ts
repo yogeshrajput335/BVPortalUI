@@ -19,9 +19,7 @@ export class AddInvoiceDetailsDialogComponent {
               public dataService: InvoiceDetailsDataService) {
                 this.statuses = this.dataService.getStatuses()
                 this.clients = this.dataService.getClients()
-                
-               }
-
+              }
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
@@ -36,11 +34,9 @@ export class AddInvoiceDetailsDialogComponent {
   submit() {
   // empty stuff
   }
-
   onNoClick(): void {
     this.dialogRef.close();
   }
-
   public confirmAdd(): void {
     this.dataService.addInvoiceDetails(this.data);
   }
