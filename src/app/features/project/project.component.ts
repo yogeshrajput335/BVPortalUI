@@ -21,7 +21,7 @@ import { ProjectDataSource } from './project-datasource';
 })
 export class ProjectComponent implements OnInit {
   displayedColumns = ['projectName', 'clientName', 'description', 'startDate', 'endDate', 'projectType', 'status', 'actions'];
- ProjectDatabase?: ProjectDataService | null;
+  ProjectDatabase?: ProjectDataService | null;
   dataSource?: ProjectDataSource | null;
   index?: number;
   id?: number;

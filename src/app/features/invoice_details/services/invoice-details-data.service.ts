@@ -3,17 +3,26 @@ import {BehaviorSubject} from 'rxjs';
 import {InvoiceDetails} from '../models/InvoiceDetails';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
+import { Client } from './../../client/models/Client';
 
 @Injectable()
 export class InvoiceDetailsDataService {
-  statuses = ['ACTIVE', 'INACTIVE']
-
+  statuses = ['NEW', 'APPROVED','REJECTED']
+  clients=[{id:0,clientName:''}];
   dataChange: BehaviorSubject<InvoiceDetails[]> = new BehaviorSubject<InvoiceDetails[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
   constructor (private httpClient: HttpCommonService) {
+    this.httpClient.get('Client/GetClient').subscribe((data:any) => {
+      this.clients = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+
   }
+
 
   get data(): InvoiceDetails[] {
     return this.dataChange.value;
@@ -25,7 +34,7 @@ export class InvoiceDetailsDataService {
 
   /** CRUD METHODS */
   getAllInvoiceDetails(): void {
-    this.httpClient.get('InvoiceProduct/GetInvoiceProduct').subscribe((data:any) => {
+    this.httpClient.get('Invoice/GetInvoice').subscribe((data:any) => {
         this.dataChange.next(data);
       },
       (error: HttpErrorResponse) => {
@@ -35,9 +44,11 @@ export class InvoiceDetailsDataService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addInvoiceDetails (user: InvoiceDetails): void {
-    this.dialogData = user;
-    this.httpClient.post('InvoiceProduct/InsertInvoiceProduct',user).subscribe((data:any) => {
+  addInvoiceDetails (InvoiceDetails: InvoiceDetails): void {
+    this.dialogData = InvoiceDetails;
+    let e = this.getClients().filter(x=>x.id===InvoiceDetails.clientId)[0]
+    InvoiceDetails['clientName']= e.clientName;
+    this.httpClient.post('Invoice/InsertInvoice',InvoiceDetails).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -45,9 +56,11 @@ export class InvoiceDetailsDataService {
     });
   }
 
-  updateInvoiceDetails (user: InvoiceDetails): void {
-    this.dialogData = user;
-    this.httpClient.put('InvoiceProduct/UpdateInvoiceProduct',user).subscribe((data:any) => {
+  updateInvoiceDetails (InvoiceDetails: InvoiceDetails): void {
+    this.dialogData = InvoiceDetails;
+    let e = this.getClients().filter(x=>x.id===InvoiceDetails.clientId)[0]
+    InvoiceDetails.clientName = e.clientName;
+    this.httpClient.put('Invoice/UpdateInvoice',InvoiceDetails).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -57,11 +70,17 @@ export class InvoiceDetailsDataService {
 
   deleteInvoiceDetails (id: number): void {
     console.log(id);
-    this.httpClient.delete('InvoiceProduct/DeleteInvoiceProduct/'+id).subscribe((data:any) => {
+    this.httpClient.delete('Invoice/DeleteInvoiceProduct/'+id).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });
+  }
+  getStatuses(){
+    return this.statuses
+  }
+  getClients(){
+    return this.clients
   }
 }
