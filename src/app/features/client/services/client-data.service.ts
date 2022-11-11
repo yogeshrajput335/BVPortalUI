@@ -62,7 +62,14 @@ export class ClientDataService {
     console.log (error.name + ' ' + error.message);
     });
   }
-
+  setTerm(id:number,term:number){
+    this.httpClient.post('Client/SetTerm/'+id+'/'+term,null).subscribe((data:any) => {
+      //this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+  }
   getStatues(){
     return this.statuses
   }
