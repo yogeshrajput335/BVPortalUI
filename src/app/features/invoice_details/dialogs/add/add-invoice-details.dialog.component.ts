@@ -13,12 +13,14 @@ import {InvoiceDetailsDataService } from '../../services/invoice-details-data.se
 export class AddInvoiceDetailsDialogComponent {
   clients:any
   statuses:any
+  terms :any
  
   constructor(public dialogRef: MatDialogRef<AddInvoiceDetailsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: InvoiceDetails,
               public dataService: InvoiceDetailsDataService) {
                 this.statuses = this.dataService.getStatuses()
                 this.clients = this.dataService.getClients()
+                this.terms = this.dataService.getTerms()
               }
   formControl = new FormControl('', [
     Validators.required
