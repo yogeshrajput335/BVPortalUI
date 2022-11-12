@@ -1,0 +1,41 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Are you sure?</h3> -->
+  <div mat-dialog-content>
+    Client: {{data.clientName}}
+    <p></p>
+    Term: <select [(ngModel)]="term">
+      <option value="15">15d</option>
+      <option value="30">30d</option>
+      <option value="45">45d</option>
+    </select>
+    <p></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()">Set Term</button>
+    <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
+  </div>
+  <br>
+  <!-- {{termHistory|json}} -->
+  <table id="termTable">
+    <tr>
+    <th>Change Date</th>
+    <th>Old Term</th>
+    <th>New Term</th>
+    <th>Change By</th>
+    <th>Reason For Change</th>
+    </tr>
+    <tr *ngFor="let item of termHistory">
+      <td>{{item.changeDate | date :'longDate'}}</td>
+      <td>{{item.oldTermText}}</td>
+      <td>{{item.newTermText}}</td>
+      <td>{{item.changeBy}}</td>
+      <td>{{item.reasonForChange}}</td>
+    </tr>
+    <tr *ngIf="termHistory.length==0">
+      <td colspan="5">
+        No Term History
+      </td>
+    </tr>
+  </table>
+</div>
