@@ -8,6 +8,7 @@ import { Client } from './../../client/models/Client';
 @Injectable()
 export class InvoiceDetailsDataService {
   statuses = ['NEW', 'APPROVED','REJECTED']
+  terms = ['15d','30d','45d']
   clients=[{id:0,clientName:''}];
   dataChange: BehaviorSubject<InvoiceDetails[]> = new BehaviorSubject<InvoiceDetails[]>([]);
   // Temporarily stores data from dialogs
@@ -82,5 +83,8 @@ export class InvoiceDetailsDataService {
   }
   getClients(){
     return this.clients
+  }
+  getTerms(){
+    return this.terms
   }
 }

@@ -6,6 +6,7 @@ import { JobsDialogComponent } from '../jobs/jobs-dialog/jobs-dialog.component';
 import { JobsDataService } from './jobs-data.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { CandidateComponent } from '../candidate/candidate.component';
+import { AddCandidateDialogComponent } from '../candidate/dialogs/add/add-candidate.dialog.component';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class JobsComponent implements OnInit {
     jobs:any[] = [];
     statuses = ['ACTIVE', 'INACTIVE','REFERRED']
     isDeletedJobsShow = false;
-
+    
     constructor(public httpClient: HttpCommonService ,
               public dialog: MatDialog,
               public dataService: JobsDataService,
@@ -92,7 +93,7 @@ export class JobsComponent implements OnInit {
     });
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(CandidateComponent, {
+    const dialogRef = this.dialog.open(AddCandidateDialogComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -60,5 +60,19 @@ export class DashboardComponent {
     }
   };
 
+  public barChart: GoogleChartInterface = {
+    chartType: GoogleChartType.BarChart,
+    dataTable: [
+      ['Name', 'Working Hours per Week'],
+      ['Gajendra',     60],
+      ['Rohit',      55],
+      ['Suchit',  47],
+      ['Ajay', 66],
+      ['Ishan',    49]
+    ],
+    //firstRowIsData: true,
+    options: {'title': 'Tasks'},
+  };
+
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
