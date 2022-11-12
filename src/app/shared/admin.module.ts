@@ -117,6 +117,7 @@ import { DeleteInvoiceDetailsDialogComponent } from '../features/invoice_details
 import { EditInvoiceDetailsDialogComponent } from '../features/invoice_details/dialogs/edit/edit-invoice-details.dialog.component';
 import { InvoiceDetailsComponent } from '../features/invoice_details/invoice-details.component';
 import { SetTermClientDialogComponent } from '../features/client/dialogs/set-term/set-term.dialog.component';
+import { InvoiceDialogComponent } from '../features/invoice_details/dialogs/invoice-dialog/invoice-dialog.dialog.component';
 
 
 @NgModule({
@@ -181,7 +182,8 @@ AssetComponent,
   AddInvoiceDetailsDialogComponent,
   DeleteInvoiceDetailsDialogComponent,
   EditInvoiceDetailsDialogComponent,
-  SetTermClientDialogComponent
+  SetTermClientDialogComponent,
+  InvoiceDialogComponent
 ],
   imports: [
     CommonModule,

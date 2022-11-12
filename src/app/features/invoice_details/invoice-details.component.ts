@@ -15,6 +15,7 @@ import { EditInvoiceDetailsDialogComponent } from './dialogs/edit/edit-invoice-d
 
 import { NumberFormatStyle } from '@angular/common';
 import { DeleteInvoiceDetailsDialogComponent } from './dialogs/delete/delete-invoice_details.dialog.component';
+import { InvoiceDialogComponent } from './dialogs/invoice-dialog/invoice-dialog.dialog.component';
 
 
 @Component({
@@ -86,7 +87,8 @@ export class InvoiceDetailsComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteInvoiceDetailsDialogComponent, {
-      data: {id: id, invoiceNo: invoiceNo}
+      data: {id: id, invoiceNo: invoiceNo},height: '400px',
+      width: '600px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -95,6 +97,23 @@ export class InvoiceDetailsComponent implements OnInit {
         // for delete we use splice in order to remove single object from UserDataService
         this.userDatabase!.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+      }
+    });
+  }
+
+  generateInvoice(i: number, id: number) {
+    this.index = i;
+    this.id = id;
+    const dialogRef = this.dialog.open(InvoiceDialogComponent, {
+      data: {id: id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // const foundIndex = this.userDatabase!.dataChange.value.findIndex(x => x.id === this.id);
+        // // for delete we use splice in order to remove single object from UserDataService
+        // this.userDatabase!.dataChange.value.splice(foundIndex, 1);
+        this.loadData();
       }
     });
   }
@@ -109,7 +128,6 @@ export class InvoiceDetailsComponent implements OnInit {
 
 
   public loadData() {
-    debugger
     this.userDatabase = new InvoiceDetailsDataService(this.httpClient);
     this.dataSource = new InvoiceDetailsDataSource(this.userDatabase, this.paginator!, this.sort!);
     this.ref.detectChanges();

@@ -83,6 +83,16 @@
           <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.invoiceNo)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" >
+            <button mat-menu-item (click)="generateInvoice(i, row.id)">
+              <!-- <mat-icon>dialpad</mat-icon> -->
+              <span>Show Invoice</span>
+            </button>
+          </mat-menu>
         </mat-cell>
       </ng-container>
 
