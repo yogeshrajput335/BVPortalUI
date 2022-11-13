@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
+import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,14 +34,15 @@ export class DashboardComponent {
 
   public pieChart: GoogleChartInterface = {
     chartType: GoogleChartType.PieChart,
-    dataTable: [
-      ['Task', 'Hours per Day'],
-      ['Work',     11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]
-    ],
+    dataTable: [],
+    // [
+    //   ['Task', 'Hours per Day'],
+    //   ['Work',     11],
+    //   ['Eat',      2],
+    //   ['Commute',  2],
+    //   ['Watch TV', 2],
+    //   ['Sleep',    7]
+    // ],
     //firstRowIsData: true,
     options: {'title': 'Tasks'},
   };
@@ -86,5 +89,15 @@ export class DashboardComponent {
     //firstRowIsData: true,
     options :{legend:'none'},
   };
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  //pieChartData=[]
+  constructor(private breakpointObserver: BreakpointObserver, private httpClient: HttpCommonService) {
+      this.httpClient.get('Dashboard/GetPieData').subscribe((data:any) => {
+          //this.pieChartData = data;
+          this.pieChart.dataTable = data;
+        },
+        (error: HttpErrorResponse) => {
+          console.log (error.name + ' ' + error.message);
+      });
+
+  }
 }
