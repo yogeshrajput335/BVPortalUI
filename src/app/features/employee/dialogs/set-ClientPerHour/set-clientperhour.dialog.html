@@ -1,0 +1,41 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Are you sure?</h3> -->
+  <div mat-dialog-content>
+    Employee: {{data.employeeName}}
+    <p></p>
+    Per Hour: <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="PerHour" [(ngModel)]="perHour.perHour" name="perHour">
+      </mat-form-field>
+    </div>
+    <p></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()">Set Client Per Hour</button>
+    <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
+  </div>
+  <br>
+  <!-- {{termHistory|json}} -->
+  <table id="clientPerHourTable">
+    <tr>
+    <th>Old Per Hour</th>
+    <th>New Per Hour</th>
+    <th>Reason For Change</th>
+    <th>Change Date</th>
+    <th>Change By</th>
+    </tr>
+    <tr *ngFor="let item of clientPerHourHistory">
+      <td>{{item.oldPerHour}}</td>
+      <td>{{item.newPerHour}}</td>
+      <td>{{item.reasonForChange}</td>
+      <td>{{item.changeDate  | date :'longDate'}}</td>
+      <td>{{item.changeBy}}</td>
+    </tr>
+    <tr *ngIf="clientPerHourHistory.length==0">
+      <td colspan="5">
+        No Term History
+      </td>
+    </tr>
+  </table>
+</div>

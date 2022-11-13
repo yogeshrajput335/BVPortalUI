@@ -13,6 +13,7 @@ import { EmployeeDataSource } from './employee-datasource';
 import { AddEmployeeDialogComponent } from './dialogs/add/add-employee.dialog.component';
 import { EditEmployeeDialogComponent } from './dialogs/edit/edit-employee.dialog.component';
 import { DeleteEmployeeDialogComponent } from './dialogs/delete/delete-employee.dialog.component';
+import { SetClientPerHourDialogComponent } from './dialogs/set-ClientPerHour/set-clientperhour.dialog.component';
 
 
 @Component({
@@ -106,6 +107,22 @@ export class EmployeeComponent implements OnInit {
         // for delete we use splice in order to remove single object from UserDataService
         this.userDatabase!.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+      }
+    });
+  }
+
+  setClientPerHour(i: number, id: number, perHour: number) {
+    this.index = i;
+    this.id = id;
+    const dialogRef = this.dialog.open(SetClientPerHourDialogComponent, {
+      data: {id: id,perHour: perHour}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // const foundIndex = this.ClientDatabase!.dataChange.value.findIndex(x => x.id === this.id);
+        // this.ClientDatabase!.dataChange.value.splice(foundIndex, 1);
+        this.loadData();
       }
     });
   }

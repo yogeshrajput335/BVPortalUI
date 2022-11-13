@@ -73,6 +73,18 @@ export class DashboardComponent {
     //firstRowIsData: true,
     options: {'title': 'Tasks'},
   };
-
+  public histogram: GoogleChartInterface = {
+    chartType: GoogleChartType.Histogram,
+    dataTable: [
+      ['Name', 'Working Hours per Week'],
+      ['Gajendra',     60],
+      ['Rohit',      55],
+      ['Suchit',  47],
+      ['Ajay', 66],
+      ['Ishan',    49]
+    ],
+    //firstRowIsData: true,
+    options :{legend:'none'},
+  };
   constructor(private breakpointObserver: BreakpointObserver) {}
 }

@@ -68,6 +68,15 @@ export class EmployeeDataService {
     });
   }
 
+  setClientPerHour(id:number,perHour:number){
+    this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour,null).subscribe((data:any) => {
+      //this.dataChange.next(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+  }
+
   getEmployeeBasicInfoByEmpId(id:number) {
     return this.httpClient.get('EmployeeBasicInfo/GetEmployeeBasicInfoByEmpId/'+id)
   }

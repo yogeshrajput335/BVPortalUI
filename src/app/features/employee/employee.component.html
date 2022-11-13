@@ -77,6 +77,12 @@
             <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.firstName, row.lastName)">
               <mat-icon aria-label="Delete">delete</mat-icon>
             </button>
+            <mat-menu #menu="matMenu" >
+              <button mat-menu-item (click)="setClientPerHour(i, row.id,row.perHour)">
+                <mat-icon>dialpad</mat-icon>
+                <span>Set Client Per Hour</span>
+              </button>
+            </mat-menu> 
           </mat-cell>
         </ng-container>
 
