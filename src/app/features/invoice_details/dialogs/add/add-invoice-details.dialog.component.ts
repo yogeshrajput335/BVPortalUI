@@ -17,6 +17,8 @@ export class AddInvoiceDetailsDialogComponent {
   employees:any;
   product:any={employeeName:'',employeeId:0,perHourCost:0,totalHours:0,totalCost:0,projectId:0,invoiceId:0};
   products:any=[];
+  projects:any=[];
+  empPerHours:any=[];
 
   constructor(public dialogRef: MatDialogRef<AddInvoiceDetailsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: InvoiceDetails,
@@ -25,6 +27,8 @@ export class AddInvoiceDetailsDialogComponent {
                 this.clients = this.dataService.getClients()
                 this.terms = this.dataService.getTerms()
                 this.employees = this.dataService.getEmployees()
+                this.projects = this.dataService.getProjects()
+                this.empPerHours = this.dataService.getEmpPerHours()
               }
   formControl = new FormControl('', [
     Validators.required
@@ -47,17 +51,33 @@ export class AddInvoiceDetailsDialogComponent {
     this.dataService.addInvoiceDetails(this.data,this.products);
   }
   public AddProduct(){
-    this.products.push(this.product);
-    this.product = {employeeName:'',employeeId:0,perHourCost:0,totalHours:0,totalCost:0,projectId:0,invoiceId:0};
+    if(this.isEmpHavingPerHour){
+      this.products.push(this.product);
+      this.product = {employeeName:'',employeeId:0,perHourCost:0,totalHours:0,totalCost:0,projectId:0,invoiceId:0};
+    } else {
+      alert('Please set PER HOUR COST for employee :'+ this.product.employeeName);
+    }
   }
 
   public calculateTotalCost(){
     this.product.totalCost = this.product.perHourCost * this.product.totalHours;
   }
+  isEmpHavingPerHour = false;
   public onEmployeeChange(){
+    var ephdata=0;
+    var eph = this.empPerHours
+      .where((x:any)=>x.employeeId==this.product.employeeId && x.clientId==this.data.clientId);
+    if(eph == null || eph.length==0){
+      alert('Please set PER HOUR COST for employee');
+      this.isEmpHavingPerHour = false;
+    }
+    else{
+      ephdata = eph[0].perHour;
+      this.isEmpHavingPerHour = true;
+    }
     let e = this.employees.filter((x: any)=>x.id==this.product.employeeId)[0]
     this.product.employeeName = e.firstName+ ' '+ e.lastName;
-    this.product.perHourCost = 10; // TODO :
+    this.product.perHourCost = ephdata;
     this.calculateTotalCost()
   }
 }

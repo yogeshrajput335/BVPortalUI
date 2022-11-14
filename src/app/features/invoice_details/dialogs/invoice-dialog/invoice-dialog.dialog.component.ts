@@ -15,12 +15,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class InvoiceDialogComponent {
   invoice:any;
+  totalCost:number = 0;
   constructor(public dialogRef: MatDialogRef<InvoiceDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: InvoiceDetailsDataService,
               private httpClient: HttpCommonService) {
                 this.httpClient.get('Invoice/GetInvoiceById/'+this.data.id).subscribe((data:any) => {
                   //this.dataChange.next(data);
                   this.invoice = data;
+                  this.invoice.products.forEach((e:any) => {
+                    this.totalCost += e.totalCost;
+                  });
                 },
                 (error: HttpErrorResponse) => {
                 console.log (error.name + ' ' + error.message);

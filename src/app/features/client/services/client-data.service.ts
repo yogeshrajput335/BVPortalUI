@@ -7,12 +7,19 @@ import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 @Injectable()
 export class ClientDataService {
   statuses = ['ACTIVE', 'INACTIVE']
-
+  projects:any;
   dataChange: BehaviorSubject<Client[]> = new BehaviorSubject<Client[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor (private httpClient: HttpCommonService) {}
+  constructor (private httpClient: HttpCommonService) {
+    this.httpClient.get('Project/GetProjects').subscribe((data:any) => {
+      this.projects = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+  }
 
   get data(): Client[] {
     return this.dataChange.value;
@@ -72,6 +79,9 @@ export class ClientDataService {
   }
   getStatues(){
     return this.statuses
+  }
+  getProjects(){
+    return this.projects
   }
 }
 

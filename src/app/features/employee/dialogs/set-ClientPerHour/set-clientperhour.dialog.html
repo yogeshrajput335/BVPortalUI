@@ -1,11 +1,29 @@
 <div class="container">
   <!-- <h3 mat-dialog-title>Are you sure?</h3> -->
   <div mat-dialog-content>
-    Employee: {{data.employeeName}}
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Client</mat-label>
+      <mat-select [(ngModel)]="client" name="client"  color="accent" (selectionChange)="onClientChange()" >
+        <mat-option *ngFor="let s of clients" [value]="s.id">
+          {{s.clientName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p></p> -->
+    Employee: {{data.firstName+ ' '+data.lastName}}
+    <p></p>
+    <mat-form-field appearance="outline">
+      <mat-label>Client</mat-label>
+      <mat-select [(ngModel)]="client" name="client"  color="accent" >
+        <mat-option *ngFor="let s of clients" [value]="s.id">
+          {{s.clientName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <p></p>
     Per Hour: <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="PerHour" [(ngModel)]="perHour.perHour" name="perHour">
+        <input matInput placeholder="PerHour" [(ngModel)]="perHour" name="perHour">
       </mat-form-field>
     </div>
     <p></p>
@@ -16,26 +34,61 @@
     <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
   </div>
   <br>
-  <!-- {{termHistory|json}} -->
-  <table id="clientPerHourTable">
-    <tr>
-    <th>Old Per Hour</th>
-    <th>New Per Hour</th>
-    <th>Reason For Change</th>
-    <th>Change Date</th>
-    <th>Change By</th>
-    </tr>
-    <tr *ngFor="let item of clientPerHourHistory">
-      <td>{{item.oldPerHour}}</td>
-      <td>{{item.newPerHour}}</td>
-      <td>{{item.reasonForChange}</td>
-      <td>{{item.changeDate  | date :'longDate'}}</td>
-      <td>{{item.changeBy}}</td>
-    </tr>
-    <tr *ngIf="clientPerHourHistory.length==0">
-      <td colspan="5">
-        No Term History
-      </td>
-    </tr>
-  </table>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Per Hour Data">
+      <table id="clientPerHourTable">
+        <tr>
+        <th>Client</th>
+        <th>Per Hour</th>
+        </tr>
+        <tr *ngFor="let item of clientPerHourData">
+          <td>{{item.client.clientName}}</td>
+          <td>{{item.perHour}}</td>
+        </tr>
+        <tr *ngIf="clientPerHourHistory.length==0">
+          <td colspan="5">
+            No per hour added to any client
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Audit History">
+      <mat-form-field appearance="outline">
+        <mat-label>Client</mat-label>
+        <mat-select [(ngModel)]="client" name="clientForHistory"  color="accent"  (selectionChange)="onClientChange()">
+          <mat-option value="0">
+            ALL CLIENT
+          </mat-option>
+          <mat-option *ngFor="let s of clients" [value]="s.id">
+            {{s.clientName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- {{termHistory|json}} -->
+      <table id="clientPerHourTable">
+        <tr>
+        <th>Client</th>
+        <th>Old Per Hour</th>
+        <th>New Per Hour</th>
+        <th>Reason For Change</th>
+        <th>Change Date</th>
+        <th>Change By</th>
+        </tr>
+        <tr *ngFor="let item of clientPerHourHistory">
+          <td>{{item.client.clientName}}</td>
+          <td>{{item.oldPerHour}}</td>
+          <td>{{item.newPerHour}}</td>
+          <td>{{item.reasonForChange}}</td>
+          <td>{{item.changeDate  | date :'longDate'}}</td>
+          <td>{{item.changeBy}}</td>
+        </tr>
+        <tr *ngIf="clientPerHourHistory.length==0">
+          <td colspan="5">
+            No per hour History
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+
 </div>

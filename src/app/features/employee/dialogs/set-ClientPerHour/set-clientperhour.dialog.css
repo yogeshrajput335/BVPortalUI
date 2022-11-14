@@ -7,22 +7,22 @@
   width: 100%;
 }
 
-#termTable {
+#clientPerHourTable {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#termTable td, #termTable th {
+#clientPerHourTable td, #clientPerHourTable th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#termTable tr:nth-child(even){background-color: #f2f2f2;}
+#clientPerHourTable tr:nth-child(even){background-color: #f2f2f2;}
 
-#termTable tr:hover {background-color: #ddd;}
+#clientPerHourTable tr:hover {background-color: #ddd;}
 
-#termTable th {
+#clientPerHourTable th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;

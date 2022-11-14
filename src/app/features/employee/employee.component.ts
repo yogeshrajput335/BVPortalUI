@@ -111,11 +111,11 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  setClientPerHour(i: number, id: number, perHour: number) {
+  setClientPerHour(i: number, id: number, perHour: number, firstName: string, lastName: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(SetClientPerHourDialogComponent, {
-      data: {id: id,perHour: perHour}
+      data: {id: id,perHour: perHour,firstName: firstName,lastName: lastName}
     });
 
     dialogRef.afterClosed().subscribe(result => {

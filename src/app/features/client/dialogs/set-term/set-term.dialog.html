@@ -3,6 +3,15 @@
   <div mat-dialog-content>
     Client: {{data.clientName}}
     <p></p>
+    <!-- <mat-form-field appearance="outline">
+      <mat-label>Project</mat-label>
+      <mat-select [(ngModel)]="project" name="project"  color="accent" >
+        <mat-option *ngFor="let s of projects" [value]="s.id">
+          {{s.projectName}} ({{s.projectType}})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p></p> -->
     Term: <select [(ngModel)]="term">
       <option value="15">15d</option>
       <option value="30">30d</option>

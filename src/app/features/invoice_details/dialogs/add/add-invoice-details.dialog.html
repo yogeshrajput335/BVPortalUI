@@ -87,6 +87,15 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Project</mat-label>
+            <mat-select [(ngModel)]="product.projectId" name="projectId"  color="accent" >
+              <mat-option *ngFor="let s of employees" [value]="s.id">
+                {{s.projectName}} ({{s.projectType}})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
             <input matInput placeholder="Per Hour Cost" [(ngModel)]="product.perHourCost" name="perHourCost" disabled (change)="calculateTotalCost()">
           </mat-form-field>
 

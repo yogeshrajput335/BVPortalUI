@@ -13,10 +13,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SetTermClientDialogComponent {
   term:any
   termHistory:any
+  projects:any
+  project:any
   constructor(public dialogRef: MatDialogRef<SetTermClientDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: ClientDataService,
               private httpClient: HttpCommonService) {
                 this.term = data.term;
+                this.projects = this.dataService.getProjects()
                 this.httpClient.get('Client/GetClientTermHistory/'+this.data.id).subscribe((data:any) => {
                   //this.dataChange.next(data);
                   this.termHistory = data;

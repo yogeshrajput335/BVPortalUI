@@ -9,13 +9,26 @@ export class EmployeeDataService {
   statuses = ['ACTIVE', 'INACTIVE']
   employeeTypes = ['PERMANENT', 'CONTRACTOR']
   //employees=[{id:0,firstName:'',lastName:''}];
+  clients:any;
+  projects:any;
 
   dataChange: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
   constructor (private httpClient: HttpCommonService) {
-
+    this.httpClient.get('Client/GetClient').subscribe((data:any) => {
+      this.clients = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+    this.httpClient.get('Project/GetProjects').subscribe((data:any) => {
+      this.projects = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
 
   }
 
@@ -68,8 +81,8 @@ export class EmployeeDataService {
     });
   }
 
-  setClientPerHour(id:number,perHour:number){
-    this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour,null).subscribe((data:any) => {
+  setClientPerHour(id:number,perHour:number,client:number){
+    this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour+'/'+client,null).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -125,6 +138,12 @@ export class EmployeeDataService {
   }
   getEmployeeTypes(){
     return this.employeeTypes
+  }
+  getClients(){
+    return this.clients
+  }
+  getProjects(){
+    return this.projects
   }
   getEmployeeList(){
     // console.log(this.employees)
