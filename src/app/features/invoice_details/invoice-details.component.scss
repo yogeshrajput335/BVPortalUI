@@ -1,7 +1,7 @@
 .full-width-table {
     width: 100%;
   }
-  
+
   .mat-elevation-z8{
     margin: 10px;
     height: 394px;
@@ -13,7 +13,7 @@
   ::ng-deep.mat-table {
     height: 280px !important;
    }
-  
+
   .fill-remaining-space {
     float: right;
   }
@@ -24,7 +24,7 @@
   .mat-standard-chip {
   min-height: 20px;
   }
-  
+
   .mat-icon-button {
     width: 25px;
     height: 25px;
@@ -40,4 +40,10 @@
   ::ng-deep.mat-table {
     height: 280px !important;
    }
-  
+   .my-class .mat-dialog-container{
+    height: 400px;
+    width: 800px;
+    border-radius: 10px;
+    background: lightcyan;
+    color: #039be5;
+  }

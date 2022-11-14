@@ -123,3 +123,8 @@
 .invoice-box.rtl table tr td:nth-child(2) {
   text-align: left;
 }
+
+#html2Pdf{
+  overflow-y: scroll;
+  height: 400px;
+}
