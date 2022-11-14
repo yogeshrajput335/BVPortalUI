@@ -68,8 +68,7 @@ export class InvoiceDetailsComponent implements OnInit {
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditInvoiceDetailsDialogComponent, {
-      data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status},
-      panelClass: 'my-class'
+      data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status}
     },);
 
     dialogRef.afterClosed().subscribe(result => {

@@ -10,5 +10,5 @@ export class InvoiceDetails {
   fromLine2!: string;
   fromLine3!: string;
   status!: string;
- 
+  products: any
 }

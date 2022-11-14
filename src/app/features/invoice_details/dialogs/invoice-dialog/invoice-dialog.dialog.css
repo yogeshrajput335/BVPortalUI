@@ -128,3 +128,14 @@
   overflow-y: scroll;
   height: 400px;
 }
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 450px;
+}
+
+.container > * {
+  width: 800px;
+}

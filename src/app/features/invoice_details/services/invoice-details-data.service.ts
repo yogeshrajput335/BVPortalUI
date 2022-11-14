@@ -10,6 +10,7 @@ export class InvoiceDetailsDataService {
   statuses = ['NEW', 'APPROVED','REJECTED']
   terms = ['15d','30d','45d']
   clients=[{id:0,clientName:''}];
+  employees=[]
   dataChange: BehaviorSubject<InvoiceDetails[]> = new BehaviorSubject<InvoiceDetails[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
@@ -17,6 +18,13 @@ export class InvoiceDetailsDataService {
   constructor (private httpClient: HttpCommonService) {
     this.httpClient.get('Client/GetClient').subscribe((data:any) => {
       this.clients = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+
+    this.httpClient.get('Employee/GetEmployee').subscribe((data:any) => {
+      this.employees = data;
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
@@ -45,8 +53,9 @@ export class InvoiceDetailsDataService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addInvoiceDetails (InvoiceDetails: InvoiceDetails): void {
+  addInvoiceDetails (InvoiceDetails: InvoiceDetails, Products:any): void {
     this.dialogData = InvoiceDetails;
+    InvoiceDetails.products = Products;
     let e = this.getClients().filter(x=>x.id===InvoiceDetails.clientId)[0]
     InvoiceDetails['clientName']= e.clientName;
     this.httpClient.post('Invoice/InsertInvoice',InvoiceDetails).subscribe((data:any) => {
@@ -79,12 +88,15 @@ export class InvoiceDetailsDataService {
     });
   }
   getStatuses(){
-    return this.statuses
+    return this.statuses;
   }
   getClients(){
-    return this.clients
+    return this.clients;
   }
   getTerms(){
-    return this.terms
+    return this.terms;
+  }
+  getEmployees(){
+    return this.employees;
   }
 }
