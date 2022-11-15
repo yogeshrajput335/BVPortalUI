@@ -43,4 +43,8 @@
   background-color: #04AA6D;
   color: white;
 }
+.cancelBtn{
+  float: right;
+  min-width: 38px !important;
+}
 

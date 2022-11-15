@@ -21,6 +21,7 @@ export class SetClientPerHourDialogComponent {
   clientProjects:any
   setProject:any
   clientForHistory:any
+  openAdd= false
   constructor(public dialogRef: MatDialogRef<SetClientPerHourDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EmployeeDataService,
               private httpClient: HttpCommonService) {
@@ -28,8 +29,7 @@ export class SetClientPerHourDialogComponent {
                 this.projects = this.dataService.getProjects();
                 this.perHour = data.perHour;
                 this.httpClient.get('Employee/GetEmpClientPerHour').subscribe((data:any) => {
-                  //this.dataChange.next(data);
-                  this.clientPerHourData = data;
+                  this.clientPerHourData = data.filter((x:any)=>x.employeeId == this.data.id);
                 },
                 (error: HttpErrorResponse) => {
                 console.log (error.name + ' ' + error.message);
@@ -49,9 +49,14 @@ export class SetClientPerHourDialogComponent {
   }
 
   confirm(): void {
-    this.dataService.setClientPerHour(this.data.id,this.perHour,this.client);
+    this.dataService.setClientPerHour(this.data.id,this.perHour,this.client).subscribe((data:any) => {
+      this.openAdd = false;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
   }
   onClientChange(){
-    this.clientPerHourHistory = this.clientPerHourHistoryInitial.where((x:any)=>x.clientId == this.clientForHistory || this.clientForHistory===0)
+    this.clientPerHourHistory = this.clientPerHourHistoryInitial.filter((x:any)=>x.clientId == this.clientForHistory || this.clientForHistory===0|| this.clientForHistory==='0')
   }
 }

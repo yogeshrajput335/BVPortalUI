@@ -12,6 +12,7 @@ export class InvoiceDetailsDataService {
   clients=[{id:0,clientName:''}];
   employees=[]
   projects=[]
+  clientTerms=[]
   dataChange: BehaviorSubject<InvoiceDetails[]> = new BehaviorSubject<InvoiceDetails[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
@@ -40,6 +41,12 @@ export class InvoiceDetailsDataService {
 
     this.httpClient.get('EmpClientPerHour/GetEmpClientPerHour').subscribe((data:any) => {
       this.empPerHours = data;
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+    this.httpClient.get('ClientTerm/GetClientTerm').subscribe((data:any) => {
+      this.clientTerms = data;
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
@@ -119,5 +126,8 @@ export class InvoiceDetailsDataService {
   }
   getEmpPerHours(){
     return this.empPerHours;
+  }
+  getClientTerms(){
+    return this.clientTerms;
   }
 }

@@ -1,3 +1,4 @@
+<button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn" class="cancelBtn">X</button>
 <div class="container">
   <h3 mat-dialog-title>Add new invoice details</h3>
 
@@ -12,19 +13,24 @@
 
       <mat-form-field appearance="outline"  >
         <mat-label>Choose  created Date</mat-label>
-        <input matInput [matDatepicker]="createdDate" [(ngModel)]="data.createdDate" name="createdDate">
+        <input matInput [matDatepicker]="createdDate" [(ngModel)]="data.createdDate" name="createdDate" (change)="onCreatedDateChange()">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="createdDate"></mat-datepicker-toggle>
         <mat-datepicker #createdDate></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Terms</mat-label>
-        <mat-select [(ngModel)]="data.term" name="term"  color="accent" >
-          <mat-option *ngFor="let s of terms" [value]="s">
-            {{s}}
+        <mat-label>client</mat-label>
+        <mat-select [(ngModel)]="data.clientId" name="clientId"  color="accent" (selectionChange)="onClientChange()">
+          <mat-option *ngFor="let s of  clients" [value]="s.id">
+            {{s.clientName}}
           </mat-option>
         </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Terms</mat-label>
+        <input matInput [(ngModel)]="data.termText" name="termText" readonly="readonly">
       </mat-form-field>
 
       <mat-form-field appearance="outline" >
@@ -36,24 +42,18 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>client</mat-label>
-        <mat-select [(ngModel)]="data.clientId" name="clientId"  color="accent" >
-          <mat-option *ngFor="let s of  clients" [value]="s.id">
-            {{s.clientName}}
-          </mat-option>
-        </mat-select>
+        <mat-label>Address Line 1</mat-label>
+        <input matInput [(ngModel)]="data.fromLine1" name="fromLine1">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <input matInput placeholder="From Line 1" [(ngModel)]="data.fromLine1" name="fromLine1">
+        <mat-label>Address Line 2</mat-label>
+        <input matInput [(ngModel)]="data.fromLine2" name="fromLine2">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <input matInput placeholder="From Line 2" [(ngModel)]="data.fromLine2" name="fromLine2">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <input matInput placeholder="From Line 3" [(ngModel)]="data.fromLine3" name="fromLine3">
+        <mat-label>Address Line 3</mat-label>
+        <input matInput [(ngModel)]="data.fromLine3" name="fromLine3">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -87,24 +87,28 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
+            <mat-label>Hours</mat-label>
+            <input matInput placeholder="Hours" [(ngModel)]="product.totalHours" name="totalHours" (change)="calculateTotalCost()">
+          </mat-form-field>
+
+
+          <mat-form-field appearance="outline">
             <mat-label>Project</mat-label>
             <mat-select [(ngModel)]="product.projectId" name="projectId"  color="accent" >
-              <mat-option *ngFor="let s of employees" [value]="s.id">
+              <mat-option *ngFor="let s of projects" [value]="s.id">
                 {{s.projectName}} ({{s.projectType}})
               </mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Per Hour Cost" [(ngModel)]="product.perHourCost" name="perHourCost" disabled (change)="calculateTotalCost()">
+            <mat-label>Per Hour Cost</mat-label>
+            <input matInput [(ngModel)]="product.perHourCost" name="perHourCost" readonly="readonly" (change)="calculateTotalCost()">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <input matInput placeholder="Hours" [(ngModel)]="product.totalHours" name="totalHours" (change)="calculateTotalCost()">
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Total Cost" [(ngModel)]="product.totalCost" name="totalCost" disabled>
+            <mat-label>Total Cost</mat-label>
+            <input matInput [(ngModel)]="product.totalCost" name="totalCost" readonly="readonly">
           </mat-form-field>
 
           <button mat-raised-button  (click)="AddProduct()">Add Product</button>
@@ -135,7 +139,6 @@
 
     <div mat-dialog-actions>
       <button mat-raised-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
     </div>
   </form>
 </div>

@@ -1,17 +1,11 @@
 <div class="container">
-  <!-- <h3 mat-dialog-title>Are you sure?</h3> -->
   <div mat-dialog-content>
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Client</mat-label>
-      <mat-select [(ngModel)]="client" name="client"  color="accent" (selectionChange)="onClientChange()" >
-        <mat-option *ngFor="let s of clients" [value]="s.id">
-          {{s.clientName}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <p></p> -->
     Employee: {{data.firstName+ ' '+data.lastName}}
+    <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn" class="cancelBtn">X</button>
+    <button mat-raised-button (click)="openAdd=true;" class="cancelBtn1" color="primary" *ngIf="!openAdd">Add</button>
+    <button mat-raised-button (click)="openAdd=false;" class="cancelBtn2" color="accent" *ngIf="openAdd">Show Data</button>
     <p></p>
+    <div class="example-container" *ngIf="openAdd">
     <mat-form-field appearance="outline">
       <mat-label>Client</mat-label>
       <mat-select [(ngModel)]="client" name="client"  color="accent" >
@@ -20,21 +14,17 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p></p>
-    Per Hour: <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field appearance="outline">
+        <mat-label>Per Hour</mat-label>
         <input matInput placeholder="PerHour" [(ngModel)]="perHour" name="perHour">
       </mat-form-field>
+      <br/>
+      <button mat-raised-button (click)="confirm()" class="addBtn" color="primary">Set Client Per Hour</button>
+
     </div>
-    <p></p>
   </div>
 
-  <div mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()">Set Client Per Hour</button>
-    <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
-  </div>
-  <br>
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group mat-align-tabs="center" *ngIf="!openAdd">
     <mat-tab label="Per Hour Data">
       <table id="clientPerHourTable">
         <tr>
@@ -42,11 +32,11 @@
         <th>Per Hour</th>
         </tr>
         <tr *ngFor="let item of clientPerHourData">
-          <td>{{item.client.clientName}}</td>
+          <td>{{item.client}}</td>
           <td>{{item.perHour}}</td>
         </tr>
         <tr *ngIf="clientPerHourHistory.length==0">
-          <td colspan="5">
+          <td colspan="2">
             No per hour added to any client
           </td>
         </tr>
@@ -55,7 +45,7 @@
     <mat-tab label="Audit History">
       <mat-form-field appearance="outline">
         <mat-label>Client</mat-label>
-        <mat-select [(ngModel)]="client" name="clientForHistory"  color="accent"  (selectionChange)="onClientChange()">
+        <mat-select [(ngModel)]="clientForHistory" name="clientForHistory"  color="accent"  (selectionChange)="onClientChange()">
           <mat-option value="0">
             ALL CLIENT
           </mat-option>
@@ -64,7 +54,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <!-- {{termHistory|json}} -->
       <table id="clientPerHourTable">
         <tr>
         <th>Client</th>
@@ -75,7 +64,7 @@
         <th>Change By</th>
         </tr>
         <tr *ngFor="let item of clientPerHourHistory">
-          <td>{{item.client.clientName}}</td>
+          <td>{{item.client}}</td>
           <td>{{item.oldPerHour}}</td>
           <td>{{item.newPerHour}}</td>
           <td>{{item.reasonForChange}}</td>
@@ -83,7 +72,7 @@
           <td>{{item.changeBy}}</td>
         </tr>
         <tr *ngIf="clientPerHourHistory.length==0">
-          <td colspan="5">
+          <td colspan="6">
             No per hour History
           </td>
         </tr>

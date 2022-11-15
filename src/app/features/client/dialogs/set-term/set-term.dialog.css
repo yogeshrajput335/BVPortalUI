@@ -1,10 +1,12 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: auto;
+  height: 400px;
+  width: 700px;
 }
 
 .container > * {
-  width: 100%;
+  width: 97%;
 }
 
 #termTable {
@@ -28,4 +30,15 @@
   text-align: left;
   background-color: #04AA6D;
   color: white;
+}
+
+.cancelBtn{
+  float: right;
+  min-width: 38px;
+}
+.addBtn{
+  margin-left: 8px;
+  height: 49px;
+  margin-top: 5px;
+  position: absolute;
 }

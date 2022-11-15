@@ -1,31 +1,20 @@
 <div class="container">
-  <!-- <h3 mat-dialog-title>Are you sure?</h3> -->
   <div mat-dialog-content>
-    Client: {{data.clientName}}
+    Client: {{data.clientName}} <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn" class="cancelBtn">X</button>
     <p></p>
-    <!-- <mat-form-field appearance="outline">
-      <mat-label>Project</mat-label>
-      <mat-select [(ngModel)]="project" name="project"  color="accent" >
-        <mat-option *ngFor="let s of projects" [value]="s.id">
-          {{s.projectName}} ({{s.projectType}})
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <p></p> -->
-    Term: <select [(ngModel)]="term">
-      <option value="15">15d</option>
-      <option value="30">30d</option>
-      <option value="45">45d</option>
-    </select>
-    <p></p>
-  </div>
-
-  <div mat-dialog-actions>
-    <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()">Set Term</button>
-    <button mat-raised-button (click)="onNoClick()" tabindex="-1" color="warn">Cancel</button>
+    <div class="example-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Client</mat-label>
+        <mat-select [(ngModel)]="term" name="term"  color="accent" >
+          <mat-option value="15">15d</mat-option>
+          <mat-option value="30">30d</mat-option>
+          <mat-option value="45">45d</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()" class="addBtn" color="primary">Set Term</button>
+      </div>
   </div>
   <br>
-  <!-- {{termHistory|json}} -->
   <table id="termTable">
     <tr>
     <th>Change Date</th>

@@ -82,12 +82,7 @@ export class EmployeeDataService {
   }
 
   setClientPerHour(id:number,perHour:number,client:number){
-    this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour+'/'+client,null).subscribe((data:any) => {
-      //this.dataChange.next(data);
-    },
-    (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
-    });
+    return this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour+'/'+client,null)
   }
 
   getEmployeeBasicInfoByEmpId(id:number) {

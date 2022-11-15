@@ -3,6 +3,7 @@ export class InvoiceDetails {
   invoiceNo!: number;
   createdDate!: Date;
   term!: string;
+  termText!: string;
   dueDate!: Date;
   clientId!:number;
   clientName!:string;

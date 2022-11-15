@@ -19,6 +19,7 @@ export class AddInvoiceDetailsDialogComponent {
   products:any=[];
   projects:any=[];
   empPerHours:any=[];
+  clientTerms=[];
 
   constructor(public dialogRef: MatDialogRef<AddInvoiceDetailsDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: InvoiceDetails,
@@ -29,6 +30,7 @@ export class AddInvoiceDetailsDialogComponent {
                 this.employees = this.dataService.getEmployees()
                 this.projects = this.dataService.getProjects()
                 this.empPerHours = this.dataService.getEmpPerHours()
+                this.clientTerms = this.dataService.getClientTerms()
               }
   formControl = new FormControl('', [
     Validators.required
@@ -66,7 +68,7 @@ export class AddInvoiceDetailsDialogComponent {
   public onEmployeeChange(){
     var ephdata=0;
     var eph = this.empPerHours
-      .where((x:any)=>x.employeeId==this.product.employeeId && x.clientId==this.data.clientId);
+      .filter((x:any)=>x.employeeId==this.product.employeeId && x.clientId==this.data.clientId);
     if(eph == null || eph.length==0){
       alert('Please set PER HOUR COST for employee');
       this.isEmpHavingPerHour = false;
@@ -79,5 +81,24 @@ export class AddInvoiceDetailsDialogComponent {
     this.product.employeeName = e.firstName+ ' '+ e.lastName;
     this.product.perHourCost = ephdata;
     this.calculateTotalCost()
+  }
+  onClientChange(){
+    let ch = (this.clientTerms.filter((x:any)=>x.clientId==this.data.clientId)[0] as any)
+    this.data.term = ch.term.toString();
+    this.data.termText = ch.termText.toString();
+    if(this.data.createdDate != null){
+      this.data.dueDate  = this.addDays(ch.term, new Date(this.data.createdDate))
+      console.log(this.data.dueDate);
+    }
+  }
+  onCreatedDateChange(){
+    if(this.data.term && this.data.term != ""){
+      this.data.dueDate  = this.addDays(Number(this.data.term), new Date(this.data.createdDate))
+      console.log(this.data.dueDate);
+    }
+  }
+  addDays(numOfDays: number, date = new Date()) {
+    date.setDate(date.getDate() + numOfDays);
+    return date;
   }
 }
