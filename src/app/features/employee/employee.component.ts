@@ -30,6 +30,7 @@ export class EmployeeComponent implements OnInit {
   employees=[{id:0,firstName:'',lastName:''}]
   basicInfo: any = {id:0,employeeId:'',fatherName:'',mothername:'',bloodGroup:'',personalEmailId:'',dateOfBirth:'',isMarried:false,maritalStatus:'',spouseName:'',permanentAddress:'',isBothAddressSame:false,currentAddress:'',gender:''};
   contact: any = {id:0,employeeId:'',personalEmailId:'',phoneNumber:'',workEmail:'',emergencyContactName:'',emergencyContactNumber:''};
+  selectedTab=0;
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
               public dataService: EmployeeDataService) {
@@ -169,22 +170,22 @@ export class EmployeeComponent implements OnInit {
   }
 
   onChangeEmployee(event:any) {
-    console.log(event.value);
-    this.dataService.getEmployeeBasicInfoByEmpId(event.value).subscribe((data:any) => {
-      this.basicInfo = data;
-      },
-      (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
-      });
+    this.showBasic(event.value);
+    // this.dataService.getEmployeeBasicInfoByEmpId(event.value).subscribe((data:any) => {
+    //   this.basicInfo = data;
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //   console.log (error.name + ' ' + error.message);
+    //   });
   }
   onChangeEmployee_Contact(event:any) {
-    console.log(event.value);
-    this.dataService.getEmployeeContactByEmpId(event.value).subscribe((data:any) => {
-      this.contact = data;
-      },
-      (error: HttpErrorResponse) => {
-      console.log (error.name + ' ' + error.message);
-      });
+    this.showContact(event.value);
+    // this.dataService.getEmployeeContactByEmpId(event.value).subscribe((data:any) => {
+    //   this.contact = data;
+    //   },
+    //   (error: HttpErrorResponse) => {
+    //   console.log (error.name + ' ' + error.message);
+    //   });
   }
   submit() {
   // empty stuff
@@ -195,5 +196,22 @@ export class EmployeeComponent implements OnInit {
   confirmAddContact(){
     this.dataService.addEmployeeContact(this.contact);
   }
-
+  showBasic(empid :number){
+    this.dataService.getEmployeeBasicInfoByEmpId(empid).subscribe((data:any) => {
+      this.basicInfo = data;
+      this.selectedTab = 1;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+  showContact(empid :number){
+    this.dataService.getEmployeeContactByEmpId(empid).subscribe((data:any) => {
+      this.contact = data;
+      this.selectedTab = 2;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
 }

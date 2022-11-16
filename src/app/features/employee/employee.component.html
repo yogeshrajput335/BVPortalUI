@@ -1,4 +1,4 @@
-<mat-tab-group mat-align-tabs="center">
+<mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab =$event;">
   <mat-tab label="Employee List">
     <div class="mat-elevation-z8">
 
@@ -81,6 +81,14 @@
 
               <button mat-menu-item (click)="deleteItem(i, row.id, row.firstName, row.lastName)">
                 <span>Delete</span>
+              </button>
+
+              <button mat-menu-item (click)="showBasic(row.id)">
+                <span>Basic Info</span>
+              </button>
+
+              <button mat-menu-item (click)="showContact(row.id)">
+                <span>Contact Details</span>
               </button>
 
               <button mat-menu-item (click)="setClientPerHour(i, row.id,row.perHour,row.firstName,row.lastName)">
@@ -191,7 +199,7 @@
     <div class="mat-elevation-z8-form">
       <mat-form-field appearance="fill">
         <mat-label>Employee</mat-label>
-        <mat-select  name="employee"  color="accent" [(ngModel)]="basicInfo.employeeId" (selectionChange)="onChangeEmployee_Contact($event)">
+        <mat-select  name="employee"  color="accent" [(ngModel)]="contact.employeeId" (selectionChange)="onChangeEmployee_Contact($event)">
           <mat-option *ngFor="let s of employees" [value]="s.id">
             {{s.firstName+" "+s.lastName}}
           </mat-option>
