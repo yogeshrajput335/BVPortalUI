@@ -36,3 +36,10 @@ https://github.com/umutesen/angular-material-template
 
 ## GOOGLE NG2 CHART
 * https://www.tutorialspoint.com/angular_googlecharts/angular_googlecharts_table_chart.htm#
+
+## D3 Charts 
+ * https://blog.logrocket.com/data-visualization-angular-d3/
+
+## Explore charts
+* https://stackblitz.com/edit/angular-d3-charts-examples?file=src%2Fapp%2Fdonut-chart%2Fdonut-chart.component.html
+* https://blog.netcetera.com/creating-a-responsive-angular-chart-component-with-d3-952dc03a4b3b
