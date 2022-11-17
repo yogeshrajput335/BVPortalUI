@@ -62,7 +62,6 @@ export class AssetComponent implements OnInit {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditAssetDialogComponent, {
       data: {id: id, name: name, typeId: typeId, modelNumber: modelNumber, status: status}
     });

@@ -11,6 +11,10 @@
           <mat-option value="45">45d</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Reason For Change</mat-label>
+        <textarea matInput #input class="form-control" [(ngModel)]="reasonForChange" name="reasonForChange" ></textarea>
+      </mat-form-field>
         <button mat-raised-button [mat-dialog-close]="1" (click)="confirm()" class="addBtn" color="primary">Set Term</button>
       </div>
   </div>

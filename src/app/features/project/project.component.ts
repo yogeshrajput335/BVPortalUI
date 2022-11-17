@@ -59,7 +59,6 @@ export class ProjectComponent implements OnInit {
   startEdit(i: number, id: number, projectName : string, clientId: number, description:string, startDate: Date, endDate:Date, projectType :string, status: string) {
     this.id = id;
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditProjectDialogComponent, {
       data: {id: id, projectName: projectName, clientId: clientId, description: description, startDate: startDate, endDate: endDate, projectType: projectType, status: status}
     });

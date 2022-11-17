@@ -61,7 +61,6 @@ export class ClientDataService {
   }
 
   deleteClient (id: number): void {
-    console.log(id);
     this.httpClient.delete('Client/DeleteClient/'+id).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
@@ -69,8 +68,10 @@ export class ClientDataService {
     console.log (error.name + ' ' + error.message);
     });
   }
-  setTerm(id:number,term:number){
-    this.httpClient.post('Client/SetTerm/'+id+'/'+term,null).subscribe((data:any) => {
+  setTerm(id:number,term:number,reasonForChange:string, changeBy:number){
+    this.httpClient.post('Client/SetTerm/'+id+'/'+term,
+      {reasonForChange: reasonForChange, changeBy: changeBy}
+    ).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -115,7 +116,6 @@ export class ClientDataService {
   // DELETE METHOD
   deleteItem(id: number): void {
     this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(data['']);
         this.toasterService.showToaster('Successfully deleted', 3000);
       },
       (err: HttpErrorResponse) => {

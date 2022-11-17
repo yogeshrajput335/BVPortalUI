@@ -101,7 +101,6 @@ export class InvoiceDetailsDataService {
   }
 
   deleteInvoiceDetails (id: number): void {
-    console.log(id);
     this.httpClient.delete('Invoice/DeleteInvoiceProduct/'+id).subscribe((data:any) => {
       //this.dataChange.next(data);
     },

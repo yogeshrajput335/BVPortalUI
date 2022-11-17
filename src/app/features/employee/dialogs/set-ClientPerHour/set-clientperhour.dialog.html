@@ -18,6 +18,10 @@
         <mat-label>Per Hour</mat-label>
         <input matInput placeholder="PerHour" [(ngModel)]="perHour" name="perHour">
       </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Reason For Change</mat-label>
+        <textarea matInput #input class="form-control" [(ngModel)]="reasonForChange" name="reasonForChange" ></textarea>
+      </mat-form-field>
       <br/>
       <button mat-raised-button (click)="confirm()" class="addBtn" color="primary">Set Client Per Hour</button>
 

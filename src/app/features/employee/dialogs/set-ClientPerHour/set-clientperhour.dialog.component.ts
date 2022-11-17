@@ -3,6 +3,7 @@ import {Component, Inject} from '@angular/core';
 import {EmployeeDataService} from '../../services/employee-data.service';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 
 @Component({
@@ -22,9 +23,10 @@ export class SetClientPerHourDialogComponent {
   setProject:any
   clientForHistory:any
   openAdd= false
+  reasonForChange:any
   constructor(public dialogRef: MatDialogRef<SetClientPerHourDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public dataService: EmployeeDataService,
-              private httpClient: HttpCommonService) {
+              private httpClient: HttpCommonService, private authService: AuthenticationService) {
                 this.clients = this.dataService.getClients();
                 this.projects = this.dataService.getProjects();
                 this.perHour = data.perHour;
@@ -49,7 +51,7 @@ export class SetClientPerHourDialogComponent {
   }
 
   confirm(): void {
-    this.dataService.setClientPerHour(this.data.id,this.perHour,this.client).subscribe((data:any) => {
+    this.dataService.setClientPerHour(this.data.id,this.perHour,this.client,this.reasonForChange,(this.authService.getUser() as any).employeeId).subscribe((data:any) => {
       this.openAdd = false;
     },
     (error: HttpErrorResponse) => {
