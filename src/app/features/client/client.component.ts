@@ -59,7 +59,6 @@ export class ClientComponent implements OnInit {
   startEdit(i: number, id: number, clientname: string, contactperson: string, email: string, phonenumber: number, address: string, status: string) {
     this.id = id;
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditClientDialogComponent, {
       data: {id: id, clientName: clientname, contactPerson: contactperson, email: email, phoneNumber: phonenumber, address: address,status: status}
     });

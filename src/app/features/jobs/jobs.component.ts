@@ -24,7 +24,7 @@ export class JobsComponent implements OnInit {
     jobs:any[] = [];
     statuses = ['ACTIVE', 'INACTIVE','REFERRED']
     isDeletedJobsShow = false;
-    
+
     constructor(public httpClient: HttpCommonService ,
               public dialog: MatDialog,
               public dataService: JobsDataService,
@@ -42,7 +42,6 @@ export class JobsComponent implements OnInit {
                 dialogRef.afterClosed().subscribe(result => {
                   this.getAllJobs();
                    // this.jobsDatabase!.dataChange.value.push(this.dataService.getDialogData());
-                //   console.log('The dialog was closed');
                   });
               }
 

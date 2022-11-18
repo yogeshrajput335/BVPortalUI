@@ -59,7 +59,6 @@ export class AssetComponent implements OnInit {
   startEdit(i: number, id: number, name: string, typeId: number, modelNumber: string, status: string) {
     this.id = id;
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditAssetDialogComponent, {
       data: { id: id, name: name, typeId: typeId, modelNumber: modelNumber, status: status }
     });

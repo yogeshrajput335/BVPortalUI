@@ -88,13 +88,11 @@ export class AddInvoiceDetailsDialogComponent {
     this.data.termText = ch.termText.toString();
     if(this.data.createdDate != null){
       this.data.dueDate  = this.addDays(ch.term, new Date(this.data.createdDate))
-      console.log(this.data.dueDate);
     }
   }
   onCreatedDateChange(){
     if(this.data.term && this.data.term != ""){
       this.data.dueDate  = this.addDays(Number(this.data.term), new Date(this.data.createdDate))
-      console.log(this.data.dueDate);
     }
   }
   addDays(numOfDays: number, date = new Date()) {

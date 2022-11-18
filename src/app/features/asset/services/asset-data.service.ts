@@ -60,9 +60,9 @@ export class AssetDataService {
       });
   }
 
-  deleteAsset(id: number): void {
-    console.log(id);
-    this.httpClient.delete('Asset/DeleteAsset/' + id).subscribe((data: any) => {
+  deleteAsset (id: number): void {
+    this.httpClient.delete('Asset/DeleteAsset/'+id).subscribe((data:any) => {
+      //this.dataChange.next(data);
     },
       (error: HttpErrorResponse) => {
         console.log(error.name + ' ' + error.message);

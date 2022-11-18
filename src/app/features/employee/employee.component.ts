@@ -50,7 +50,6 @@ export class EmployeeComponent implements OnInit {
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
       });;
-                //console.log(this.employees)
 
 
   }
@@ -78,7 +77,6 @@ export class EmployeeComponent implements OnInit {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditEmployeeDialogComponent, {
       data: {id: id, firstName: firstName, lastName: lastName, email: email, phoneNumber: phoneNumber,employeeType: employeeType, status: status}
     });

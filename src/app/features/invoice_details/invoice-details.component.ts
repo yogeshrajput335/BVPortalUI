@@ -66,7 +66,6 @@ export class InvoiceDetailsComponent implements OnInit {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditInvoiceDetailsDialogComponent, {
       data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status}
     },);
@@ -135,7 +134,6 @@ export class InvoiceDetailsComponent implements OnInit {
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
-        debugger
         if (!this.dataSource) {
           return;
         }

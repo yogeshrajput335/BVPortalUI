@@ -72,7 +72,6 @@ export class EmployeeDataService {
   }
 
   deleteEmployee(id: number): void {
-    console.log(id);
     this.httpClient.delete('Employee/DeleteEmployee/'+id).subscribe((data:any) => {
       //this.dataChange.next(data);
     },
@@ -81,8 +80,9 @@ export class EmployeeDataService {
     });
   }
 
-  setClientPerHour(id:number,perHour:number,client:number){
-    return this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour+'/'+client,null)
+  setClientPerHour(id:number,perHour:number,client:number,reasonForChange:string, changeBy:number){
+    return this.httpClient.post('Employee/SetClientPerHour/'+id+'/'+perHour+'/'+client,
+    {reasonForChange: reasonForChange, changeBy: changeBy})
   }
 
   getEmployeeBasicInfoByEmpId(id:number) {
@@ -141,7 +141,6 @@ export class EmployeeDataService {
     return this.projects
   }
   getEmployeeList(){
-    // console.log(this.employees)
     // return  this.employees;
     return this.httpClient.get('Employee/GetEmployee')//.subscribe((data:any) => {
       // this.employees = data;
@@ -184,7 +183,6 @@ export class EmployeeDataService {
   // DELETE METHOD
   deleteItem(id: number): void {
     this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(data['']);
         this.toasterService.showToaster('Successfully deleted', 3000);
       },
       (err: HttpErrorResponse) => {
