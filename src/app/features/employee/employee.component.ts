@@ -30,6 +30,7 @@ export class EmployeeComponent implements OnInit {
   employees=[{id:0,firstName:'',lastName:''}]
   basicInfo: any = {id:0,employeeId:'',fatherName:'',mothername:'',bloodGroup:'',personalEmailId:'',dateOfBirth:'',isMarried:false,maritalStatus:'',spouseName:'',permanentAddress:'',isBothAddressSame:false,currentAddress:'',gender:''};
   contact: any = {id:0,employeeId:'',personalEmailId:'',phoneNumber:'',workEmail:'',emergencyContactName:'',emergencyContactNumber:''};
+  user: any ={id:0,employeeId:'',userType:'',userName:'',password:'',email:'',status:''};
   selectedTab=0;
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
@@ -185,6 +186,9 @@ export class EmployeeComponent implements OnInit {
     //   console.log (error.name + ' ' + error.message);
     //   });
   }
+  onChangeUser(event:any) {
+    this.showUser(event.value);
+  }
   submit() {
   // empty stuff
   }
@@ -193,6 +197,9 @@ export class EmployeeComponent implements OnInit {
   }
   confirmAddContact(){
     this.dataService.addEmployeeContact(this.contact);
+  }
+  confirmAddUser(){
+    this.dataService.addUser(this.user);
   }
   showBasic(empid :number){
     this.dataService.getEmployeeBasicInfoByEmpId(empid).subscribe((data:any) => {
@@ -207,6 +214,15 @@ export class EmployeeComponent implements OnInit {
     this.dataService.getEmployeeContactByEmpId(empid).subscribe((data:any) => {
       this.contact = data;
       this.selectedTab = 2;
+      },
+      (error: HttpErrorResponse) => {
+      console.log (error.name + ' ' + error.message);
+      });
+  }
+  showUser(empid :number){
+    this.dataService.getUser(empid).subscribe((data:any) => {
+      this.user = data;
+      this.selectedTab = 3;
       },
       (error: HttpErrorResponse) => {
       console.log (error.name + ' ' + error.message);
