@@ -7,6 +7,7 @@ import { JobsDataService } from './jobs-data.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { AddCandidateDialogComponent } from '../candidate/dialogs/add/add-candidate.dialog.component';
+import { Employee } from '../employee/models/Employee';
 
 @Component({
 
@@ -23,11 +24,15 @@ export class JobsComponent implements OnInit {
   jobs: any[] = [];
   statuses = ['ACTIVE', 'INACTIVE', 'REFERRED']
   isDeletedJobsShow = false;
+  userType = 'EMPLOYEE';
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
     public dataService: JobsDataService,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService,
+    ) { 
+      this.userType = this.authService.getUserType() 
+    }
 
   ngOnInit() {
     this.getAllJobs();
