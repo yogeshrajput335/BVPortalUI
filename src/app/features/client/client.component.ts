@@ -1,17 +1,17 @@
 import { Client } from './models/Client';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ClientDataService} from './services/client-data.service';
-import {HttpClient} from '@angular/common/http';
-import {MatDialog} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {DataSource} from '@angular/cdk/collections';
-import {AddClientDialogComponent} from './dialogs/add/add-client.dialog.component';
-import {EditClientDialogComponent} from './dialogs/edit/edit-client.dialog.component';
-import {DeleteClientDialogComponent} from './dialogs/delete/delete-client.dialog.component';
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ClientDataService } from './services/client-data.service';
+import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { DataSource } from '@angular/cdk/collections';
+import { AddClientDialogComponent } from './dialogs/add/add-client.dialog.component';
+import { EditClientDialogComponent } from './dialogs/edit/edit-client.dialog.component';
+import { DeleteClientDialogComponent } from './dialogs/delete/delete-client.dialog.component';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ClientDataSource } from './client-datasource';
 import { SetTermClientDialogComponent } from './dialogs/set-term/set-term.dialog.component';
 
@@ -21,19 +21,19 @@ import { SetTermClientDialogComponent } from './dialogs/set-term/set-term.dialog
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
-  displayedColumns = ['clientName', 'termText','contactPerson', 'email','phoneNumber','address', 'status', 'actions'];
+  displayedColumns = ['clientName', 'termText', 'contactPerson', 'email', 'phoneNumber', 'address', 'status', 'actions'];
   ClientDatabase?: ClientDataService | null;
   dataSource?: ClientDataSource | null;
   index?: number;
   id?: number;
 
   constructor(public httpClient: HttpCommonService,
-              public dialog: MatDialog,
-              public dataService: ClientDataService) {}
+    public dialog: MatDialog,
+    public dataService: ClientDataService) { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort?: MatSort;
-  @ViewChild('filter',  {static: true}) filter?: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort?: MatSort;
+  @ViewChild('filter', { static: true }) filter?: ElementRef;
 
   ngOnInit() {
     this.loadData();
@@ -45,7 +45,7 @@ export class ClientComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddClientDialogComponent, {
-      data: {user: Client }
+      data: { user: Client }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -60,7 +60,7 @@ export class ClientComponent implements OnInit {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditClientDialogComponent, {
-      data: {id: id, clientName: clientname, contactPerson: contactperson, email: email, phoneNumber: phonenumber, address: address,status: status}
+      data: { id: id, clientName: clientname, contactPerson: contactperson, email: email, phoneNumber: phonenumber, address: address, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -76,7 +76,7 @@ export class ClientComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteClientDialogComponent, {
-      data: {id: id, clientname: clientname}
+      data: { id: id, clientname: clientname }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -91,13 +91,11 @@ export class ClientComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(SetTermClientDialogComponent, {
-      data: {id: id, clientName: clientName, term: term}
+      data: { id: id, clientName: clientName, term: term }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // const foundIndex = this.ClientDatabase!.dataChange.value.findIndex(x => x.id === this.id);
-        // this.ClientDatabase!.dataChange.value.splice(foundIndex, 1);
         this.loadData();
       }
     });

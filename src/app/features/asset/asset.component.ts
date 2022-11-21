@@ -14,7 +14,6 @@ import { AddAssetDialogComponent } from './dialogs/add/add-asset.dialog.componen
 import { EditAssetDialogComponent } from './dialogs/edit/edit-asset.dialog.component';
 import { DeleteAssetDialogComponent } from './dialogs/delete/delete-asset.dialog.component';
 
-
 @Component({
   selector: 'app-asset',
   templateUrl: './asset.component.html',

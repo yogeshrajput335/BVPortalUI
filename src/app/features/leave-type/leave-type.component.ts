@@ -1,17 +1,17 @@
 import { LeaveType } from './models/LeaveType';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {LeaveTypeDataService} from './services/leave-type-data.service';
-import {HttpClient} from '@angular/common/http';
-import {MatDialog} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {DataSource} from '@angular/cdk/collections';
-import {AddLeaveTypeDialogComponent} from './dialogs/add/add-leave-type.dialog.component';
-import {EditLeaveTypeDialogComponent} from './dialogs/edit/edit-leave-type.dialog.component';
-import {DeleteLeaveTypeDialogComponent} from './dialogs/delete/delete-leave-type.dialog.component';
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { LeaveTypeDataService } from './services/leave-type-data.service';
+import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { DataSource } from '@angular/cdk/collections';
+import { AddLeaveTypeDialogComponent } from './dialogs/add/add-leave-type.dialog.component';
+import { EditLeaveTypeDialogComponent } from './dialogs/edit/edit-leave-type.dialog.component';
+import { DeleteLeaveTypeDialogComponent } from './dialogs/delete/delete-leave-type.dialog.component';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LeaveTypeDataSource } from './leave-type-datasource';
 
 @Component({
@@ -27,12 +27,12 @@ export class LeaveTypeComponent implements OnInit {
   id?: number;
 
   constructor(public httpClient: HttpCommonService,
-              public dialog: MatDialog,
-              public dataService: LeaveTypeDataService) {}
+    public dialog: MatDialog,
+    public dataService: LeaveTypeDataService) { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort?: MatSort;
-  @ViewChild('filter',  {static: true}) filter?: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort?: MatSort;
+  @ViewChild('filter', { static: true }) filter?: ElementRef;
 
   ngOnInit() {
     this.loadData();
@@ -44,7 +44,7 @@ export class LeaveTypeComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddLeaveTypeDialogComponent, {
-      data: {user: LeaveType }
+      data: { user: LeaveType }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -59,7 +59,7 @@ export class LeaveTypeComponent implements OnInit {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditLeaveTypeDialogComponent, {
-      data: {id: id, type: type, description: description, status: status}
+      data: { id: id, type: type, description: description, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -75,7 +75,7 @@ export class LeaveTypeComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteLeaveTypeDialogComponent, {
-      data: {id: id, type: type}
+      data: { id: id, type: type }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -86,7 +86,6 @@ export class LeaveTypeComponent implements OnInit {
       }
     });
   }
-
 
   private refreshTable() {
     this.paginator!._changePageSize(this.paginator!.pageSize);
