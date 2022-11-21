@@ -2,8 +2,7 @@
 
   <div class="form">
     <span style="font-size: 20px;margin-left:20px">Leave List</span>
-  <span class="spacer"></span>
-
+    <span class="spacer"></span>
 
     <mat-form-field floatPlaceholder="never" color="accent" style="margin-left: 50px;">
       <input matInput #filter placeholder="Filter Leave">
@@ -14,15 +13,6 @@
   </div>
 
   <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
-    ng update @angular/cli @angular/core
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-    <!-- ID Column -->
-    <!-- <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="fullName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Employee</mat-header-cell>
@@ -41,7 +31,7 @@
 
     <ng-container matColumnDef="toDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>To Date</mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.toDate!==null?(row.toDate  | date :'longDate'):'--'}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.toDate!==null?(row.toDate | date :'longDate'):'--'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="reason">
@@ -53,15 +43,15 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <mat-chip-list aria-label="Fish selection">
-          <mat-chip *ngIf="row.status!=='NEW' && row.status!=='APPROVED' && row.status!=='REJECTED'">No Status</mat-chip>
+          <mat-chip *ngIf="row.status!=='NEW' && row.status!=='APPROVED' && row.status!=='REJECTED'">No Status
+          </mat-chip>
           <mat-chip *ngIf="row.status=='NEW'" color="accent" selected>New</mat-chip>
-          <mat-chip  *ngIf="row.status=='APPROVED'"color="primary" selected>Approved</mat-chip>
-          <mat-chip  *ngIf="row.status=='REJECTED'"color="warn" selected>Rejected</mat-chip>
+          <mat-chip *ngIf="row.status=='APPROVED'" color="primary" selected>Approved</mat-chip>
+          <mat-chip *ngIf="row.status=='REJECTED'" color="warn" selected>Rejected</mat-chip>
         </mat-chip-list>
       </mat-cell>
     </ng-container>
 
-    <!-- actions -->
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button (click)="addNew()">
@@ -70,13 +60,21 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.employeeId, row.leaveTypeId, row.fromDate, row.toDate, row.reason, row.status)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
 
-        <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.fullName, row.leaveType, row.fromDate, row.toDate, row.reason)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item
+            (click)="startEdit(i, row.id, row.employeeId, row.leaveTypeId, row.fromDate, row.toDate, row.reason, row.status)">
+            <span>Edit</span>
+          </button>
+
+          <button mat-menu-item
+            (click)="deleteItem(i, row.id, row.fullName, row.leaveType, row.fromDate, row.toDate, row.reason)">
+            <span>Delete</span>
+          </button>
+        </mat-menu>
       </mat-cell>
     </ng-container>
 
@@ -89,10 +87,7 @@
     No results
   </div>
 
-  <mat-paginator #paginator
-                 [length]="dataSource?.filteredData != null ? dataSource?.filteredData!.length :0"
-                 [pageIndex]="0"
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
+  <mat-paginator #paginator [length]="dataSource?.filteredData != null ? dataSource?.filteredData!.length :0"
+    [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>

@@ -14,9 +14,6 @@
       </div>
 
       <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
-        ng update @angular/cli @angular/core
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
 
         <ng-container matColumnDef="firstName">
           <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
@@ -60,7 +57,6 @@
           </mat-cell>
         </ng-container>
 
-        <!-- actions -->
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef>
             <button mat-icon-button (click)="addNew()">
@@ -150,14 +146,8 @@
           <input matInput [(ngModel)]="basicInfo.personalEmailId" name="personalEmailId">
         </mat-form-field>
 
-
-        <!-- <mat-form-field appearance="fill"> -->
         <mat-checkbox class="example-margin" [(ngModel)]="basicInfo.isMarried" name="isMarried">Is Married
         </mat-checkbox>
-        <!-- </mat-form-field>
-
-
-      <mat-form-field appearance="fill"> -->
 
         <mat-form-field appearance="outline">
           <mat-label>Marital Status</mat-label>
@@ -176,7 +166,6 @@
 
         <mat-checkbox class="example-margin" [(ngModel)]="basicInfo.isBothAddressSame" name="isBothAddressSame">Is Both
           Address Same</mat-checkbox>
-        <!-- </mat-form-field> -->
 
         <mat-form-field appearance="outline">
           <mat-label>Current Address</mat-label>
@@ -214,7 +203,6 @@
           </mat-select>
         </mat-form-field>
 
-
         <mat-form-field appearance="outline">
           <mat-label>Personal Email Id</mat-label>
           <input matInput [(ngModel)]="contact.personalEmailId" name="personalEmailId">
@@ -250,41 +238,41 @@
       <div class="example-container">
         <mat-form-field appearance="outline">
           <mat-label>Employee</mat-label>
-            <mat-select name="employee" color="accent" [(ngModel)]="user.employeeId"
-              (selectionChange)="onChangeUser($event)">
-              <mat-option *ngFor="let s of employees" [value]="s.id">
-                {{s.firstName+" "+s.lastName}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <mat-select name="employee" color="accent" [(ngModel)]="user.employeeId"
+            (selectionChange)="onChangeUser($event)">
+            <mat-option *ngFor="let s of employees" [value]="s.id">
+              {{s.firstName+" "+s.lastName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>User Type</mat-label>
-            <input matInput [(ngModel)]="user.userType" name="userType">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Type</mat-label>
+          <input matInput [(ngModel)]="user.userType" name="userType">
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>User Name</mat-label>
-            <input matInput [(ngModel)]="user.username" name="username">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input matInput [(ngModel)]="user.username" name="username">
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="user.email" name="email">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="user.email" name="email">
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput [(ngModel)]="user.password" name="password">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [(ngModel)]="user.password" name="password">
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Status</mat-label>
-            <input matInput [(ngModel)]="user.status" name="status">
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <input matInput [(ngModel)]="user.status" name="status">
+        </mat-form-field>
 
-          <button mat-raised-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-            (click)="confirmAddUser()">Save</button>
+        <button mat-raised-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+          (click)="confirmAddUser()">Save</button>
       </div>
     </form>
   </mat-tab>
