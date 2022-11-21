@@ -62,12 +62,12 @@ export class InvoiceDetailsComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, invoiceNo: number, createdDate:Date, dueDate:Date,  clientId: number, clientName: string, fromLine1: string, fromLine2: string, fromLine3: string, term:string, status:string) {
+  startEdit(i: number, id: number, invoiceNo: number, createdDate:Date, dueDate:Date,  clientId: number, clientName: string, fromLine1: string, fromLine2: string, fromLine3: string, term:string, status:string,products:any) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(EditInvoiceDetailsDialogComponent, {
-      data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status}
+      data: {id: id, invoiceNo: invoiceNo, createdDate: createdDate, dueDate: dueDate, clientId:clientId, clientName:clientName,fromLine1:fromLine1,fromLine2:fromLine2,fromLine3:fromLine3, term:term, status:status,products:products}
     },);
 
     dialogRef.afterClosed().subscribe(result => {

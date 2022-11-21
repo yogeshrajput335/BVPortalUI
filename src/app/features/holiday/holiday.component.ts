@@ -13,6 +13,7 @@ import {DeleteHolidayDialogComponent} from './dialogs/delete/delete-holiday.dial
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { HolidayDataSource } from './holiday-datasource';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-holiday',
@@ -25,10 +26,14 @@ export class HolidayComponent implements OnInit {
   dataSource?: HolidayDataSource | null;
   index?: number;
   id?: number;
+  userType:any
 
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
-              public dataService: HolidayDataService) {}
+              public dataService: HolidayDataService,
+              private authService: AuthenticationService) {
+                this.userType = this.authService.getUser().userType
+              }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort?: MatSort;

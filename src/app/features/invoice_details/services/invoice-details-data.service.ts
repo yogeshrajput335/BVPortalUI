@@ -88,8 +88,9 @@ export class InvoiceDetailsDataService {
     });
   }
 
-  updateInvoiceDetails (InvoiceDetails: InvoiceDetails): void {
+  updateInvoiceDetails (InvoiceDetails: InvoiceDetails, Products:any): void {
     this.dialogData = InvoiceDetails;
+    InvoiceDetails.products = Products;
     let e = this.getClients().filter(x=>x.id===InvoiceDetails.clientId)[0]
     InvoiceDetails.clientName = e.clientName;
     this.httpClient.put('Invoice/UpdateInvoice',InvoiceDetails).subscribe((data:any) => {

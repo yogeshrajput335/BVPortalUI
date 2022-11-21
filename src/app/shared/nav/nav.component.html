@@ -40,14 +40,14 @@
               Employee Management
             </mat-expansion-panel-header>
             <mat-nav-list dense>
-              <a mat-list-item routerLink='users' routerLinkActive="active"><mat-icon>lock_person</mat-icon><span class="pl10">User</span></a>
-              <a mat-list-item routerLink='employee' routerLinkActive="active"><mat-icon>supervised_user_circle</mat-icon><span class="pl10">Employee</span></a>
+              <a *ngIf="userType=='ADMIN'" mat-list-item routerLink='users' routerLinkActive="active"><mat-icon>lock_person</mat-icon><span class="pl10">User</span></a>
+              <a *ngIf="userType=='ADMIN'" mat-list-item routerLink='employee' routerLinkActive="active"><mat-icon>supervised_user_circle</mat-icon><span class="pl10">Employee</span></a>
               <a mat-list-item routerLink='jobs' routerLinkActive="active"><mat-icon>work_history</mat-icon><span class="pl10">Jobs</span></a>
-              <a mat-list-item routerLink='reference' routerLinkActive="active"><mat-icon>spatial_tracking</mat-icon><span class="pl10">Reference</span></a>
-              <a mat-list-item routerLink='candidate' routerLinkActive="active"><mat-icon>spatial_audio</mat-icon><span class="pl10">Candidate</span></a>
+              <a *ngIf="userType=='ADMIN'" mat-list-item routerLink='reference' routerLinkActive="active"><mat-icon>spatial_tracking</mat-icon><span class="pl10">Reference</span></a>
+              <a *ngIf="userType=='ADMIN'" mat-list-item routerLink='candidate' routerLinkActive="active"><mat-icon>spatial_audio</mat-icon><span class="pl10">Candidate</span></a>
             </mat-nav-list>
           </mat-expansion-panel>
-          <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel *ngIf="userType=='ADMIN'" [class.mat-elevation-z0]="true" dense>
             <mat-expansion-panel-header>
               Invoicing
             </mat-expansion-panel-header>
@@ -65,14 +65,14 @@
               </mat-expansion-panel-header>
               <mat-nav-list dense>
                 <a mat-list-item routerLink='holiday' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon><span class="pl10">Holiday</span></a>
-                <a mat-list-item routerLink='leave-type' routerLinkActive="active"><mat-icon>title</mat-icon><span class="pl10">Leave Type</span></a>
+                <a *ngIf="userType=='ADMIN'" mat-list-item routerLink='leave-type' routerLinkActive="active"><mat-icon>title</mat-icon><span class="pl10">Leave Type</span></a>
                 <a mat-list-item routerLink='leave' routerLinkActive="active"><mat-icon>airplane_ticket</mat-icon><span class="pl10">Leave</span></a>
                 <a mat-list-item routerLink='timesheet' routerLinkActive="active"><mat-icon>calendar_month</mat-icon><span class="pl10">Timesheet</span></a>
                 <a mat-list-item routerLink='timesheet-detail' routerLinkActive="active"><mat-icon>edit_calendar</mat-icon><span class="pl10">Timesheet Detail</span></a>
                 <a mat-list-item routerLink='timesheet-approval' routerLinkActive="active"><mat-icon>notification_important</mat-icon><span class="pl10">Timesheet Approval</span></a>
               </mat-nav-list>
           </mat-expansion-panel>
-          <mat-expansion-panel [class.mat-elevation-z0]="true" dense>
+          <mat-expansion-panel *ngIf="userType=='ADMIN'" [class.mat-elevation-z0]="true" dense>
             <mat-expansion-panel-header>
                 Inventory
             </mat-expansion-panel-header>

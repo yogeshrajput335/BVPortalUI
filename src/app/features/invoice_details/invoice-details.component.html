@@ -76,7 +76,7 @@
         </mat-header-cell>
 
         <mat-cell *matCellDef="let row; let i=index;">
-          <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.invoiceNo, row.createdDate, row.dueDate, row.clientId, row.clientName, row.fromLine1, row.fromLine2, row.fromLine3, row.term, row.status)">
+          <button mat-icon-button color="primary" (click)="startEdit(i, row.id, row.invoiceNo, row.createdDate, row.dueDate, row.clientId, row.clientName, row.fromLine1, row.fromLine2, row.fromLine3, row.term, row.status, row.products)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
 
