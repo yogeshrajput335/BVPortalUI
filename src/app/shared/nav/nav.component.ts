@@ -14,6 +14,7 @@ import { environment } from "src/environments/environment";
 export class NavComponent {
   companyName=''
   user:any
+  userType:any
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -23,6 +24,7 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver,private authService: AuthenticationService, private route: Router) {
     this.companyName = environment.companyName;
     this.user = this.authService.getUser();
+    this.userType = this.user.userType
   }
 
   Logout(){
