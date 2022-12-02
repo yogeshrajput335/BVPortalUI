@@ -1,6 +1,6 @@
 import { Holiday } from './models/Holiday';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild,} from '@angular/core';
 import {HolidayDataService} from './services/holiday-data.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
@@ -14,6 +14,8 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { HolidayDataSource } from './holiday-datasource';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-holiday',
@@ -31,8 +33,10 @@ export class HolidayComponent implements OnInit {
   constructor(public httpClient: HttpCommonService,
               public dialog: MatDialog,
               public dataService: HolidayDataService,
-              private authService: AuthenticationService) {
-                this.userType = this.authService.getUser().userType
+              private authService: AuthenticationService,
+              private store: Store ) {
+                this.userType = this.authService.getUser().userType;
+                this.store.dispatch(increment({message:"Holiday List"}));
               }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
