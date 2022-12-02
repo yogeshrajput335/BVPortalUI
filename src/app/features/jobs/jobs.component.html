@@ -1,14 +1,17 @@
 <div class="joblist">
+
   <div *ngIf="userType=='ADMIN'">
     <button mat-raised-button (click)="addJobs()">Add Job</button>
     <button mat-raised-button (click)="showDeletedJobs()" *ngIf="isDeletedJobsShow==false">Show Deleted Jobs</button>
     <button mat-raised-button (click)="getAllJobs()" *ngIf="isDeletedJobsShow==true">Show Open Jobs</button><br>
   </div>
 
+
   <div *ngIf="jobs.length==0">
     No Record Found
   </div>
   <mat-accordion>
+
 <mat-expansion-panel *ngFor="let job of jobs">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -30,6 +33,7 @@
           <button mat-raised-button (click)="onSetActiveJob(job.id)" color="accent" *ngIf="isDeletedJobsShow==true">Set
             Active</button>
         </ng-container>
+
       </div>
     </mat-expansion-panel>
   </mat-accordion>
