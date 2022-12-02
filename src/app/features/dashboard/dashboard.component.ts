@@ -5,6 +5,8 @@ import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { HttpCommonService } from 'src/app/core/services/httpCommon.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import * as d3 from 'd3';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -95,7 +97,10 @@ export class DashboardComponent implements OnInit {
   //   options :{legend:'none'},
   // };
   //pieChartData=[]
-  constructor(private breakpointObserver: BreakpointObserver, private httpClient: HttpCommonService) {
+  constructor(private breakpointObserver: BreakpointObserver, private httpClient: HttpCommonService,
+    private store: Store) {
+      this.store.dispatch(increment({message:"Dashboard"}));
+
     // this.httpClient.get('Dashboard/GetPieData').subscribe((data:any) => {
     //     //this.pieChartData = data;
     //     this.pieChart.dataTable = data;

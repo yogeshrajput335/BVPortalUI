@@ -1,13 +1,5 @@
 <div class="mat-elevation-z8">
 
-  <div class="form">
-    <span style="font-size: 20px;margin-left:20px">Asset Allocation</span>
-    <span class="spacer"></span>
-    <mat-form-field floatPlaceholder="never" color="accent" style="margin-left: 50px;">
-      <input matInput #filter placeholder="Filter asset allocation">
-    </mat-form-field>
-  </div>
-
   <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
 
     <ng-container matColumnDef="assetName">

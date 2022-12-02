@@ -56,8 +56,9 @@ export class InvoiceDetailsComponent implements OnInit {
       if (result === 1) {
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside UserDataService
-        this.userDatabase!.dataChange.value.push(this.dataService.getDialogData());
-        this.refreshTable();
+        //this.userDatabase!.dataChange.value.push(this.dataService.getDialogData());
+        //this.refreshTable();
+        this.loadData();
       }
     });
   }

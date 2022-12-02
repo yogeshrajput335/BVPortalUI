@@ -13,6 +13,8 @@ import { AssetTypeDataService } from './services/asset-type-data.service';
 import { AddAssetTypeDialogComponent } from './dialogs/add/add-asset-type.dialog.component';
 import { EditAssetTypeDialogComponent } from './dialogs/edit/edit-asset-type.dialog.component';
 import { DeleteAssetTypeDialogComponent } from './dialogs/delete/delete-asset-type.dialog.component';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 
 @Component({
@@ -29,7 +31,10 @@ export class AssetTypeComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: AssetTypeDataService) { }
+    public dataService: AssetTypeDataService,
+    private store: Store) {
+      this.store.dispatch(increment({message:"Asset Types"}));
+    }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;

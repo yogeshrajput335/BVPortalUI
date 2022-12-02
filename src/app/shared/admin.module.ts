@@ -46,6 +46,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 import { ProfileComponent } from '../features/profile/profile.component';
 import { GlobalSettingsComponent } from '../features/global-settings/global-settings.component';
 import { OrganizationalStructureComponent } from '../features/organizational-structure/organizational-structure.component';
@@ -219,7 +221,9 @@ import { EditTimesheetListDialogComponent } from '../features/timesheet-list/dia
     MatTabsModule,
     MatTreeModule,
     MatCheckboxModule,
-    Ng2GoogleChartsModule
+    Ng2GoogleChartsModule,
+    MatBottomSheetModule,
+    MatChipsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,

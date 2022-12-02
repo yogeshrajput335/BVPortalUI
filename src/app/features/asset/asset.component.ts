@@ -1,5 +1,5 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,6 +13,9 @@ import { AssetDataService } from './services/asset-data.service';
 import { AddAssetDialogComponent } from './dialogs/add/add-asset.dialog.component';
 import { EditAssetDialogComponent } from './dialogs/edit/edit-asset.dialog.component';
 import { DeleteAssetDialogComponent } from './dialogs/delete/delete-asset.dialog.component';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-asset',
@@ -28,13 +31,19 @@ export class AssetComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: AssetDataService) { }
+    public dataService: AssetDataService,
+    private bottomSheet: MatBottomSheet,
+    private store: Store) {
+      this.store.dispatch(increment({message:"Assets"}));
+    }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
+    this.loadSearchHistory();
     this.loadData();
   }
 
@@ -102,6 +111,42 @@ export class AssetComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  public openSearchFilter(){
+    if(this.TemplateBottomSheet)
+    this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter(){
+    this.bottomSheet.dismiss();
+  }
+  searchHistory:string[] =[]
+  public onSearchFilter(data:any){
+    if(data.trim() != ""){
+      this.searchHistory =[]
+      this.loadSearchHistory()
+      if(!this.searchHistory.includes(data)){
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("asset-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory(){
+    if (localStorage.getItem("asset-search") != null) {
+      this.searchHistory =  JSON.parse(localStorage.getItem("asset-search")!.toString());
+    }
+  }
+  public onClearSearchHistory(){
+    localStorage.removeItem("asset-search")
+    this.searchHistory=[]
   }
 }
 

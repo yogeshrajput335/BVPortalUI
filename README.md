@@ -43,3 +43,6 @@ https://github.com/umutesen/angular-material-template
 ## Explore charts
 * https://stackblitz.com/edit/angular-d3-charts-examples?file=src%2Fapp%2Fdonut-chart%2Fdonut-chart.component.html
 * https://blog.netcetera.com/creating-a-responsive-angular-chart-component-with-d3-952dc03a4b3b
+
+## JWT AUTHENTICATION
+* https://code-maze.com/authentication-aspnetcore-jwt-2/

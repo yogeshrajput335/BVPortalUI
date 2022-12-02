@@ -1,6 +1,7 @@
 @use './style/transitions';
 .sidenav-container {
   height: 100%;
+
 }
 
 .sidenav {
@@ -61,11 +62,11 @@
   //box-shadow: 0px 7px 9px rgb(0 0 0 / 20%);
 }
 
-.mat-divider {
-  border-top-color: #505050;
-  box-shadow: 0px 7px 9px rgb(0 0 0 / 20%);
-  border-top-width: 7px
-}
+// .mat-divider {
+//   border-top-color: #505050;
+//   box-shadow: 0px 7px 9px #4de6ff;
+//   border-top-width: 7px
+// }
 .mat-standard-chip {
   min-height: 19px;
   margin: 4px 66px !important;
@@ -93,4 +94,6 @@
 .mat-chip-list-wrapper {
   display: inline-block !important;
 }
-
+.mat-list-base[dense] .mat-list-item {
+  font-size: 13px !important;
+}

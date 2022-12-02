@@ -13,6 +13,8 @@ import { AssetAllocationDataSource } from './asset-allocation-datasource';
 import { EditAssetAllocationDialogComponent } from './dialogs/edit/edit-asset-allocation.dialog.component';
 import { DeleteAssetAllocationDialogComponent } from './dialogs/delete/delete-asset-allocation.dialog.component';
 import { AddAssetAllocationDialogComponent } from './dialogs/add/add-asset-allocation.dialog.component';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-asset-allocation',
@@ -28,7 +30,10 @@ export class AssetAllocationComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: AssetAllocationDataService) { }
+    public dataService: AssetAllocationDataService,
+    private store: Store) {
+      this.store.dispatch(increment({message:"Asset Allocation"}));
+    }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
