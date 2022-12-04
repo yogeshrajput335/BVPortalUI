@@ -1,19 +1,22 @@
 import { Reference } from './models/Reference';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ReferenceDataService} from './services/reference-data.service';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {MatDialog} from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {DataSource} from '@angular/cdk/collections';
-import {AddReferenceDialogComponent} from './dialogs/add/add-reference.dialog.component';
-import {EditReferenceDialogComponent} from './dialogs/edit/edit-reference.dialog.component';
-import {DeleteReferenceDialogComponent} from './dialogs/delete/delete-reference.dialog.component';
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ReferenceDataService } from './services/reference-data.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { DataSource } from '@angular/cdk/collections';
+import { AddReferenceDialogComponent } from './dialogs/add/add-reference.dialog.component';
+import { EditReferenceDialogComponent } from './dialogs/edit/edit-reference.dialog.component';
+import { DeleteReferenceDialogComponent } from './dialogs/delete/delete-reference.dialog.component';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ReferenceDataSource } from './reference-datasource';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-reference',
@@ -21,23 +24,29 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./reference.component.scss']
 })
 export class ReferenceComponent implements OnInit {
-  displayedColumns = ['firstName', 'lastName', 'phoneNo','email','status', 'actions'];
+  displayedColumns = ['firstName', 'lastName', 'phoneNo', 'email', 'status', 'actions'];
   ReferenceDatabase?: ReferenceDataService | null;
   dataSource?: ReferenceDataSource | null;
   index?: number;
   id?: number;
 
   constructor(public httpClient: HttpCommonService,
-              public dialog: MatDialog,
-              public dataService: ReferenceDataService,
-              private authService: AuthenticationService,) {}
+    public dialog: MatDialog,
+    public dataService: ReferenceDataService,
+    private authService: AuthenticationService,
+    private bottomSheet: MatBottomSheet,
+    private store: Store) {
+    this.store.dispatch(increment({ message: "Reference List" }));
+  }
 
-  @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort?: MatSort;
-  @ViewChild('filter',  {static: true}) filter?: ElementRef;
+  @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort?: MatSort;
+  @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
     this.loadData();
+    this.loadSearchHistory();
   }
 
   refresh() {
@@ -46,7 +55,7 @@ export class ReferenceComponent implements OnInit {
 
   addNew() {
     const dialogRef = this.dialog.open(AddReferenceDialogComponent, {
-      data: {user: Reference }
+      data: { user: Reference }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -61,7 +70,7 @@ export class ReferenceComponent implements OnInit {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditReferenceDialogComponent, {
-      data: {id: id, firstName: firstname, lastName: lastname, phoneNo: phoneno,email: email, status: status}
+      data: { id: id, firstName: firstname, lastName: lastname, phoneNo: phoneno, email: email, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -77,7 +86,7 @@ export class ReferenceComponent implements OnInit {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteReferenceDialogComponent, {
-      data: {id: id, firstName: firstname, lastName: lastname}
+      data: { id: id, firstName: firstname, lastName: lastname }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -89,13 +98,13 @@ export class ReferenceComponent implements OnInit {
     });
   }
 
-  moveToCandidate(i: number, id: number){
-    this.dataService.moveToCandidate(id,(this.authService.getUser() as any).employeeId).subscribe((data:any) => {
+  moveToCandidate(i: number, id: number) {
+    this.dataService.moveToCandidate(id, (this.authService.getUser() as any).employeeId).subscribe((data: any) => {
       this.loadData();
     },
-    (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
-    });;
+      (error: HttpErrorResponse) => {
+        console.log(error.name + ' ' + error.message);
+      });;
   }
 
 
@@ -113,5 +122,41 @@ export class ReferenceComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("reference-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("reference-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("reference-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("reference-search")
+    this.searchHistory = []
   }
 }

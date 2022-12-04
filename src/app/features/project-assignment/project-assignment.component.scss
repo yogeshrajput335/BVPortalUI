@@ -105,3 +105,9 @@ mat-card::ng-deep.mat-card-header-text {
 .fill-remaining-space {
   flex: 1 1 auto !important;
 }
+
+.cancelBtn{
+  float: right;
+  min-width: 38px !important;
+}
+

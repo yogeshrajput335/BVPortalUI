@@ -1,6 +1,6 @@
 import { Client } from './models/Client';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ClientDataService } from './services/client-data.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,9 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ClientDataSource } from './client-datasource';
 import { SetTermClientDialogComponent } from './dialogs/set-term/set-term.dialog.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-client',
@@ -29,14 +32,20 @@ export class ClientComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: ClientDataService) { }
+    public dataService: ClientDataService,
+    private bottomSheet: MatBottomSheet,
+    private store: Store) {
+    this.store.dispatch(increment({ message: "Clients" }));
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
     this.loadData();
+    this.loadSearchHistory();
   }
 
   refresh() {
@@ -116,5 +125,41 @@ export class ClientComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("client-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("client-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("client-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("client-search")
+    this.searchHistory = []
   }
 }

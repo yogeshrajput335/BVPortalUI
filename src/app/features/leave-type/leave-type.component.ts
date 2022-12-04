@@ -1,6 +1,6 @@
 import { LeaveType } from './models/LeaveType';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { LeaveTypeDataService } from './services/leave-type-data.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,6 +13,9 @@ import { DeleteLeaveTypeDialogComponent } from './dialogs/delete/delete-leave-ty
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LeaveTypeDataSource } from './leave-type-datasource';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-leave-type',
@@ -28,14 +31,20 @@ export class LeaveTypeComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: LeaveTypeDataService) { }
+    public dataService: LeaveTypeDataService,
+    private bottomSheet: MatBottomSheet,
+    private store: Store) {
+    this.store.dispatch(increment({ message: "Leave Type List" }));
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
     this.loadData();
+    this.loadSearchHistory();
   }
 
   refresh() {
@@ -101,6 +110,42 @@ export class LeaveTypeComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("leave-type-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("leave-type-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("leave-type-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("leave-type-search")
+    this.searchHistory = []
   }
 }
 
