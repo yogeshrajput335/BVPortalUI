@@ -1,13 +1,5 @@
 <div class="mat-elevation-z8">
 
-  <!-- <div class="form">
-    <span style="font-size: 20px;margin-left:20px">Asset Type</span>
-    <span class="fill-remaining-space"></span>
-    <mat-form-field floatPlaceholder="never" color="accent" style="margin-left:50px">
-      <input matInput #filter placeholder="Filter asset type">
-    </mat-form-field>
-  </div> -->
-
   <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
 
     <ng-container matColumnDef="name">
@@ -36,6 +28,8 @@
         <button mat-icon-button (click)="addNew()">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
+        <a href="javascript:;" (click)="openSearchFilter()">Search</a>
+        <a href="javascript:;" (click)="onSearchFilter('')" style="margin-left:4px">Show all records</a>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
@@ -67,3 +61,24 @@
     [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>
+
+<ng-template let-bottomSheetRef="bottomSheetRef" #templateBottomSheet>
+  <button mat-raised-button (click)="closeSearchFilter()" color="warn" class="cancelBtn">X</button>
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input matInput #filter>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSearchFilter(filter.value)" >Search</button><br/>
+  <a href="javascript:;" (click)="onSearchFilter('')">Show all records</a>
+  <hr/>
+  <div *ngIf="searchHistory.length==0">
+    No Search History
+  </div>
+  <div *ngIf="searchHistory.length>0" style="width:480px">
+    <div style="width:100%">
+    <label>Search History</label>
+    <a href="javascript:;" (click)="onClearSearchHistory()" *ngIf="searchHistory.length>0" style="float:right">Clear Search History</a>
+    </div>
+    <mat-chip *ngFor="let item of searchHistory.reverse()" (click)="filter.value=item" style="margin-right:4px" >{{item}}</mat-chip>
+  </div>
+  </ng-template>

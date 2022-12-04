@@ -1,6 +1,6 @@
 import { AssetAllocation } from './models/AssetAllocation';
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,6 +15,7 @@ import { DeleteAssetAllocationDialogComponent } from './dialogs/delete/delete-as
 import { AddAssetAllocationDialogComponent } from './dialogs/add/add-asset-allocation.dialog.component';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-asset-allocation',
@@ -31,6 +32,7 @@ export class AssetAllocationComponent implements OnInit {
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
     public dataService: AssetAllocationDataService,
+    private bottomSheet: MatBottomSheet,
     private store: Store) {
       this.store.dispatch(increment({message:"Asset Allocation"}));
     }
@@ -38,8 +40,10 @@ export class AssetAllocationComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
+    this.loadSearchHistory();
     this.loadData();
   }
 
@@ -108,5 +112,41 @@ export class AssetAllocationComponent implements OnInit {
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
   }
+
+  public openSearchFilter(){
+		if(this.TemplateBottomSheet)
+		this.bottomSheet.open(this.TemplateBottomSheet);
+	  }
+	  public closeSearchFilter(){
+		this.bottomSheet.dismiss();
+	  }
+	  searchHistory:string[] =[]
+	  public onSearchFilter(data:any){
+		if(data.trim() != ""){
+		  this.searchHistory =[]
+		  this.loadSearchHistory()
+		  if(!this.searchHistory.includes(data)){
+			this.searchHistory.push(data);
+		  } else {
+			this.searchHistory = this.searchHistory.filter(i => i !== data)
+			this.searchHistory.push(data);
+		  }
+		  localStorage.setItem("asset-allocation-search", JSON.stringify(this.searchHistory));
+		}
+		if (!this.dataSource) {
+		  return;
+		}
+		this.dataSource.filter = data;
+		this.bottomSheet.dismiss();
+	  }
+	  public loadSearchHistory(){
+		if (localStorage.getItem("asset-allocation-search") != null) {
+		  this.searchHistory =  JSON.parse(localStorage.getItem("asset-allocation-search")!.toString());
+		}
+	  }
+	  public onClearSearchHistory(){
+		localStorage.removeItem("asset-allocation-search")
+		this.searchHistory=[]
+	  }
 }
 

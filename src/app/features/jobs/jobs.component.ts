@@ -8,6 +8,8 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { CandidateComponent } from '../candidate/candidate.component';
 import { AddCandidateDialogComponent } from '../candidate/dialogs/add/add-candidate.dialog.component';
 import { Employee } from '../employee/models/Employee';
+import { increment } from 'src/app/core/store/counter.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
 
@@ -30,7 +32,8 @@ export class JobsComponent implements OnInit {
     public dialog: MatDialog,
     public dataService: JobsDataService,
     private authService: AuthenticationService,
-    ) { 
+    private store: Store) { 
+      this.store.dispatch(increment({message:"Job List"}));
       this.userType = this.authService.getUserType() 
     }
 
