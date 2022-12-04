@@ -44,13 +44,25 @@
         <a href="javascript:;" (click)="onSearchFilter('')" style="margin-left:4px">Show all records</a>
       </mat-header-cell>
 
-      <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-cell *matCellDef="let row; let i=index;" >
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="row.status!='Moved to candidate'">
           <mat-icon>more_vert</mat-icon>
         </button>
 
         <mat-menu #menu="matMenu">
-          <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="primary"
+          <button mat-menu-item
+          (click)="startEdit(i, row.id, row.firstName, row.lastName, row.phoneNo,row.email, row.status)">
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item
+          (click)="deleteItem(i, row.id, row.firstName, row.lastName)">
+            <span>Delete</span>
+          </button>
+          <button mat-menu-item
+          (click)="moveToCandidate(i, row.id)">
+            <span>Delete</span>
+          </button>
+          <!-- <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="primary"
             (click)="startEdit(i, row.id, row.firstName, row.lastName, row.phoneNo,row.email, row.status)">
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
@@ -63,7 +75,7 @@
           <button *ngIf="row.status!='Moved to candidate'" mat-icon-button color="accent"
             (click)="moveToCandidate(i, row.id)">
             <mat-icon aria-label="Move to candidate">account_box</mat-icon>
-          </button>
+          </button> -->
         </mat-menu>
       </mat-cell>
     </ng-container>
