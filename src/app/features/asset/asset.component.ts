@@ -34,7 +34,7 @@ export class AssetComponent implements OnInit {
     public dataService: AssetDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-      this.store.dispatch(increment({message:"Assets"}));
+      this.store.dispatch(increment({message:"Asset"}));
     }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

@@ -34,7 +34,7 @@ export class LeaveComponent implements OnInit {
               public dataService: LeaveDataService,
               private store: Store,
               private bottomSheet: MatBottomSheet) {
-              this.store.dispatch(increment({message:"Leave List"}));
+              this.store.dispatch(increment({message:"Leave"}));
               }
 
   @ViewChild(MatPaginator, {static: true}) paginator?: MatPaginator;

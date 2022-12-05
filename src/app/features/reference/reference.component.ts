@@ -36,7 +36,7 @@ export class ReferenceComponent implements OnInit {
     private authService: AuthenticationService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-    this.store.dispatch(increment({ message: "Reference List" }));
+    this.store.dispatch(increment({ message: "Reference" }));
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

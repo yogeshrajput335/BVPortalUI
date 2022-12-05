@@ -34,7 +34,7 @@ export class UsersComponent implements OnInit {
     public dataService: UserDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store ) {
-      this.store.dispatch(increment({message:"Users List"}));
+      this.store.dispatch(increment({message:"User"}));
      }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

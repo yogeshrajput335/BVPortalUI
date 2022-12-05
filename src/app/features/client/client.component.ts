@@ -35,7 +35,7 @@ export class ClientComponent implements OnInit {
     public dataService: ClientDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-    this.store.dispatch(increment({ message: "Clients" }));
+    this.store.dispatch(increment({ message: "Client" }));
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

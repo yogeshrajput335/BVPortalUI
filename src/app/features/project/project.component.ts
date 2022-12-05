@@ -35,7 +35,7 @@ export class ProjectComponent implements OnInit {
     public dataService: ProjectDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-    this.store.dispatch(increment({ message: "Project List" }));
+    this.store.dispatch(increment({ message: "Project" }));
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

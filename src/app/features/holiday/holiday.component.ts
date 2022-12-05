@@ -38,7 +38,7 @@ export class HolidayComponent implements OnInit {
     private bottomSheet: MatBottomSheet,
     private store: Store) {
     this.userType = this.authService.getUser().userType;
-    this.store.dispatch(increment({ message: "Holiday List" }));
+    this.store.dispatch(increment({ message: "Holiday" }));
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
