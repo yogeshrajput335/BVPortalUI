@@ -35,7 +35,7 @@ export class CandidateComponent implements OnInit {
     public dataService: CandidateDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-      this.store.dispatch(increment({message:"Candidates"}));
+      this.store.dispatch(increment({message:"Candidate"}));
      }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

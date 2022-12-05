@@ -40,7 +40,7 @@ export class ProjectAssignmentDataSource extends DataSource<ProjectAssignment> {
 
     return merge(...displayDataChanges).pipe(map( () => {
         this.filteredData = this._exampleDatabase.data.slice().filter((issue: ProjectAssignment) => {
-          const searchStr = (issue.id +  "").toLowerCase();
+          const searchStr = (issue.id + issue.projectName).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -66,7 +66,7 @@ export class ProjectAssignmentDataSource extends DataSource<ProjectAssignment> {
 
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'projectId': [propertyA, propertyB] = [a.projectId, b.projectId]; break;
+        case 'projectName': [propertyA, propertyB] = [a.projectName, b.projectName]; break;
         case 'employeeId': [propertyA, propertyB] = [a.employeeId, b.employeeId]; break;
         case 'notes': [propertyA, propertyB] = [a.notes, b.notes]; break;
     }
