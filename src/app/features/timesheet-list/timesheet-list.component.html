@@ -11,15 +11,15 @@
 
     <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
 
-        <ng-container matColumnDef="employeeId">
+        <ng-container matColumnDef="employeeName">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Employee</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.employeeId}}</mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.employeeName}}</mat-cell>
         </ng-container>
 
 
-        <ng-container matColumnDef="projectId">
+        <ng-container matColumnDef="projectName">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Project</mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{row.projectId}}</mat-cell>
+            <mat-cell *matCellDef="let row"> {{row.projectName}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="weekEndingDate">
