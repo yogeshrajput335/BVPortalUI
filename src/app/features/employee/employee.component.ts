@@ -40,7 +40,7 @@ export class EmployeeComponent implements OnInit {
     public dataService: EmployeeDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-    this.store.dispatch(increment({ message: "Employees" }));
+    this.store.dispatch(increment({ message: "Employee" }));
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;

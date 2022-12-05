@@ -33,7 +33,7 @@ export class JobsComponent implements OnInit {
     public dataService: JobsDataService,
     private authService: AuthenticationService,
     private store: Store) { 
-      this.store.dispatch(increment({message:"Job List"}));
+      this.store.dispatch(increment({message:"Jobs"}));
       this.userType = this.authService.getUserType() 
     }
 

@@ -50,7 +50,7 @@ export class ProjectAssignmentComponent implements OnInit {
     public dataService: ProjectAssignmentDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-    this.store.dispatch(increment({ message: "Project Assignment List" }));
+    this.store.dispatch(increment({ message: "Project Assignment" }));
     this.dataService.getAllProjectAssignmentTreeData().subscribe((data: any) => {
       this.treeDataSource.data = data;
     },
