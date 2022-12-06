@@ -39,10 +39,9 @@ export class TimesheetListDataSource extends DataSource<TimesheetList> {
 
     this._exampleDatabase.getAllTimesheetLists();
 
-
     return merge(...displayDataChanges).pipe(map( () => {
         this.filteredData = this._exampleDatabase.data.slice().filter((issue: TimesheetList) => {
-          const searchStr = (issue.id + issue.projectName + issue.employeeId).toLowerCase();
+          const searchStr = (issue.employeeName).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -68,7 +67,7 @@ export class TimesheetListDataSource extends DataSource<TimesheetList> {
 
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
-        case 'employeeId': [propertyA, propertyB] = [a.employeeId, b.employeeId]; break;
+        case 'employeeName': [propertyA, propertyB] = [a.employeeName, b.employeeName]; break;
         case 'projectId': [propertyA, propertyB] = [a.projectId, b.projectId]; break;
         case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
     }

@@ -32,13 +32,6 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
   }
 
   private authenticate(): boolean {
-    // if (!this.authService.isUserLoggedIn()) {
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-    debugger
     const token = localStorage.getItem("token");
     if (token && !this.jwtHelper.isTokenExpired(token)){
       return true;
