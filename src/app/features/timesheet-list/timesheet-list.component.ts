@@ -1,5 +1,5 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { TimesheetListDataService } from './services/timesheet-list-data.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,6 +13,9 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TimesheetListDataSource } from './timesheet-list-datasource';
 import { TimesheetList } from './models/TimesheetList';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Store } from '@ngrx/store';
+import { increment } from 'src/app/core/store/counter.actions';
 
 @Component({
   selector: 'app-timesheet-list',
@@ -29,14 +32,20 @@ export class TimesheetListComponent implements OnInit {
 
   constructor(public httpClient: HttpCommonService,
     public dialog: MatDialog,
-    public dataService: TimesheetListDataService) { }
+    public dataService: TimesheetListDataService,
+    private bottomSheet: MatBottomSheet,
+    private store: Store) {
+    this.store.dispatch(increment({ message: "Timesheet List" }));
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
   @ViewChild('filter', { static: true }) filter?: ElementRef;
+  @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any> | undefined;
 
   ngOnInit() {
     this.loadData();
+    this.loadSearchHistory();
   }
 
   refresh() {
@@ -60,7 +69,7 @@ export class TimesheetListComponent implements OnInit {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditTimesheetListDialogComponent, {
-      data: { id: id, employeeId: employeeId, projectId: projectId, status: status }
+      data: { id: id, employeeId: employeeId, projectId: projectId, weekEndingDate:weekEndingDate, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -72,11 +81,11 @@ export class TimesheetListComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, employeeName: string) {
+  deleteItem(i: number, id: number, employeeId: number) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteTimesheetListDialogComponent, {
-      data: { id: id, employeeName: employeeName }
+      data: { id: id, employeeId: employeeId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,5 +111,41 @@ export class TimesheetListComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("timesheet-list-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("timesheet-list-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("timesheet-list-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("timesheet-list-search")
+    this.searchHistory = []
   }
 }

@@ -55,7 +55,6 @@ export class TimesheetListDataService {
     TimesheetList.projectName = p.projectName;
     let e = this.getEmployees().filter(x => x.id === TimesheetList.employeeId)[0]
     TimesheetList.employeeName = e.firstName + " " + e.lastName;
-
     this.httpClient.post('Timesheet/InsertTimesheet',TimesheetList).subscribe((data:any) => {
     },
     (error: HttpErrorResponse) => {
