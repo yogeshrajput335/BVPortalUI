@@ -1,56 +1,20 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile>
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            PIE CHART
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <figure id="bar"></figure>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            TABLE CHART
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            BAR CHART
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            HISTOGRAM
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="charts-wrapper">
+  <div class="chart">
+    <app-visits-chart [visitsChartData]="visitsChartData$ | async"></app-visits-chart>
+  </div>
+  <div class="chart">
+    <app-performance-chart [performanceChartData]="performanceChartData$ | async"></app-performance-chart>
+  </div>
+  <div class="chart">
+    <app-server-chart [serverChartData]="serverChartData$ | async"></app-server-chart>
+  </div>
+  <div class="chart">
+    <app-revenue-chart [revenueCharData]="revenueChartData$ | async"></app-revenue-chart>
+  </div>
 </div>
+
+<!-- <app-daily-line-chart [dailyLineChartData]="dailyLineChartData$ | async"></app-daily-line-chart>
+
+<app-project-stat-chart [projectsStatsData]="projectsStatsData$ | async"></app-project-stat-chart>
+
+<app-support-requests [supportRequestData]="supportRequestData$ | async"></app-support-requests> -->

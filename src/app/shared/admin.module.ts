@@ -121,6 +121,14 @@ import { TimesheetListDataSource } from '../features/timesheet-list/timesheet-li
 import { AddTimesheetListDialogComponent } from '../features/timesheet-list/dialogs/add/add-timesheet-list.dialog.component';
 import { DeleteTimesheetListDialogComponent } from '../features/timesheet-list/dialogs/delete/delete-timesheet-list.dialog.component';
 import { EditTimesheetListDialogComponent } from '../features/timesheet-list/dialogs/edit/edit-timesheet-list.dialog.component';
+import { VisitsChartComponent } from '../features/dashboard/components/visits-chart/visits-chart.component';
+import { TrendModule } from 'ngx-trend';
+import { PerformanceChartComponent } from '../features/dashboard/components/performance-chart/performance-chart.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { RevenueChartComponent } from '../features/dashboard/components/revenue-chart/revenue-chart.component';
+import { ServerChartComponent } from '../features/dashboard/components/server-chart/server-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+// import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [DashboardComponent, UsersComponent, LeaveTypeComponent ,AdminComponent,NavComponent
@@ -189,7 +197,11 @@ import { EditTimesheetListDialogComponent } from '../features/timesheet-list/dia
   AddTimesheetListDialogComponent,
   DeleteTimesheetListDialogComponent,
   EditTimesheetListDialogComponent,
-  TimesheetListComponent
+  TimesheetListComponent,
+  VisitsChartComponent,
+  PerformanceChartComponent,
+  RevenueChartComponent,
+  ServerChartComponent
 ],
   imports: [
     CommonModule,
@@ -223,7 +235,11 @@ import { EditTimesheetListDialogComponent } from '../features/timesheet-list/dia
     MatCheckboxModule,
     Ng2GoogleChartsModule,
     MatBottomSheetModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressBarModule,
+    TrendModule,
+    NgApexchartsModule,
+    //NgxEchartsModule
   ],
   providers: [UserDataService,LeaveTypeDataService,ClientDataService,AssetDataService,AssetTypeDataService,
     EmployeeDataService, AssetAllocationDataService, LeaveDataService, HolidayDataService,ReferenceDataService, CandidateDataService,ProjectDataService,
