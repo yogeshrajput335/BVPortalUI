@@ -128,6 +128,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RevenueChartComponent } from '../features/dashboard/components/revenue-chart/revenue-chart.component';
 import { ServerChartComponent } from '../features/dashboard/components/server-chart/server-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { ProjectStatChartComponent } from '../features/dashboard/components/project-stat-chart/project-stat-chart.component';
 // import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
@@ -201,7 +202,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   VisitsChartComponent,
   PerformanceChartComponent,
   RevenueChartComponent,
-  ServerChartComponent
+  ServerChartComponent,
+  ProjectStatChartComponent
 ],
   imports: [
     CommonModule,

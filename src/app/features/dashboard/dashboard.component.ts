@@ -13,6 +13,7 @@ import { DashboardService } from './services/dashboard.service';
 import { PerformanceChartData } from './models/performance-chart-data';
 import { RevenueChartData } from './models/revenue-chart-data';
 import { ServerChartData } from './models/server-chart-data';
+import { ProjectStatData } from './models/project-stat-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
   public performanceChartData$: Observable<PerformanceChartData>;
   public revenueChartData$: Observable<RevenueChartData>;
   public serverChartData$: Observable<ServerChartData>;
+  public projectsStatsData$: Observable<ProjectStatData>;
   ngOnInit(): void {
   }
 
@@ -35,6 +37,7 @@ export class DashboardComponent implements OnInit {
       this.performanceChartData$ = this.service.loadPerformanceChartData();
       this.revenueChartData$ = this.service.loadRevenueChartData();
       this.serverChartData$ = this.service.loadServerChartData();
+      this.projectsStatsData$ = this.service.loadProjectsStatsData();
   }
 
 }
