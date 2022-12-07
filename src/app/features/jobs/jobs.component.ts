@@ -32,9 +32,9 @@ export class JobsComponent implements OnInit {
     public dialog: MatDialog,
     public dataService: JobsDataService,
     private authService: AuthenticationService,
-    private store: Store) { 
+    private store: Store) {
       this.store.dispatch(increment({message:"Jobs"}));
-      this.userType = this.authService.getUserType() 
+      this.userType = this.authService.getUserType()
     }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class JobsComponent implements OnInit {
         console.log(error.name + ' ' + error.message);
       });
   }
-  
+
   onApply(jobId: number): void {
     this.httpClient.post('Openjobs/ApplyJob', { jobId: jobId, employeeId: (this.authService.getUser() as any).employeeId }).subscribe((data: any) => {
     },
@@ -99,6 +99,7 @@ export class JobsComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddCandidateDialogComponent, {
+      data: { user: {} }
     });
 
     dialogRef.afterClosed().subscribe(result => {
