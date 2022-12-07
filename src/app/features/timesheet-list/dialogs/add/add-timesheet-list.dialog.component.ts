@@ -42,4 +42,34 @@ export class AddTimesheetListDialogComponent {
   public confirmAdd(): void {
     this.dataService.addTimesheetList(this.data);
   }
+  WeekDates:Date[]
+  public onDateChange(){
+    this.WeekDates=[]
+    var curr = this.data.weekEndingDate
+    var first = curr.getDate() - curr.getDay();
+    var last = first + 6;
+
+    var firstday = new Date(curr.setDate(first));
+    var lastday = new Date(curr.setDate(last));
+    var selMon = this.data.weekEndingDate.getMonth()
+    var d = firstday;
+    for (let i = 0; i < 7; i++) {
+      if(d.getMonth() == selMon){
+        this.WeekDates.push(new Date(d))
+      }
+      d.setDate(d.getDate() + 1)
+      if(d > lastday){
+        break;
+      }
+    }
+  }
+   days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thrusday",
+    "Friday",
+    "Saturday"
+];
 }

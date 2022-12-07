@@ -26,20 +26,31 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Week Ending Date</mat-label>
-        <input matInput [matDatepicker]="weekEndingDate" [(ngModel)]="data.weekEndingDate" name="weekEndingDate">
+        <input matInput [matDatepicker]="weekEndingDate" [(ngModel)]="data.weekEndingDate" name="weekEndingDate" (dateChange)="onDateChange()">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="weekEndingDate"></mat-datepicker-toggle>
         <mat-datepicker #weekEndingDate></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
         <mat-select [(ngModel)]="data.status" name="status" color="accent">
           <mat-option *ngFor="let s of statuses" [value]="s">
             {{s}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
+      <table *ngIf="data.weekEndingDate != null">
+        <tr >
+          <td *ngFor="let wd of WeekDates">{{wd | date :'shortDate'}}<hr> ({{days[wd.getDay()]}})</td>
+        </tr>
+        <tr>
+          <td *ngFor="let wd of WeekDates">
+            <input type="text" *ngIf="wd.getDay()==0 || wd.getDay()==6" [disabled]="true" style="width:70px" [value]="0" type="number"/>
+            <input type="text" *ngIf="!(wd.getDay()==0 || wd.getDay()==6)" style="width:70px" type="number" />
+          </td>
+        </tr>
+      </table>
     </div>
 
     <div mat-dialog-actions>
