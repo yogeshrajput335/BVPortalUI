@@ -45,9 +45,9 @@
           <td *ngFor="let wd of WeekDates">{{wd | date :'shortDate'}}<hr> ({{days[wd.getDay()]}})</td>
         </tr>
         <tr>
-          <td *ngFor="let wd of WeekDates">
-            <input type="text" *ngIf="wd.getDay()==0 || wd.getDay()==6" [disabled]="true" style="width:70px" [value]="0" type="number"/>
-            <input type="text" *ngIf="!(wd.getDay()==0 || wd.getDay()==6)" style="width:70px" type="number" />
+          <td *ngFor="let wd of WeekDates;let i = index">
+            <input type="text" *ngIf="wd.getDay()==0 || wd.getDay()==6" [readonly]="true" style="width:70px" [value]="0" type="number" [(ngModel)]="ins_datas[i]" [ngModelOptions]="{standalone: true}"/>
+            <input type="text" *ngIf="!(wd.getDay()==0 || wd.getDay()==6)" style="width:70px" type="number" [(ngModel)]="ins_datas[i]" [ngModelOptions]="{standalone: true}"/>
           </td>
         </tr>
       </table>

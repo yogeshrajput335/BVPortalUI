@@ -14,6 +14,8 @@ export class AddTimesheetListDialogComponent {
   statuses: any
   projects: any
   employees: any
+  WeekDates:any[] =[]
+  ins_datas=['0','0','0','0','0','0','0']
   constructor(public dialogRef: MatDialogRef<AddTimesheetListDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TimesheetList,
     public dataService: TimesheetListDataService) {
@@ -40,15 +42,15 @@ export class AddTimesheetListDialogComponent {
   }
 
   public confirmAdd(): void {
-    this.dataService.addTimesheetList(this.data);
+    this.data.status='NEW';
+    this.dataService.addTimesheetList(this.data,this.WeekDates,this.ins_datas);
   }
-  WeekDates:Date[]
-  public onDateChange(){
-    this.WeekDates=[]
-    var curr = this.data.weekEndingDate
+
+  public onDateChange() {
+    this.WeekDates = [];
+    var curr = this.data.weekEndingDate;
     var first = curr.getDate() - curr.getDay();
     var last = first + 6;
-
     var firstday = new Date(curr.setDate(first));
     var lastday = new Date(curr.setDate(last));
     var selMon = this.data.weekEndingDate.getMonth()

@@ -129,6 +129,7 @@ import { RevenueChartComponent } from '../features/dashboard/components/revenue-
 import { ServerChartComponent } from '../features/dashboard/components/server-chart/server-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProjectStatChartComponent } from '../features/dashboard/components/project-stat-chart/project-stat-chart.component';
+import { TimesheetDialogComponent } from '../features/timesheet-list/dialogs/timesheet-dialog/timesheet-dialog.dialog.component';
 // import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
@@ -194,6 +195,7 @@ import { ProjectStatChartComponent } from '../features/dashboard/components/proj
   EditInvoiceDetailsDialogComponent,
   SetTermClientDialogComponent,
   InvoiceDialogComponent,
+  TimesheetDialogComponent,
   SetClientPerHourDialogComponent,
   AddTimesheetListDialogComponent,
   DeleteTimesheetListDialogComponent,

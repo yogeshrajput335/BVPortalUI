@@ -49,13 +49,13 @@ export class TimesheetListDataService {
       });
   }
 
-  addTimesheetList (TimesheetList: TimesheetList): void {
+  addTimesheetList (TimesheetList: TimesheetList,dates:any[],data:any[]): void {
     this.dialogData = TimesheetList;
     let p = this.getProjects().filter(x => x.id === TimesheetList.projectId)[0]
     TimesheetList.projectName = p.projectName;
     let e = this.getEmployees().filter(x => x.id === TimesheetList.employeeId)[0]
     TimesheetList.employeeName = e.firstName + " " + e.lastName;
-    this.httpClient.post('Timesheet/InsertTimesheet',TimesheetList).subscribe((data:any) => {
+    this.httpClient.post('Timesheet/InsertTimesheet',{timesheet:TimesheetList,date:dates,data:data}).subscribe((data:any) => {
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
@@ -90,7 +90,7 @@ export class TimesheetListDataService {
   getEmployees(){
     return this.employees
   }
-  
+
   getProjects(){
     return this.projects
   }

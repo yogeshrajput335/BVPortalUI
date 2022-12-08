@@ -16,6 +16,7 @@ import { TimesheetList } from './models/TimesheetList';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import { TimesheetDialogComponent } from './dialogs/timesheet-dialog/timesheet-dialog.dialog.component';
 
 @Component({
   selector: 'app-timesheet-list',
@@ -147,5 +148,18 @@ export class TimesheetListComponent implements OnInit {
   public onClearSearchHistory() {
     localStorage.removeItem("timesheet-list-search")
     this.searchHistory = []
+  }
+  generateTimesheet(i: number, id: number) {
+    this.index = i;
+    this.id = id;
+    const dialogRef = this.dialog.open(TimesheetDialogComponent, {
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.loadData();
+      }
+    });
   }
 }
