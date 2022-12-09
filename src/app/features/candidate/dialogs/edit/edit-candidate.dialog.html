@@ -2,6 +2,14 @@
 <div class="container">
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="date" [(ngModel)]="data.date" name="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>
+
     <div class="example-container">
       <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
@@ -18,13 +26,43 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Phone Number</mat-label>
-        <input matInput placeholder="Phone Number" [(ngModel)]="data.phoneNo" name="phoneNo">
+        <mat-label>Technology</mat-label>
+        <input matInput placeholder="Technology" [(ngModel)]="data.technology" name="technology">
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" [(ngModel)]="data.email" name="email">
+        <mat-label>Visa</mat-label>
+        <input matInput placeholder="Visa" [(ngModel)]="data.visa" name="visa">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Rate</mat-label>
+        <input matInput placeholder="Rate" [(ngModel)]="data.rate" name="rate">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Client</mat-label>
+        <input matInput placeholder="Client" [(ngModel)]="data.client" name="client">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contact</mat-label>
+        <input matInput placeholder="Contact" [(ngModel)]="data.clientContact" name="clientContact">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mail Id</mat-label>
+        <input matInput placeholder="Mail Id" [(ngModel)]="data.mailId" name="mailId">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Vendor Name</mat-label>
+        <input matInput placeholder="Vendor Name" [(ngModel)]="data.vendorName" name="vendorName">
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline">
+        <mat-label>Vendor Mail Id</mat-label>
+        <input matInput placeholder="Vendor Mail Id" [(ngModel)]="data.vendorMailId" name="vendorMailId">
       </mat-form-field>
 
       <mat-form-field appearance="outline">

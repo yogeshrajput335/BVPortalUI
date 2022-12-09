@@ -2,30 +2,59 @@
 
   <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
 
-    <ng-container matColumnDef="firstName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.firstName}}</mat-cell>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.date | date :'longDate'}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="lastName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.lastName}}</mat-cell>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.firstName+" "+row.lastName}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="technology">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Technology</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.technology}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="jobName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Job Name</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.jobName}}</mat-cell>
+    <ng-container matColumnDef="visa">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Visa</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.visa}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="phoneNo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.phoneNo}}</mat-cell>
+    <ng-container matColumnDef="rate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rate</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.rate}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="client">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Client</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.client}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="clientContact">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Contact</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.clientContact}}</mat-cell>
+    </ng-container>
 
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="mailId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Mail Id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.mailId}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vendorName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Name</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.vendorName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vendorMailId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Mail Id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.vendorMailId}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
@@ -64,11 +93,11 @@
 
         <mat-menu #menu="matMenu">
           <button mat-menu-item
-            (click)="startEdit(i, row.id, row.firstName, row.lastName, row.phoneNo, row.email, row.status)">
+            (click)="startEdit(i, row.id,row.date, row.name, row.technology, row.visa, row.rate,row.client,row.clientContact,row.mailId,row.vendorName,row.vendorMailId,row.status)">
             <span>Edit</span>
           </button>
 
-          <button mat-menu-item (click)="deleteItem(i, row.id, row.firstName,row.lastName)">
+          <button mat-menu-item (click)="deleteItem(i, row.id, row.name)">
             <span>Delete</span>
           </button>
         </mat-menu>

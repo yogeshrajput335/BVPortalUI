@@ -42,7 +42,7 @@ export class CandidateDataSource extends DataSource<Candidate> {
 
     return merge(...displayDataChanges).pipe(map(() => {
       this.filteredData = this._exampleDatabase.data.slice().filter((issue: Candidate) => {
-        const searchStr = (issue.id + issue.firstName + issue.lastName + issue.phoneNo + issue.email).toLowerCase();
+        const searchStr = (issue.id + issue.firstName + issue.lastName + issue.technology + issue.visa).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -70,8 +70,14 @@ export class CandidateDataSource extends DataSource<Candidate> {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         case 'firstName': [propertyA, propertyB] = [a.firstName, b.firstName]; break;
         case 'lastName': [propertyA, propertyB] = [a.lastName, b.lastName]; break;
-        case 'phoneNo': [propertyA, propertyB] = [a.phoneNo, b.phoneNo]; break;
-        case 'email': [propertyA, propertyB] = [a.email, b.email]; break;
+        case 'technology': [propertyA, propertyB] = [a.technology, b.technology]; break;
+        case 'visa': [propertyA, propertyB] = [a.visa, b.visa]; break;
+        case 'rate': [propertyA, propertyB] = [a.rate, b.rate]; break;
+        case 'client': [propertyA, propertyB] = [a.client, b.client]; break;
+        case 'clientContact': [propertyA, propertyB] = [a.clientContact, b.clientContact]; break;
+        case 'mailId': [propertyA, propertyB] = [a.mailId, b.mailId]; break;
+        case 'vendorName': [propertyA, propertyB] = [a.vendorName, b.vendorName]; break;
+        case 'vendorMailId': [propertyA, propertyB] = [a.vendorMailId, b.vendorMailId]; break;
         case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
 
