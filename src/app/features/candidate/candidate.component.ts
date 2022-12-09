@@ -23,7 +23,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  displayedColumns = ['firstName', 'lastName', 'jobName', 'phoneNo', 'email', 'status', 'referByName', 'actions'];
+  displayedColumns = ['date','name', 'technology', 'visa', 'rate','client','clientContact','mailId','vendorName','vendorMailId', 'status', 'referByName', 'actions'];
   CandidateDatabase?: CandidateDataService | null;
   dataSource?: CandidateDataSource | null;
   index?: number;
@@ -65,11 +65,11 @@ export class CandidateComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, firstname: string, lastname: string, phoneno: number, email: string, status: string) {
+  startEdit(i: number, id: number, date: Date,name:string, technology: string, visa: string, rate: string, client: string, clientContact: string, mailId: string, vendorName: string, vendorMailId: string, status: string) {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditCandidateDialogComponent, {
-      data: { id: id, firstName: firstname, lastName: lastname, phoneNo: phoneno, email: email, status: status }
+      data: { id: id, date:date,name:name, technology:technology, visa:visa, rate:rate, client:client, clientContact:clientContact, mailId:mailId, vendorName:vendorName, vendorMailId:vendorMailId, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -81,11 +81,11 @@ export class CandidateComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, firstname: string, lastname: string) {
+  deleteItem(i: number, id: number, name: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteCandidateDialogComponent, {
-      data: { id: id, firstName: firstname, lastName: lastname }
+      data: { id: id, name:name }
     });
 
     dialogRef.afterClosed().subscribe(result => {
