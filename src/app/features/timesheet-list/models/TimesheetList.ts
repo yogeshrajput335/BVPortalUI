@@ -6,4 +6,5 @@ export class TimesheetList {
   projectName! : string;
   weekEndingDate!: Date;
   status!: string;
+  detail:any;
 }

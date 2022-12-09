@@ -43,6 +43,7 @@ export class AddTimesheetListDialogComponent {
 
   public confirmAdd(): void {
     this.data.status='NEW';
+    this.data.detail=[];
     this.dataService.addTimesheetList(this.data,this.WeekDates,this.ins_datas);
   }
 

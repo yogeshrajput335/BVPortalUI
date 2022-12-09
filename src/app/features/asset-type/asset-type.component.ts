@@ -16,6 +16,7 @@ import { DeleteAssetTypeDialogComponent } from './dialogs/delete/delete-asset-ty
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-asset-type',
@@ -23,6 +24,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./asset-type.component.scss']
 })
 export class AssetTypeComponent implements OnInit {
+  fileName= 'AssetType';
   displayedColumns = ['name', 'description', 'status', 'actions'];
   userDatabase?: AssetTypeDataService | null;
   dataSource?: AssetTypeDataSource | null;
@@ -147,5 +149,22 @@ export class AssetTypeComponent implements OnInit {
 		localStorage.removeItem("asset-type-search")
 		this.searchHistory=[]
 	  }
+
+  exportexcel(): void
+  {
+    if(this.userDatabase && this.userDatabase.data){
+    const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.userDatabase.data);
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+    /* save to file */
+    XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+
+  }
 }
 
