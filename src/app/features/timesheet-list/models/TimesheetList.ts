@@ -4,6 +4,7 @@ export class TimesheetList {
   employeeName!:string;
   projectId!: number;
   projectName! : string;
+  clientName! : string;
   weekEndingDate!: Date;
   month! : string;
   year! : string;

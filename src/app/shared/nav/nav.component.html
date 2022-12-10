@@ -90,11 +90,15 @@
         (click)="drawer.toggle()"
 
         >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon" style="height: 24px !important;
+        width: 24px !important;
+        font-size: 40px !important;">menu</mat-icon>
       </button>
       <img src="../../../assets/blueverse_logo_white_yellow_live.png" alt="avatar" width="40" />
       <span style="color:#FFD648;font-family: Georgia ;font-size: 25px;">{{companyName}}</span>
-      <mat-icon>keyboard_arrow_right</mat-icon>
+      <mat-icon style="    height: 30px !important;
+      width: 28px !important;
+      font-size: 32px !important;">keyboard_arrow_right</mat-icon>
       <div style="color:white;font-family: Georgia ;">
         {{ count$ | async }}</div>
       <span class="fill-remaining-space"></span>
@@ -109,7 +113,9 @@
       </mat-menu>
 
       <button mat-icon-button [matMenuTriggerFor]="appMenu">
-        <mat-icon>more_vert</mat-icon>
+        <mat-icon style="    height: 30px !important;
+        width: 28px !important;
+        font-size: 32px !important;">more_vert</mat-icon>
       </button>
     </mat-toolbar>
     <router-outlet></router-outlet>

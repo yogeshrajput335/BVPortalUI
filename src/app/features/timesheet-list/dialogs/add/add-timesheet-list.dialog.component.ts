@@ -52,14 +52,15 @@ export class AddTimesheetListDialogComponent {
 
   public onDateChange() {
     this.WeekDates = [];
-    var curr = this.data.weekEndingDate;
-    var first = curr.getDate() - curr.getDay();
+    var curr1 = new Date(this.data.weekEndingDate);
+    var curr2 = new Date(this.data.weekEndingDate);
+    var first = curr1.getDate() - curr1.getDay();
     var last = first + 6;
-    var firstday = new Date(curr.setDate(first));
-    var lastday = new Date(curr.setDate(last));
+    var firstday = new Date(curr1.setDate(first));
+    var lastday = new Date(curr2.setDate(last));
     var selMon = this.data.weekEndingDate.getMonth()
     this.data.month = this.monthNames[selMon];
-    this.data.year = curr.getFullYear().toString();
+    this.data.year = this.data.weekEndingDate.getFullYear().toString();
     this.data.duration = firstday.toLocaleDateString() +' - '+lastday.toLocaleDateString();
 
     var d = firstday;
