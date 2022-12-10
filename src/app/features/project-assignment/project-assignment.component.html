@@ -13,21 +13,21 @@
               <div class="temp">
                 <span class="big-text">{{summaryData.activeClientCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="primary" selected>Active Clients</mat-chip>
+                  Active Clients
                 </span>
               </div>
 
               <div class="temp">
                 <span class="big-text">{{summaryData.inactiveClientCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="warn" selected>Inactive Clients</mat-chip>
+                  Inactive Clients
                 </span>
               </div>
 
               <div class="temp">
                 <span class="big-text">{{summaryData.totalClientCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="accent" selected>Total Clients</mat-chip>
+                  Total Clients
                 </span>
               </div>
             </div>
@@ -45,21 +45,21 @@
               <div class="temp">
                 <span class="big-text">{{summaryData.newProjectsCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="accent" selected>New Projects</mat-chip>
+                  New Projects
                 </span>
               </div>
 
               <div class="temp">
                 <span class="big-text">{{summaryData.approvedProjectsCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="primary" selected>Approved Projects</mat-chip>
+                  Approved Projects
                 </span>
               </div>
 
               <div class="temp">
                 <span class="big-text">{{summaryData.rejectedProjectsCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="warn" selected>Rejected Projects</mat-chip>
+                  Rejected Projects
                 </span>
               </div>
             </div>
@@ -76,14 +76,14 @@
               <div class="temp">
                 <span class="big-text">{{summaryData.activeEmployeeCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="primary" selected>Active Employees</mat-chip>
+                  Active Employees
                 </span>
               </div>
 
               <div class="temp">
                 <span class="big-text">{{summaryData.inactiveEmployeeCount}}</span>
                 <span class="small-text">
-                  <mat-chip color="warn" selected>Inactive Employees</mat-chip>
+                  Inactive Employees
                 </span>
               </div>
             </div>
@@ -98,8 +98,7 @@
           <mat-card-content>
             <ul>
               <li *ngFor="let e of summaryData.projectEmpCount">
-                <mat-chip>{{e.projectName}}</mat-chip>
-                <mat-chip color="primary" selected>{{e.employeeCount}}</mat-chip>
+                {{e.projectName}} - {{e.employeeCount}}
               </li>
             </ul>
           </mat-card-content>
@@ -114,8 +113,7 @@
           <mat-card-content>
             <ul>
               <li *ngFor="let e of summaryData.clientEmpCount">
-                <mat-chip>{{e.clientName}}</mat-chip>
-                <mat-chip color="primary" selected>{{e.employeeCount}}</mat-chip>
+                {{e.clientName}} - {{e.employeeCount}}
               </li>
             </ul>
           </mat-card-content>
@@ -130,8 +128,7 @@
           <mat-card-content>
             <ul>
               <li *ngFor="let e of summaryData.clientProjectCount">
-                <mat-chip>{{e.clientName}}</mat-chip>
-                <mat-chip color="primary" selected>{{e.projectCount}}</mat-chip>
+                {{e.clientName}} - {{e.projectCount}}
               </li>
             </ul>
           </mat-card-content>
@@ -139,16 +136,16 @@
 
       </div>
       <div style="width:50%" class="container mat-elevation-z8-tree">
-        <mat-chip-list aria-label="Fish selection">
-          <mat-chip color="accent" selected>Client</mat-chip>
-          <mat-chip color="warn" selected>Project</mat-chip>
-          <mat-chip color="primary" selected>Employee</mat-chip>
-        </mat-chip-list>
+        <div style="width:100%;display:flex;text-align:center">
+          <span style="width:33%;display:inline;background-color: #ffd740;font-size: 16px;padding:5px">Client</span>
+          <span style="width:33%;display:inline;background-color: #f44336;font-size: 16px;padding:5px">Project</span>
+          <span style="width:34%;display:inline;background-color: #673ab7;font-size: 16px;padding:5px">Employee</span>
+        </div>
 
         <mat-tree [dataSource]="treeDataSource" [treeControl]="treeControl">
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
             <button mat-icon-button disabled></button>
-            <mat-chip color="primary" selected>{{node.name}}</mat-chip>
+            <div><span class="dot" style="background-color: #673ab7"></span> {{node.name}}</div>
           </mat-tree-node>
           <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
             <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
@@ -156,8 +153,8 @@
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
               </mat-icon>
             </button>
-            <mat-chip color="accent" selected *ngIf="node.level===0">{{node.name}}</mat-chip>
-            <mat-chip color="warn" selected *ngIf="node.level===1">{{node.name}}</mat-chip>
+            <div *ngIf="node.level===0"><span class="dot" style="background-color: #ffd740"></span> {{node.name}}</div>
+            <div *ngIf="node.level===1"><span class="dot" style="background-color: #f44336"></span> {{node.name}}</div>
           </mat-tree-node>
         </mat-tree>
       </div>
