@@ -83,11 +83,11 @@ export class CandidateComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, name: string) {
+  deleteItem(i: number, id: number, firstName: string, lastName: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteCandidateDialogComponent, {
-      data: { id: id, name:name }
+      data: { id: id, firstName:firstName, lastName:lastName }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -155,10 +155,10 @@ export class CandidateComponent implements OnInit {
   {
     if(this.CandidateDatabase && this.CandidateDatabase.data){
     const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.CandidateDatabase.data);
-    
+
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
-    
+
     XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
     } else {
       alert('Error on export to excel.')

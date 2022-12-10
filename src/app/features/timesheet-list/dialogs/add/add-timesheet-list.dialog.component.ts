@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TimesheetListDataService } from '../../services/timesheet-list-data.service';
 import { TimesheetList } from '../../models/TimesheetList';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-add-timesheet-list.dialog',
@@ -18,7 +19,7 @@ export class AddTimesheetListDialogComponent {
   ins_datas=['0','0','0','0','0','0','0']
   constructor(public dialogRef: MatDialogRef<AddTimesheetListDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TimesheetList,
-    public dataService: TimesheetListDataService) {
+    public dataService: TimesheetListDataService,private authService: AuthenticationService,) {
     this.statuses = this.dataService.getStatues()
     this.projects = this.dataService.getProjects()
     this.employees = this.dataService.getEmployees()
@@ -43,6 +44,8 @@ export class AddTimesheetListDialogComponent {
 
   public confirmAdd(): void {
     this.data.status='NEW';
+    this.data.createdDate = new Date();
+    this.data.createdBy = this.authService.getUser().employee;
     this.data.detail=[];
     this.dataService.addTimesheetList(this.data,this.WeekDates,this.ins_datas);
   }
@@ -55,6 +58,10 @@ export class AddTimesheetListDialogComponent {
     var firstday = new Date(curr.setDate(first));
     var lastday = new Date(curr.setDate(last));
     var selMon = this.data.weekEndingDate.getMonth()
+    this.data.month = this.monthNames[selMon];
+    this.data.year = curr.getFullYear().toString();
+    this.data.duration = firstday.toLocaleDateString() +' - '+lastday.toLocaleDateString();
+
     var d = firstday;
     for (let i = 0; i < 7; i++) {
       if(d.getMonth() == selMon){
@@ -74,5 +81,8 @@ export class AddTimesheetListDialogComponent {
     "Thrusday",
     "Friday",
     "Saturday"
+];
+monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
 }

@@ -33,43 +33,6 @@
         <mat-datepicker #weekEndingDate></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Month</mat-label>
-        <input matInput placeholder="Month" [(ngModel)]="data.month" name="month">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Year</mat-label>
-        <input matInput placeholder="Year" [(ngModel)]="data.year" name="year">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Created Date</mat-label>
-        <input matInput [matDatepicker]="createdDate" [(ngModel)]="data.createdDate" name="createdDate"
-          (dateChange)="onDateChange()">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="createdDate"></mat-datepicker-toggle>
-        <mat-datepicker #createdDate></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Created By</mat-label>
-        <input matInput placeholder="Created By" [(ngModel)]="data.createdBy" name="createdBy">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Duration</mat-label>
-        <input matInput placeholder="Duration" [(ngModel)]="data.duration" name="duration">
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="data.status" name="status" color="accent">
-          <mat-option *ngFor="let s of statuses" [value]="s">
-            {{s}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
 
       <table *ngIf="data.weekEndingDate != null">
         <tr>

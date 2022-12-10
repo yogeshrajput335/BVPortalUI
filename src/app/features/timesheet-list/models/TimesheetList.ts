@@ -5,10 +5,10 @@ export class TimesheetList {
   projectId!: number;
   projectName! : string;
   weekEndingDate!: Date;
-  month! : string; 
-  year! : string; 
-  createdDate! : string; 
-  createdBy! : Date; 
+  month! : string;
+  year! : string;
+  createdDate! : Date;
+  createdBy! : string;
   duration! :string;
   status!: string;
   detail:any;
