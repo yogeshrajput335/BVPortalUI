@@ -60,24 +60,40 @@
         <button mat-icon-button (click)="addNew()">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
-        <a href="javascript:;" (click)="openSearchFilter()">Search</a>
-        <a href="javascript:;" (click)="onSearchFilter('')" style="margin-left:4px">Show Records</a>
+        <button mat-icon-button (click)="openSearchFilter()">
+          <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
+        </button>
+        <button mat-icon-button (click)="exportexcel()">
+          <mat-icon aria-label="Example icon-button with a heart icon">file_download</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onSearchFilter('')">
+          <mat-icon aria-label="Example icon-button with a heart icon">refresh</mat-icon>
+        </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="primary"
-          (click)="startEdit(i, row.id, row.invoiceNo, row.createdDate, row.dueDate, row.clientId, row.clientName, row.fromLine1, row.fromLine2, row.fromLine3, row.term, row.status, row.products)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.invoiceNo)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
 
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>
+
         <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="startEdit(i, row.id, row.invoiceNo, row.createdDate, row.dueDate, row.clientId, row.clientName, row.fromLine1, row.fromLine2, row.fromLine3, row.term, row.status, row.products)">
+            <span>Edit</span>
+          </button>
+
+          <button mat-menu-item (click)="deleteItem(i, row.id, row.invoiceNo)">
+            <span>Delete</span>
+          </button>
+          <!-- <button mat-icon-button color="primary"
+            (click)="startEdit(i, row.id, row.invoiceNo, row.createdDate, row.dueDate, row.clientId, row.clientName, row.fromLine1, row.fromLine2, row.fromLine3, row.term, row.status, row.products)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deleteItem(i, row.id, row.invoiceNo)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button> -->
+
           <button mat-menu-item (click)="generateInvoice(i, row.id)">
             <span>Show Invoice</span>
           </button>

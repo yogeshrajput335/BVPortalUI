@@ -16,6 +16,7 @@ import { LeaveTypeDataSource } from './leave-type-datasource';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-leave-type',
@@ -23,6 +24,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./leave-type.component.scss']
 })
 export class LeaveTypeComponent implements OnInit {
+  fileName= 'LeaveType';
   displayedColumns = ['type', 'description', 'status', 'actions'];
   leaveTypeDatabase?: LeaveTypeDataService | null;
   dataSource?: LeaveTypeDataSource | null;
@@ -147,5 +149,19 @@ export class LeaveTypeComponent implements OnInit {
     localStorage.removeItem("leave-type-search")
     this.searchHistory = []
   }
+
+  exportexcel(): void
+  {
+    if(this.leaveTypeDatabase && this.leaveTypeDatabase.data){
+    const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.leaveTypeDatabase.data);
+    
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+    
+    XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+}
 }
 

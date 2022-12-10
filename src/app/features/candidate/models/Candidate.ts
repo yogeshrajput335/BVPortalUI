@@ -1,6 +1,6 @@
 export class Candidate {
   id!: number;
-  date!: Date;
+  createdDate!: Date;
   firstName!: string;
   lastName!: string;
   technology!: string;
@@ -8,8 +8,9 @@ export class Candidate {
   rate!: string;
   client!: string;
   clientContact!: string;
-  mailId!: string;
-  vendorName!: string;
-  vendorMailId!: string;
+  clientMail!: string;
+  vendor!: string;
+  vendorContact!: string;
+  vendorMail!: string;
   status!: string;
 }

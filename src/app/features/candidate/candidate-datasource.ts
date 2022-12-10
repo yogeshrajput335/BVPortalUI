@@ -75,9 +75,10 @@ export class CandidateDataSource extends DataSource<Candidate> {
         case 'rate': [propertyA, propertyB] = [a.rate, b.rate]; break;
         case 'client': [propertyA, propertyB] = [a.client, b.client]; break;
         case 'clientContact': [propertyA, propertyB] = [a.clientContact, b.clientContact]; break;
-        case 'mailId': [propertyA, propertyB] = [a.mailId, b.mailId]; break;
-        case 'vendorName': [propertyA, propertyB] = [a.vendorName, b.vendorName]; break;
-        case 'vendorMailId': [propertyA, propertyB] = [a.vendorMailId, b.vendorMailId]; break;
+        case 'clientMail': [propertyA, propertyB] = [a.clientMail, b.clientMail]; break;
+        case 'vendor': [propertyA, propertyB] = [a.vendor, b.vendor]; break;
+        case 'vendorContact': [propertyA, propertyB] = [a.vendorContact, b.vendorContact]; break;
+        case 'vendorMail': [propertyA, propertyB] = [a.vendorMail, b.vendorMail]; break;
         case 'status': [propertyA, propertyB] = [a.status, b.status]; break;
       }
 

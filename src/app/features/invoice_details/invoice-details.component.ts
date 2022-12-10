@@ -18,7 +18,7 @@ import { InvoiceDialogComponent } from './dialogs/invoice-dialog/invoice-dialog.
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
-
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-invoice-details',
@@ -26,6 +26,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./invoice-details.component.scss']
 })
 export class InvoiceDetailsComponent implements OnInit {
+  fileName = 'InvoiceDetails';
   displayedColumns = ['invoiceNo', 'createdDate', 'dueDate', 'clientName', 'fromLine1', 'fromLine2', 'fromLine3', 'term', 'status', 'actions'];
   userDatabase?: InvoiceDetailsDataService | null;
   dataSource?: InvoiceDetailsDataSource | null;
@@ -166,6 +167,19 @@ export class InvoiceDetailsComponent implements OnInit {
   public onClearSearchHistory() {
     localStorage.removeItem("invoice-details-search")
     this.searchHistory = []
+  }
+
+  exportexcel(): void {
+    if (this.userDatabase && this.userDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.userDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 }
 

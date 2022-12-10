@@ -16,6 +16,7 @@ import { AddAssetAllocationDialogComponent } from './dialogs/add/add-asset-alloc
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-asset-allocation',
@@ -23,6 +24,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./asset-allocation.component.scss']
 })
 export class AssetAllocationComponent implements OnInit {
+  fileName = 'AssetAllocation';
   displayedColumns = ['assetName', 'allocatedTo', 'allocatedBy', 'allocatedDate', 'returnDate', 'status', 'actions'];
   userDatabase?: AssetAllocationDataService | null;
   dataSource?: AssetAllocationDataSource | null;
@@ -34,8 +36,8 @@ export class AssetAllocationComponent implements OnInit {
     public dataService: AssetAllocationDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-      this.store.dispatch(increment({message:"Asset Allocation"}));
-    }
+    this.store.dispatch(increment({ message: "Asset Allocation" }));
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
@@ -113,40 +115,53 @@ export class AssetAllocationComponent implements OnInit {
       });
   }
 
-  public openSearchFilter(){
-		if(this.TemplateBottomSheet)
-		this.bottomSheet.open(this.TemplateBottomSheet);
-	  }
-	  public closeSearchFilter(){
-		this.bottomSheet.dismiss();
-	  }
-	  searchHistory:string[] =[]
-	  public onSearchFilter(data:any){
-		if(data.trim() != ""){
-		  this.searchHistory =[]
-		  this.loadSearchHistory()
-		  if(!this.searchHistory.includes(data)){
-			this.searchHistory.push(data);
-		  } else {
-			this.searchHistory = this.searchHistory.filter(i => i !== data)
-			this.searchHistory.push(data);
-		  }
-		  localStorage.setItem("asset-allocation-search", JSON.stringify(this.searchHistory));
-		}
-		if (!this.dataSource) {
-		  return;
-		}
-		this.dataSource.filter = data;
-		this.bottomSheet.dismiss();
-	  }
-	  public loadSearchHistory(){
-		if (localStorage.getItem("asset-allocation-search") != null) {
-		  this.searchHistory =  JSON.parse(localStorage.getItem("asset-allocation-search")!.toString());
-		}
-	  }
-	  public onClearSearchHistory(){
-		localStorage.removeItem("asset-allocation-search")
-		this.searchHistory=[]
-	  }
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("asset-allocation-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("asset-allocation-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("asset-allocation-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("asset-allocation-search")
+    this.searchHistory = []
+  }
+
+  exportexcel(): void {
+    if (this.userDatabase && this.userDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.userDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+  }
 }
 

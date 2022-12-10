@@ -16,6 +16,7 @@ import { ProjectDataSource } from './project-datasource';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-project',
@@ -23,6 +24,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./project.component.scss']
 })
 export class ProjectComponent implements OnInit {
+  fileName = 'Project';
   displayedColumns = ['projectName', 'clientName', 'description', 'startDate', 'endDate', 'projectType', 'status', 'actions'];
   ProjectDatabase?: ProjectDataService | null;
   dataSource?: ProjectDataSource | null;
@@ -147,6 +149,19 @@ export class ProjectComponent implements OnInit {
   public onClearSearchHistory() {
     localStorage.removeItem("project-search")
     this.searchHistory = []
+  }
+
+  exportexcel(): void {
+    if (this.ProjectDatabase && this.ProjectDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.ProjectDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 }
 

@@ -17,6 +17,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-reference',
@@ -24,6 +25,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./reference.component.scss']
 })
 export class ReferenceComponent implements OnInit {
+  fileName= 'Reference';
   displayedColumns = ['firstName', 'lastName', 'phoneNo', 'email', 'status', 'actions'];
   ReferenceDatabase?: ReferenceDataService | null;
   dataSource?: ReferenceDataSource | null;
@@ -159,4 +161,18 @@ export class ReferenceComponent implements OnInit {
     localStorage.removeItem("reference-search")
     this.searchHistory = []
   }
+
+  exportexcel(): void
+  {
+    if(this.ReferenceDatabase && this.ReferenceDatabase.data){
+    const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.ReferenceDatabase.data);
+    
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+    
+    XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+}
 }

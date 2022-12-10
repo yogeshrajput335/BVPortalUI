@@ -16,6 +16,7 @@ import { CandidateDataSource } from './candidate-datasource';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-candidate',
@@ -23,7 +24,8 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./candidate.component.scss']
 })
 export class CandidateComponent implements OnInit {
-  displayedColumns = ['date','name', 'technology', 'visa', 'rate','client','clientContact','mailId','vendorName','vendorMailId', 'status', 'referByName', 'actions'];
+  fileName= 'Candidate';
+  displayedColumns = ['createdDate','name', 'technology', 'visa', 'rate','client','clientContact','clientMail','vendor','vendorContact','vendorMail', 'status', 'referByName', 'actions'];
   CandidateDatabase?: CandidateDataService | null;
   dataSource?: CandidateDataSource | null;
   index?: number;
@@ -65,11 +67,11 @@ export class CandidateComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, date: Date,name:string, technology: string, visa: string, rate: string, client: string, clientContact: string, mailId: string, vendorName: string, vendorMailId: string, status: string) {
+  startEdit(i: number, id: number, createdDate: Date,name:string, technology: string, visa: string, rate: string, client: string, clientContact: string, ClientMail: string, vendor: string, vendorContact: string, vendorMail: string, status: string) {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditCandidateDialogComponent, {
-      data: { id: id, date:date,name:name, technology:technology, visa:visa, rate:rate, client:client, clientContact:clientContact, mailId:mailId, vendorName:vendorName, vendorMailId:vendorMailId, status: status }
+      data: { id: id, createdDate:createdDate,name:name, technology:technology, visa:visa, rate:rate, client:client, clientContact:clientContact, ClientMail:ClientMail, vendor:vendor, vendorContact:vendorContact, vendorMail:vendorMail, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -148,4 +150,18 @@ export class CandidateComponent implements OnInit {
 		localStorage.removeItem("candidate-search")
 		this.searchHistory=[]
 	  }
+
+    exportexcel(): void
+  {
+    if(this.CandidateDatabase && this.CandidateDatabase.data){
+    const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.CandidateDatabase.data);
+    
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+    
+    XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+}
 }

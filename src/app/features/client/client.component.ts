@@ -17,6 +17,7 @@ import { SetTermClientDialogComponent } from './dialogs/set-term/set-term.dialog
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-client',
@@ -24,6 +25,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./client.component.scss']
 })
 export class ClientComponent implements OnInit {
+  fileName = 'Client';
   displayedColumns = ['clientName', 'termText', 'contactPerson', 'email', 'phoneNumber', 'address', 'status', 'actions'];
   ClientDatabase?: ClientDataService | null;
   dataSource?: ClientDataSource | null;
@@ -161,5 +163,18 @@ export class ClientComponent implements OnInit {
   public onClearSearchHistory() {
     localStorage.removeItem("client-search")
     this.searchHistory = []
+  }
+
+  exportexcel(): void {
+    if (this.ClientDatabase && this.ClientDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.ClientDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 }
