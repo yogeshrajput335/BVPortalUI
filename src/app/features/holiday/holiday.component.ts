@@ -17,6 +17,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-holiday',
@@ -24,6 +25,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./holiday.component.scss']
 })
 export class HolidayComponent implements OnInit {
+  fileName= 'Holiday';
   displayedColumns = ['holidayName', 'date', 'description', 'status', 'actions'];
   leaveTypeDatabase?: HolidayDataService | null;
   dataSource?: HolidayDataSource | null;
@@ -151,5 +153,19 @@ export class HolidayComponent implements OnInit {
     localStorage.removeItem("holiday-search")
     this.searchHistory = []
   }
+
+  exportexcel(): void
+  {
+    if(this.leaveTypeDatabase && this.leaveTypeDatabase.data){
+    const ws: XLSX.WorkSheet =XLSX.utils.json_to_sheet(this.leaveTypeDatabase.data);
+    
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+    
+    XLSX.writeFile(wb, this.fileName+(new Date()).toUTCString()+".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+}
 }
 

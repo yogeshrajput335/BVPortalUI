@@ -1,5 +1,5 @@
 import { HttpCommonService } from './../../core/services/httpCommon.service';
-import { Component, ElementRef, OnInit,TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { EmployeeDataService } from './services/employee-data.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,7 +17,7 @@ import { SetClientPerHourDialogComponent } from './dialogs/set-ClientPerHour/set
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
-
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-employee',
@@ -25,6 +25,7 @@ import { increment } from 'src/app/core/store/counter.actions';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  fileName = 'Employee';
   displayedColumns = ['firstName', 'lastName', 'email', 'phoneNumber', 'employeeType', 'status', 'actions'];
   userDatabase?: EmployeeDataService | null;
   dataSource?: EmployeeDataSource | null;
@@ -153,7 +154,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   submit() {
-    
+
   }
 
   confirmAddBasicInfo() {
@@ -198,39 +199,52 @@ export class EmployeeComponent implements OnInit {
       });
   }
 
-  public openSearchFilter(){
-		if(this.TemplateBottomSheet)
-		this.bottomSheet.open(this.TemplateBottomSheet);
-	  }
-	  public closeSearchFilter(){
-		this.bottomSheet.dismiss();
-	  }
-	  searchHistory:string[] =[]
-	  public onSearchFilter(data:any){
-		if(data.trim() != ""){
-		  this.searchHistory =[]
-		  this.loadSearchHistory()
-		  if(!this.searchHistory.includes(data)){
-			this.searchHistory.push(data);
-		  } else {
-			this.searchHistory = this.searchHistory.filter(i => i !== data)
-			this.searchHistory.push(data);
-		  }
-		  localStorage.setItem("employee-search", JSON.stringify(this.searchHistory));
-		}
-		if (!this.dataSource) {
-		  return;
-		}
-		this.dataSource.filter = data;
-		this.bottomSheet.dismiss();
-	  }
-	  public loadSearchHistory(){
-		if (localStorage.getItem("employee-search") != null) {
-		  this.searchHistory =  JSON.parse(localStorage.getItem("employee-search")!.toString());
-		}
-	  }
-	  public onClearSearchHistory(){
-		localStorage.removeItem("employee-search")
-		this.searchHistory=[]
-	  }
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
+  }
+  public closeSearchFilter() {
+    this.bottomSheet.dismiss();
+  }
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
+      this.loadSearchHistory()
+      if (!this.searchHistory.includes(data)) {
+        this.searchHistory.push(data);
+      } else {
+        this.searchHistory = this.searchHistory.filter(i => i !== data)
+        this.searchHistory.push(data);
+      }
+      localStorage.setItem("employee-search", JSON.stringify(this.searchHistory));
+    }
+    if (!this.dataSource) {
+      return;
+    }
+    this.dataSource.filter = data;
+    this.bottomSheet.dismiss();
+  }
+  public loadSearchHistory() {
+    if (localStorage.getItem("employee-search") != null) {
+      this.searchHistory = JSON.parse(localStorage.getItem("employee-search")!.toString());
+    }
+  }
+  public onClearSearchHistory() {
+    localStorage.removeItem("employee-search")
+    this.searchHistory = []
+  }
+
+  exportexcel(): void {
+    if (this.userDatabase && this.userDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.userDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
+  }
 }

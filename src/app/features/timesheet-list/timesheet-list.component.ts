@@ -17,6 +17,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { TimesheetDialogComponent } from './dialogs/timesheet-dialog/timesheet-dialog.dialog.component';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-timesheet-list',
@@ -25,7 +26,8 @@ import { TimesheetDialogComponent } from './dialogs/timesheet-dialog/timesheet-d
 })
 
 export class TimesheetListComponent implements OnInit {
-  displayedColumns = ['employeeName', 'projectName', 'weekEndingDate', 'status', 'actions'];
+  fileName = 'TimesheetList';
+  displayedColumns = ['employeeName', 'projectName', 'weekEndingDate','month','year','createdDate','createdBy','duration', 'status', 'actions'];
   TimesheetListDatabase?: TimesheetListDataService | null;
   dataSource?: TimesheetListDataSource | null;
   index?: number;
@@ -66,11 +68,11 @@ export class TimesheetListComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, employeeId: number, projectId: number, weekEndingDate: Date, status: string) {
+  startEdit(i: number, id: number, employeeId: number, projectId: number, weekEndingDate: Date, month : string, year : string, createdDate : Date, createdBy : string, duration : string, status: string) {
     this.id = id;
     this.index = i;
     const dialogRef = this.dialog.open(EditTimesheetListDialogComponent, {
-      data: { id: id, employeeId: employeeId, projectId: projectId, weekEndingDate:weekEndingDate, status: status }
+      data: { id: id, employeeId: employeeId, projectId: projectId, weekEndingDate : weekEndingDate,month : month,  year : year, createdDate : createdDate, createdBy : createdBy, duration : duration, status: status }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -161,5 +163,18 @@ export class TimesheetListComponent implements OnInit {
         this.loadData();
       }
     });
+  }
+
+  exportexcel(): void {
+    if (this.TimesheetListDatabase && this.TimesheetListDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.TimesheetListDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 }

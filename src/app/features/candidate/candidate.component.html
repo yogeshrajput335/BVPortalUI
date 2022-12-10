@@ -2,16 +2,16 @@
 
   <mat-table #table [dataSource]="dataSource!" matSort class="mat-cell">
 
-    <ng-container matColumnDef="date">
+    <ng-container matColumnDef="createdDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.date | date :'longDate'}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.createdDate | date :'longDate'}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.firstName+" "+row.lastName}}</mat-cell>
     </ng-container>
-    
+
     <ng-container matColumnDef="technology">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Technology</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.technology}}</mat-cell>
@@ -37,24 +37,24 @@
       <mat-cell *matCellDef="let row"> {{row.clientContact}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="email">
+    <ng-container matColumnDef="clientMail">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.clientMail}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="mailId">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Mail Id</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.mailId}}</mat-cell>
+    <ng-container matColumnDef="vendor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.vendor}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="vendorName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Name</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.vendorName}}</mat-cell>
+    <ng-container matColumnDef="vendorContact">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Contact</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.vendorContact}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="vendorMailId">
+    <ng-container matColumnDef="vendorMail">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor Mail Id</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.vendorMailId}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.vendorMail}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="status">
@@ -79,11 +79,18 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="accent" (click)="addNew()">
+        <button mat-icon-button (click)="addNew()">
           <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
         </button>
-        <a href="javascript:;" (click)="openSearchFilter()">Search</a>
-        <a href="javascript:;" (click)="onSearchFilter('')" style="margin-left:4px">Show Records</a>
+        <button mat-icon-button (click)="openSearchFilter()">
+          <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
+        </button>
+        <button mat-icon-button (click)="exportexcel()">
+          <mat-icon aria-label="Example icon-button with a heart icon">file_download</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onSearchFilter('')">
+          <mat-icon aria-label="Example icon-button with a heart icon">refresh</mat-icon>
+        </button>
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
@@ -93,7 +100,7 @@
 
         <mat-menu #menu="matMenu">
           <button mat-menu-item
-            (click)="startEdit(i, row.id,row.date, row.name, row.technology, row.visa, row.rate,row.client,row.clientContact,row.mailId,row.vendorName,row.vendorMailId,row.status)">
+            (click)="startEdit(i, row.id,row.createdDate, row.name, row.technology, row.visa, row.rate,row.client,row.clientContact,row.clientMail,row.vendor, row.vendorContact, row.vendorMail,row.status)">
             <span>Edit</span>
           </button>
 

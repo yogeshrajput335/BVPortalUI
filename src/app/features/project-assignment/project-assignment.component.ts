@@ -18,6 +18,7 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
+import * as XLSX from 'xlsx';
 
 interface ProjectEmpTree {
   name: string;
@@ -35,6 +36,7 @@ interface ExampleFlatNode {
   styleUrls: ['./project-assignment.component.scss']
 })
 export class ProjectAssignmentComponent implements OnInit {
+  fileName = 'ProjectAssignment';
   displayedColumns = ['projectName', 'employeeName', 'notes', 'startDate', 'endDate', 'actions'];
   ProjectAssignmentDatabase?: ProjectAssignmentDataService | null;
   dataSource?: ProjectAssignmentDataSource | null;
@@ -139,6 +141,19 @@ export class ProjectAssignmentComponent implements OnInit {
         }
         this.dataSource.filter = this.filter!.nativeElement.value;
       });
+  }
+
+  exportexcel(): void {
+    if (this.ProjectAssignmentDatabase && this.ProjectAssignmentDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.ProjectAssignmentDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 
   public openSearchFilter() {

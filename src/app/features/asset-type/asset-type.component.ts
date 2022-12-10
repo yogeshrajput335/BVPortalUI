@@ -164,7 +164,6 @@ export class AssetTypeComponent implements OnInit {
     } else {
       alert('Error on export to excel.')
     }
-
   }
 }
 

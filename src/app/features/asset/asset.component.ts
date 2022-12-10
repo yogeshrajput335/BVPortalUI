@@ -16,6 +16,7 @@ import { DeleteAssetDialogComponent } from './dialogs/delete/delete-asset.dialog
 import { Store } from '@ngrx/store';
 import { increment } from 'src/app/core/store/counter.actions';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-asset',
@@ -23,6 +24,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
   styleUrls: ['./asset.component.scss']
 })
 export class AssetComponent implements OnInit {
+  fileName= 'Asset';
   displayedColumns = ['name', 'type', 'modelNumber', 'status', 'actions'];
   userDatabase?: AssetDataService | null;
   dataSource?: AssetDataSource | null;
@@ -34,8 +36,8 @@ export class AssetComponent implements OnInit {
     public dataService: AssetDataService,
     private bottomSheet: MatBottomSheet,
     private store: Store) {
-      this.store.dispatch(increment({message:"Asset"}));
-    }
+    this.store.dispatch(increment({ message: "Asset" }));
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator?: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort?: MatSort;
@@ -113,19 +115,19 @@ export class AssetComponent implements OnInit {
       });
   }
 
-  public openSearchFilter(){
-    if(this.TemplateBottomSheet)
-    this.bottomSheet.open(this.TemplateBottomSheet);
+  public openSearchFilter() {
+    if (this.TemplateBottomSheet)
+      this.bottomSheet.open(this.TemplateBottomSheet);
   }
-  public closeSearchFilter(){
+  public closeSearchFilter() {
     this.bottomSheet.dismiss();
   }
-  searchHistory:string[] =[]
-  public onSearchFilter(data:any){
-    if(data.trim() != ""){
-      this.searchHistory =[]
+  searchHistory: string[] = []
+  public onSearchFilter(data: any) {
+    if (data.trim() != "") {
+      this.searchHistory = []
       this.loadSearchHistory()
-      if(!this.searchHistory.includes(data)){
+      if (!this.searchHistory.includes(data)) {
         this.searchHistory.push(data);
       } else {
         this.searchHistory = this.searchHistory.filter(i => i !== data)
@@ -139,14 +141,28 @@ export class AssetComponent implements OnInit {
     this.dataSource.filter = data;
     this.bottomSheet.dismiss();
   }
-  public loadSearchHistory(){
+  public loadSearchHistory() {
     if (localStorage.getItem("asset-search") != null) {
-      this.searchHistory =  JSON.parse(localStorage.getItem("asset-search")!.toString());
+      this.searchHistory = JSON.parse(localStorage.getItem("asset-search")!.toString());
     }
   }
-  public onClearSearchHistory(){
+  public onClearSearchHistory() {
     localStorage.removeItem("asset-search")
-    this.searchHistory=[]
+    this.searchHistory = []
+  }
+
+
+  exportexcel(): void {
+    if (this.userDatabase && this.userDatabase.data) {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.userDatabase.data);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, this.fileName + 'Data');
+
+      XLSX.writeFile(wb, this.fileName + (new Date()).toUTCString() + ".xlsx");
+    } else {
+      alert('Error on export to excel.')
+    }
   }
 }
 
