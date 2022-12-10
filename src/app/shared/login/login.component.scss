@@ -1,5 +1,6 @@
 .body {
-  background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  //background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);
+  background-color: #ffd648;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -43,12 +44,12 @@
   padding: 30px;
   width: 100%;
   height: 100%;
-  background: #5961f9ad;
+  background: rgb(0 0 0 / 83%);
   overflow: hidden;
   box-sizing: border-box;
 }
 .box-form .left .overlay h1 {
-  font-size: 5vmax;
+  font-size: 40px;
   line-height: 1;
   font-weight: 900;
   margin-top: 40px;
@@ -81,10 +82,11 @@
   }
 }
 .box-form .right h5 {
-  font-size: 4vmax;
+  font-size: 30px;
   line-height: 0;
 }
 .box-form .right p {
+  text-align: center;
   font-size: 14px;
   color: #B0B3B9;
 }
@@ -112,15 +114,17 @@
 }
 .box-form .right button {
   float: right;
-  color: #fff;
+  color: white;
+  background-color: #d04e3d;
+  font-weight: 700;
   font-size: 16px;
   padding: 12px 35px;
   border-radius: 50px;
   display: inline-block;
   border: 0;
   outline: 0;
-  box-shadow: 0px 4px 20px 0px #49c628a6;
-  background-image: linear-gradient(135deg, #70F570 10%, #49C628 100%);
+  box-shadow: 0px 4px 20px 0px #d04e3da6;
+  // background-image: linear-gradient(135deg, #fcfcc6 10%,#ffd648 100%);
 }
 
 label {
@@ -134,7 +138,7 @@ label::before {
   position: absolute;
   font-family: FontAwesome;
   background: transparent;
-  border: 3px solid #70F570;
+  border: 3px solid #d04e3d;
   border-radius: 4px;
   color: transparent;
   left: -30px;
@@ -146,11 +150,11 @@ label:hover::before {
   content: ' \f00c';
   color: #fff;
   cursor: pointer;
-  background: #70F570;
+  background: #d04e3d;
 }
 
 label:hover::before .text-checkbox {
-  background: #70F570;
+  background: #d04e3d;
 }
 
 label span.text-checkbox {
