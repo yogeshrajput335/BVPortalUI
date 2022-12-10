@@ -18,7 +18,7 @@
               <img src="../../../assets/blueverse_logo_live.png" style="width: 100%; max-width: 100px" />
             </td>
 
-            <td colspan="2">
+            <td colspan="2" style="text-align: right;">
               Year: <select><option>2022</option></select><br />
               Month : <select><option>January</option></select><br />
               Week: <select><option>13/10/2022 to 5/10/2022</option></select><br />
@@ -32,32 +32,26 @@
     <tr class="heading">
       <td colspan="6">Employee</td>
 
-      <td>Timesheet Duration</td>
+      <td style="text-align: right;">Timesheet Duration</td>
     </tr>
 
     <tr class="details">
       <td colspan="6">{{timesheet.employeeName}}</td>
 
-      <td>13/10/2022 to 5/10/2022</td>
+      <td style="text-align: right;">13/10/2022 to 5/10/2022</td>
     </tr>
     <tr>
       <td colspan="7">
         <table>
           <tr class="heading">
-            <td *ngFor="let item of timesheet.detail">{{item.workDay| date :'longDate'}}</td>
+            <td *ngFor="let item of timesheet.detail">{{item.workDay| date :'dd/MM/yyyy'}}</td>
           </tr>
-          <!-- <tr class="heading">
-            <td>Monday</td>
-            <td style="text-align: left;">Tuesday</td>
-            <td>Wednesday</td>
-            <td>Thrusday</td>
-            <td>Friday</td>
-            <td>Saturday</td>
-            <td>Sunday</td>
-          </tr> -->
+          <tr class="heading">
+            <td *ngFor="let item of timesheet.detail">{{item.workDay| date :'EEEE'}}</td>
+          </tr>
 
           <tr class="item last">
-            <td *ngFor="let item of timesheet.detail">{{item.hours}}</td>
+            <td *ngFor="let item of timesheet.detail" style="text-align: center;background-color: beige;">{{item.hours}}</td>
             <!-- <td>8</td>
             <td style="text-align: left;">8</td>
             <td>8</td>
@@ -78,7 +72,7 @@
           </tr> -->
 
           <tr class="total">
-            <td colspan="7" style="text-align: right;">Total hours: {{totalHours}} Hours</td>
+            <td colspan="7" style="text-align: right;">Total hours: <strong>{{totalHours}} Hours</strong></td>
           </tr>
         </table>
       </td>
