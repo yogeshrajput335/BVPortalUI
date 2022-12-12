@@ -1,7 +1,8 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {TimesheetListDataService } from '../../services/timesheet-list-data.service';
+import { TimesheetListDataService } from '../../services/timesheet-list-data.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-edit-timesheet-list.dialog',
@@ -12,8 +13,10 @@ export class EditTimesheetListDialogComponent {
   statuses: any
   projects: any
   employees: any
+  WeekDates: any[] = []
+  ins_datas = ['0', '0', '0', '0', '0', '0', '0']
   constructor(public dialogRef: MatDialogRef<EditTimesheetListDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: TimesheetListDataService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, public dataService: TimesheetListDataService, private authService: AuthenticationService,) {
     this.statuses = this.dataService.getStatues()
     this.projects = this.dataService.getProjects()
     this.employees = this.dataService.getEmployees()
@@ -30,7 +33,7 @@ export class EditTimesheetListDialogComponent {
   }
 
   submit() {
-    
+
   }
 
   onNoClick(): void {
@@ -40,4 +43,49 @@ export class EditTimesheetListDialogComponent {
   stopEdit(): void {
     this.dataService.updateTimesheetList(this.data);
   }
+
+  public confirmAdd(): void {
+    this.data.status = 'NEW';
+    this.data.createdDate = new Date();
+    this.data.createdBy = this.authService.getUser().employee;
+    this.data.detail = [];
+    this.dataService.addTimesheetList(this.data, this.WeekDates, this.ins_datas);
+  }
+
+  public onDateChange() {
+    this.WeekDates = [];
+    var curr1 = new Date(this.data.weekEndingDate);
+    var curr2 = new Date(this.data.weekEndingDate);
+    var first = curr1.getDate() - curr1.getDay();
+    var last = first + 6;
+    var firstday = new Date(curr1.setDate(first));
+    var lastday = new Date(curr2.setDate(last));
+    var selMon = this.data.weekEndingDate.getMonth()
+    this.data.month = this.monthNames[selMon];
+    this.data.year = this.data.weekEndingDate.getFullYear().toString();
+    this.data.duration = firstday.toLocaleDateString() + ' - ' + lastday.toLocaleDateString();
+
+    var d = firstday;
+    for (let i = 0; i < 7; i++) {
+      if (d.getMonth() == selMon) {
+        this.WeekDates.push(new Date(d))
+      }
+      d.setDate(d.getDate() + 1)
+      if (d > lastday) {
+        break;
+      }
+    }
+  }
+  days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thrusday",
+    "Friday",
+    "Saturday"
+  ];
+  monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
 }
